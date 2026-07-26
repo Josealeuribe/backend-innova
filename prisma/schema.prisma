@@ -1,0 +1,84 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum EstadoRegistro {
+  ACTIVO
+  INACTIVO
+}
+
+model Usuario {
+  id           Int    @id @default(autoincrement())
+  nombre       String @db.VarChar(100)
+  apellido     String @db.VarChar(100)
+  cedula       String @db.VarChar(30)
+  correo       String @unique(map: "uq_usuarios_correo") @db.VarChar(191)
+  passwordHash String @map("contrasena") @db.VarChar(255)
+
+  cargo           String?   @db.VarChar(100)
+  ciudad          String?   @db.VarChar(100)
+  casino          String?   @db.VarChar(150)
+  fechaNacimiento DateTime? @map("fecha_nacimiento") @db.Date
+  telefono        String?   @db.VarChar(30)
+
+  idTipoDoc Int @map("id_tipo_doc")
+  idGenero  Int @map("id_genero")
+  idRol     Int @map("id_rol")
+
+  codigoHelisa String? @map("codigo_helisa") @db.VarChar(50)
+  cuentaPuc    String? @map("cuenta_puc") @db.VarChar(50)
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  imgUrl String?        @map("img_url") @db.VarChar(500)
+  estado EstadoRegistro @default(ACTIVO)
+
+  tipoDocumento TipoDocumento @relation(fields: [idTipoDoc], references: [idTipoDoc], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_tipo_documento")
+  genero        Genero        @relation(fields: [idGenero], references: [idGenero], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_genero")
+  rol           Rol           @relation(fields: [idRol], references: [idRol], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_roles")
+
+  @@unique([idTipoDoc, cedula], map: "uq_usuarios_tipo_documento_cedula")
+  @@index([idTipoDoc], map: "idx_usuarios_tipo_documento")
+  @@index([idGenero], map: "idx_usuarios_genero")
+  @@index([idRol], map: "idx_usuarios_rol")
+  @@index([codigoHelisa], map: "idx_usuarios_codigo_helisa")
+  @@index([estado], map: "idx_usuarios_estado")
+  @@map("usuarios")
+}
+
+model Rol {
+  idRol       Int            @id @default(autoincrement()) @map("id_rol")
+  nombreRol   String         @unique(map: "uq_roles_nombre") @map("nombre_rol") @db.VarChar(100)
+  estado      EstadoRegistro @default(ACTIVO)
+  descripcion String?        @db.VarChar(255)
+
+  usuarios Usuario[]
+
+  @@index([estado], map: "idx_roles_estado")
+  @@map("roles")
+}
+
+model TipoDocumento {
+  idTipoDoc Int    @id @default(autoincrement()) @map("id_tipo_doc")
+  nombreDoc String @unique(map: "uq_tipo_documento_nombre") @map("nombre_doc") @db.VarChar(50)
+
+  usuarios Usuario[]
+
+  @@map("tipos_documento")
+}
+
+model Genero {
+  idGenero     Int    @id @default(autoincrement()) @map("id_genero")
+  nombreGenero String @unique(map: "uq_generos_nombre") @map("nombre_genero") @db.VarChar(50)
+
+  usuarios Usuario[]
+
+  @@map("generos")
+}
