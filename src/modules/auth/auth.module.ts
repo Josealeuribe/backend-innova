@@ -85,6 +85,6 @@ import { JwtAccessTokenService } from './infraestructure/security/jwt-access-tok
     JwtAuthGuard,
   ],
 
-  exports: [JwtAuthGuard, ACCESS_TOKEN_SERVICE],
+  exports: [JwtAuthGuard, ACCESS_TOKEN_SERVICE, PASSWORD_HASHER_SERVICE,],
 })
 export class AuthModule {}

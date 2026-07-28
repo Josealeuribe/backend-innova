@@ -400,7 +400,11 @@ export const ModelName = {
   Usuario: 'Usuario',
   Rol: 'Rol',
   TipoDocumento: 'TipoDocumento',
-  Genero: 'Genero'
+  Genero: 'Genero',
+  Ciudad: 'Ciudad',
+  CentroCosto: 'CentroCosto',
+  RazonSocial: 'RazonSocial',
+  Casino: 'Casino'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -416,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "rol" | "tipoDocumento" | "genero"
+    modelProps: "usuario" | "rol" | "tipoDocumento" | "genero" | "ciudad" | "centroCosto" | "razonSocial" | "casino"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -684,6 +688,270 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Ciudad: {
+      payload: Prisma.$CiudadPayload<ExtArgs>
+      fields: Prisma.CiudadFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CiudadFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CiudadFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload>
+        }
+        findFirst: {
+          args: Prisma.CiudadFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CiudadFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload>
+        }
+        findMany: {
+          args: Prisma.CiudadFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload>[]
+        }
+        create: {
+          args: Prisma.CiudadCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload>
+        }
+        createMany: {
+          args: Prisma.CiudadCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.CiudadDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload>
+        }
+        update: {
+          args: Prisma.CiudadUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload>
+        }
+        deleteMany: {
+          args: Prisma.CiudadDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CiudadUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.CiudadUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CiudadPayload>
+        }
+        aggregate: {
+          args: Prisma.CiudadAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCiudad>
+        }
+        groupBy: {
+          args: Prisma.CiudadGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CiudadGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CiudadCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CiudadCountAggregateOutputType> | number
+        }
+      }
+    }
+    CentroCosto: {
+      payload: Prisma.$CentroCostoPayload<ExtArgs>
+      fields: Prisma.CentroCostoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CentroCostoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CentroCostoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload>
+        }
+        findFirst: {
+          args: Prisma.CentroCostoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CentroCostoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload>
+        }
+        findMany: {
+          args: Prisma.CentroCostoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload>[]
+        }
+        create: {
+          args: Prisma.CentroCostoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload>
+        }
+        createMany: {
+          args: Prisma.CentroCostoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.CentroCostoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload>
+        }
+        update: {
+          args: Prisma.CentroCostoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CentroCostoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CentroCostoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.CentroCostoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroCostoPayload>
+        }
+        aggregate: {
+          args: Prisma.CentroCostoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCentroCosto>
+        }
+        groupBy: {
+          args: Prisma.CentroCostoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CentroCostoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CentroCostoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CentroCostoCountAggregateOutputType> | number
+        }
+      }
+    }
+    RazonSocial: {
+      payload: Prisma.$RazonSocialPayload<ExtArgs>
+      fields: Prisma.RazonSocialFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RazonSocialFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RazonSocialFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload>
+        }
+        findFirst: {
+          args: Prisma.RazonSocialFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RazonSocialFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload>
+        }
+        findMany: {
+          args: Prisma.RazonSocialFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload>[]
+        }
+        create: {
+          args: Prisma.RazonSocialCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload>
+        }
+        createMany: {
+          args: Prisma.RazonSocialCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.RazonSocialDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload>
+        }
+        update: {
+          args: Prisma.RazonSocialUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload>
+        }
+        deleteMany: {
+          args: Prisma.RazonSocialDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RazonSocialUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.RazonSocialUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazonSocialPayload>
+        }
+        aggregate: {
+          args: Prisma.RazonSocialAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRazonSocial>
+        }
+        groupBy: {
+          args: Prisma.RazonSocialGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RazonSocialGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RazonSocialCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RazonSocialCountAggregateOutputType> | number
+        }
+      }
+    }
+    Casino: {
+      payload: Prisma.$CasinoPayload<ExtArgs>
+      fields: Prisma.CasinoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CasinoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CasinoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload>
+        }
+        findFirst: {
+          args: Prisma.CasinoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CasinoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload>
+        }
+        findMany: {
+          args: Prisma.CasinoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload>[]
+        }
+        create: {
+          args: Prisma.CasinoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload>
+        }
+        createMany: {
+          args: Prisma.CasinoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.CasinoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload>
+        }
+        update: {
+          args: Prisma.CasinoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CasinoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CasinoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.CasinoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CasinoPayload>
+        }
+        aggregate: {
+          args: Prisma.CasinoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCasino>
+        }
+        groupBy: {
+          args: Prisma.CasinoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CasinoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CasinoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CasinoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -731,19 +999,19 @@ export const UsuarioScalarFieldEnum = {
   correo: 'correo',
   passwordHash: 'passwordHash',
   cargo: 'cargo',
-  ciudad: 'ciudad',
-  casino: 'casino',
   fechaNacimiento: 'fechaNacimiento',
   telefono: 'telefono',
+  codigoHelisa: 'codigoHelisa',
+  cuentaPuc: 'cuentaPuc',
+  imgUrl: 'imgUrl',
+  estado: 'estado',
   idTipoDoc: 'idTipoDoc',
   idGenero: 'idGenero',
   idRol: 'idRol',
-  codigoHelisa: 'codigoHelisa',
-  cuentaPuc: 'cuentaPuc',
+  idCiudad: 'idCiudad',
+  idCasino: 'idCasino',
   fechaCreacion: 'fechaCreacion',
-  fechaActualizacion: 'fechaActualizacion',
-  imgUrl: 'imgUrl',
-  estado: 'estado'
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
@@ -752,8 +1020,10 @@ export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeo
 export const RolScalarFieldEnum = {
   idRol: 'idRol',
   nombreRol: 'nombreRol',
+  descripcion: 'descripcion',
   estado: 'estado',
-  descripcion: 'descripcion'
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type RolScalarFieldEnum = (typeof RolScalarFieldEnum)[keyof typeof RolScalarFieldEnum]
@@ -761,7 +1031,10 @@ export type RolScalarFieldEnum = (typeof RolScalarFieldEnum)[keyof typeof RolSca
 
 export const TipoDocumentoScalarFieldEnum = {
   idTipoDoc: 'idTipoDoc',
-  nombreDoc: 'nombreDoc'
+  nombreDoc: 'nombreDoc',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type TipoDocumentoScalarFieldEnum = (typeof TipoDocumentoScalarFieldEnum)[keyof typeof TipoDocumentoScalarFieldEnum]
@@ -769,10 +1042,66 @@ export type TipoDocumentoScalarFieldEnum = (typeof TipoDocumentoScalarFieldEnum)
 
 export const GeneroScalarFieldEnum = {
   idGenero: 'idGenero',
-  nombreGenero: 'nombreGenero'
+  nombreGenero: 'nombreGenero',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type GeneroScalarFieldEnum = (typeof GeneroScalarFieldEnum)[keyof typeof GeneroScalarFieldEnum]
+
+
+export const CiudadScalarFieldEnum = {
+  idCiudad: 'idCiudad',
+  nombreCiudad: 'nombreCiudad',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type CiudadScalarFieldEnum = (typeof CiudadScalarFieldEnum)[keyof typeof CiudadScalarFieldEnum]
+
+
+export const CentroCostoScalarFieldEnum = {
+  idCentroCosto: 'idCentroCosto',
+  codigoCentroCosto: 'codigoCentroCosto',
+  nombreCentroCosto: 'nombreCentroCosto',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type CentroCostoScalarFieldEnum = (typeof CentroCostoScalarFieldEnum)[keyof typeof CentroCostoScalarFieldEnum]
+
+
+export const RazonSocialScalarFieldEnum = {
+  idRazonSocial: 'idRazonSocial',
+  nit: 'nit',
+  nombreRazonSocial: 'nombreRazonSocial',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type RazonSocialScalarFieldEnum = (typeof RazonSocialScalarFieldEnum)[keyof typeof RazonSocialScalarFieldEnum]
+
+
+export const CasinoScalarFieldEnum = {
+  idCasino: 'idCasino',
+  nombreCasino: 'nombreCasino',
+  codigoDane: 'codigoDane',
+  codigoEstablecimiento: 'codigoEstablecimiento',
+  telefono: 'telefono',
+  direccion: 'direccion',
+  estado: 'estado',
+  idCiudad: 'idCiudad',
+  idCentroCosto: 'idCentroCosto',
+  idRazonSocial: 'idRazonSocial',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type CasinoScalarFieldEnum = (typeof CasinoScalarFieldEnum)[keyof typeof CasinoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -798,8 +1127,6 @@ export const UsuarioOrderByRelevanceFieldEnum = {
   correo: 'correo',
   passwordHash: 'passwordHash',
   cargo: 'cargo',
-  ciudad: 'ciudad',
-  casino: 'casino',
   telefono: 'telefono',
   codigoHelisa: 'codigoHelisa',
   cuentaPuc: 'cuentaPuc',
@@ -829,6 +1156,40 @@ export const GeneroOrderByRelevanceFieldEnum = {
 } as const
 
 export type GeneroOrderByRelevanceFieldEnum = (typeof GeneroOrderByRelevanceFieldEnum)[keyof typeof GeneroOrderByRelevanceFieldEnum]
+
+
+export const CiudadOrderByRelevanceFieldEnum = {
+  nombreCiudad: 'nombreCiudad'
+} as const
+
+export type CiudadOrderByRelevanceFieldEnum = (typeof CiudadOrderByRelevanceFieldEnum)[keyof typeof CiudadOrderByRelevanceFieldEnum]
+
+
+export const CentroCostoOrderByRelevanceFieldEnum = {
+  codigoCentroCosto: 'codigoCentroCosto',
+  nombreCentroCosto: 'nombreCentroCosto'
+} as const
+
+export type CentroCostoOrderByRelevanceFieldEnum = (typeof CentroCostoOrderByRelevanceFieldEnum)[keyof typeof CentroCostoOrderByRelevanceFieldEnum]
+
+
+export const RazonSocialOrderByRelevanceFieldEnum = {
+  nit: 'nit',
+  nombreRazonSocial: 'nombreRazonSocial'
+} as const
+
+export type RazonSocialOrderByRelevanceFieldEnum = (typeof RazonSocialOrderByRelevanceFieldEnum)[keyof typeof RazonSocialOrderByRelevanceFieldEnum]
+
+
+export const CasinoOrderByRelevanceFieldEnum = {
+  nombreCasino: 'nombreCasino',
+  codigoDane: 'codigoDane',
+  codigoEstablecimiento: 'codigoEstablecimiento',
+  telefono: 'telefono',
+  direccion: 'direccion'
+} as const
+
+export type CasinoOrderByRelevanceFieldEnum = (typeof CasinoOrderByRelevanceFieldEnum)[keyof typeof CasinoOrderByRelevanceFieldEnum]
 
 
 
@@ -1026,6 +1387,10 @@ export type GlobalOmitConfig = {
   rol?: Prisma.RolOmit
   tipoDocumento?: Prisma.TipoDocumentoOmit
   genero?: Prisma.GeneroOmit
+  ciudad?: Prisma.CiudadOmit
+  centroCosto?: Prisma.CentroCostoOmit
+  razonSocial?: Prisma.RazonSocialOmit
+  casino?: Prisma.CasinoOmit
 }
 
 /* Types for Logging */

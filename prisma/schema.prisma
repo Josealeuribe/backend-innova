@@ -17,68 +17,164 @@ model Usuario {
   id           Int    @id @default(autoincrement())
   nombre       String @db.VarChar(100)
   apellido     String @db.VarChar(100)
-  cedula       String @db.VarChar(30)
-  correo       String @unique(map: "uq_usuarios_correo") @db.VarChar(191)
-  passwordHash String @map("contrasena") @db.VarChar(255)
+  cedula       String @unique @db.VarChar(30)
+  correo       String @unique @db.VarChar(191)
+  passwordHash String @map("password_hash") @db.VarChar(255)
 
-  cargo           String?   @db.VarChar(100)
-  ciudad          String?   @db.VarChar(100)
-  casino          String?   @db.VarChar(150)
-  fechaNacimiento DateTime? @map("fecha_nacimiento") @db.Date
-  telefono        String?   @db.VarChar(30)
+  cargo           String   @db.VarChar(120)
+  fechaNacimiento DateTime @map("fecha_nacimiento") @db.Date
+  telefono        String   @db.VarChar(30)
+
+  codigoHelisa String? @map("codigo_helisa") @db.VarChar(50)
+  cuentaPuc    String? @map("cuenta_puc") @db.VarChar(50)
+  imgUrl       String? @map("img_url") @db.VarChar(500)
+
+  estado EstadoRegistro @default(ACTIVO)
 
   idTipoDoc Int @map("id_tipo_doc")
   idGenero  Int @map("id_genero")
   idRol     Int @map("id_rol")
+  idCiudad  Int @map("id_ciudad")
+  idCasino  Int @map("id_casino")
 
-  codigoHelisa String? @map("codigo_helisa") @db.VarChar(50)
-  cuentaPuc    String? @map("cuenta_puc") @db.VarChar(50)
+  tipoDocumento TipoDocumento @relation(fields: [idTipoDoc], references: [idTipoDoc], onDelete: Restrict, onUpdate: Cascade)
+  genero        Genero        @relation(fields: [idGenero], references: [idGenero], onDelete: Restrict, onUpdate: Cascade)
+  rol           Rol           @relation(fields: [idRol], references: [idRol], onDelete: Restrict, onUpdate: Cascade)
+  ciudad        Ciudad        @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade)
+  casino        Casino        @relation(fields: [idCasino], references: [idCasino], onDelete: Restrict, onUpdate: Cascade)
 
   fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
 
-  imgUrl String?        @map("img_url") @db.VarChar(500)
-  estado EstadoRegistro @default(ACTIVO)
-
-  tipoDocumento TipoDocumento @relation(fields: [idTipoDoc], references: [idTipoDoc], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_tipo_documento")
-  genero        Genero        @relation(fields: [idGenero], references: [idGenero], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_genero")
-  rol           Rol           @relation(fields: [idRol], references: [idRol], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_roles")
-
-  @@unique([idTipoDoc, cedula], map: "uq_usuarios_tipo_documento_cedula")
-  @@index([idTipoDoc], map: "idx_usuarios_tipo_documento")
-  @@index([idGenero], map: "idx_usuarios_genero")
-  @@index([idRol], map: "idx_usuarios_rol")
-  @@index([codigoHelisa], map: "idx_usuarios_codigo_helisa")
-  @@index([estado], map: "idx_usuarios_estado")
+  @@index([estado])
+  @@index([idTipoDoc])
+  @@index([idGenero])
+  @@index([idRol])
+  @@index([idCiudad])
+  @@index([idCasino])
+  @@index([apellido, nombre])
   @@map("usuarios")
 }
 
 model Rol {
   idRol       Int            @id @default(autoincrement()) @map("id_rol")
-  nombreRol   String         @unique(map: "uq_roles_nombre") @map("nombre_rol") @db.VarChar(100)
-  estado      EstadoRegistro @default(ACTIVO)
+  nombreRol   String         @unique @map("nombre_rol") @db.VarChar(100)
   descripcion String?        @db.VarChar(255)
+  estado      EstadoRegistro @default(ACTIVO)
 
   usuarios Usuario[]
 
-  @@index([estado], map: "idx_roles_estado")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@index([estado])
   @@map("roles")
 }
 
 model TipoDocumento {
-  idTipoDoc Int    @id @default(autoincrement()) @map("id_tipo_doc")
-  nombreDoc String @unique(map: "uq_tipo_documento_nombre") @map("nombre_doc") @db.VarChar(50)
+  idTipoDoc Int            @id @default(autoincrement()) @map("id_tipo_doc")
+  nombreDoc String         @unique @map("nombre_doc") @db.VarChar(50)
+  estado    EstadoRegistro @default(ACTIVO)
 
   usuarios Usuario[]
 
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@index([estado])
   @@map("tipos_documento")
 }
 
 model Genero {
-  idGenero     Int    @id @default(autoincrement()) @map("id_genero")
-  nombreGenero String @unique(map: "uq_generos_nombre") @map("nombre_genero") @db.VarChar(50)
+  idGenero     Int            @id @default(autoincrement()) @map("id_genero")
+  nombreGenero String         @unique @map("nombre_genero") @db.VarChar(50)
+  estado       EstadoRegistro @default(ACTIVO)
 
   usuarios Usuario[]
 
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@index([estado])
   @@map("generos")
+}
+
+model Ciudad {
+  idCiudad     Int            @id @default(autoincrement()) @map("id_ciudad")
+  nombreCiudad String         @unique @map("nombre_ciudad") @db.VarChar(100)
+  estado       EstadoRegistro @default(ACTIVO)
+
+  usuarios Usuario[]
+  casinos  Casino[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@index([estado])
+  @@map("ciudades")
+}
+
+model CentroCosto {
+  idCentroCosto     Int            @id @default(autoincrement()) @map("id_centro_costo")
+  codigoCentroCosto String         @unique @map("codigo_centro_costo") @db.VarChar(50)
+  nombreCentroCosto String         @map("nombre_centro_costo") @db.VarChar(150)
+  estado            EstadoRegistro @default(ACTIVO)
+
+  casinos Casino[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@index([estado])
+  @@index([nombreCentroCosto])
+  @@map("centros_costos")
+}
+
+model RazonSocial {
+  idRazonSocial     Int            @id @default(autoincrement()) @map("id_razon_social")
+  nit               String         @unique @db.VarChar(30)
+  nombreRazonSocial String         @map("nombre_razon_social") @db.VarChar(180)
+  estado            EstadoRegistro @default(ACTIVO)
+
+  casinos Casino[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@index([estado])
+  @@index([nombreRazonSocial])
+  @@map("razones_sociales")
+}
+
+model Casino {
+  idCasino Int @id @default(autoincrement()) @map("id_casino")
+
+  nombreCasino          String @unique @map("nombre_casino") @db.VarChar(150)
+  codigoDane            String @unique @map("codigo_dane") @db.VarChar(30)
+  codigoEstablecimiento String @unique @map("codigo_establecimiento") @db.VarChar(50)
+
+  telefono  String @db.VarChar(30)
+  direccion String @db.VarChar(200)
+
+  estado EstadoRegistro @default(ACTIVO)
+
+  idCiudad      Int @map("id_ciudad")
+  idCentroCosto Int @map("id_centro_costo")
+  idRazonSocial Int @map("id_razon_social")
+
+  ciudad      Ciudad      @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade)
+  centroCosto CentroCosto @relation(fields: [idCentroCosto], references: [idCentroCosto], onDelete: Restrict, onUpdate: Cascade)
+  razonSocial RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade)
+
+  usuarios Usuario[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@index([estado])
+  @@index([idCiudad])
+  @@index([idCentroCosto])
+  @@index([idRazonSocial])
+  @@index([nombreCasino])
+  @@map("casinos")
 }

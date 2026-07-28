@@ -37,16 +37,25 @@ export type GeneroSumAggregateOutputType = {
 export type GeneroMinAggregateOutputType = {
   idGenero: number | null
   nombreGenero: string | null
+  estado: $Enums.EstadoRegistro | null
+  fechaCreacion: Date | null
+  fechaActualizacion: Date | null
 }
 
 export type GeneroMaxAggregateOutputType = {
   idGenero: number | null
   nombreGenero: string | null
+  estado: $Enums.EstadoRegistro | null
+  fechaCreacion: Date | null
+  fechaActualizacion: Date | null
 }
 
 export type GeneroCountAggregateOutputType = {
   idGenero: number
   nombreGenero: number
+  estado: number
+  fechaCreacion: number
+  fechaActualizacion: number
   _all: number
 }
 
@@ -62,16 +71,25 @@ export type GeneroSumAggregateInputType = {
 export type GeneroMinAggregateInputType = {
   idGenero?: true
   nombreGenero?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
 }
 
 export type GeneroMaxAggregateInputType = {
   idGenero?: true
   nombreGenero?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
 }
 
 export type GeneroCountAggregateInputType = {
   idGenero?: true
   nombreGenero?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
   _all?: true
 }
 
@@ -164,6 +182,9 @@ export type GeneroGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type GeneroGroupByOutputType = {
   idGenero: number
   nombreGenero: string
+  estado: $Enums.EstadoRegistro
+  fechaCreacion: Date
+  fechaActualizacion: Date
   _count: GeneroCountAggregateOutputType | null
   _avg: GeneroAvgAggregateOutputType | null
   _sum: GeneroSumAggregateOutputType | null
@@ -192,12 +213,18 @@ export type GeneroWhereInput = {
   NOT?: Prisma.GeneroWhereInput | Prisma.GeneroWhereInput[]
   idGenero?: Prisma.IntFilter<"Genero"> | number
   nombreGenero?: Prisma.StringFilter<"Genero"> | string
+  estado?: Prisma.EnumEstadoRegistroFilter<"Genero"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFilter<"Genero"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"Genero"> | Date | string
   usuarios?: Prisma.UsuarioListRelationFilter
 }
 
 export type GeneroOrderByWithRelationInput = {
   idGenero?: Prisma.SortOrder
   nombreGenero?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
   usuarios?: Prisma.UsuarioOrderByRelationAggregateInput
   _relevance?: Prisma.GeneroOrderByRelevanceInput
 }
@@ -208,12 +235,18 @@ export type GeneroWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.GeneroWhereInput | Prisma.GeneroWhereInput[]
   OR?: Prisma.GeneroWhereInput[]
   NOT?: Prisma.GeneroWhereInput | Prisma.GeneroWhereInput[]
+  estado?: Prisma.EnumEstadoRegistroFilter<"Genero"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFilter<"Genero"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"Genero"> | Date | string
   usuarios?: Prisma.UsuarioListRelationFilter
 }, "idGenero" | "nombreGenero">
 
 export type GeneroOrderByWithAggregationInput = {
   idGenero?: Prisma.SortOrder
   nombreGenero?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
   _count?: Prisma.GeneroCountOrderByAggregateInput
   _avg?: Prisma.GeneroAvgOrderByAggregateInput
   _max?: Prisma.GeneroMaxOrderByAggregateInput
@@ -227,42 +260,66 @@ export type GeneroScalarWhereWithAggregatesInput = {
   NOT?: Prisma.GeneroScalarWhereWithAggregatesInput | Prisma.GeneroScalarWhereWithAggregatesInput[]
   idGenero?: Prisma.IntWithAggregatesFilter<"Genero"> | number
   nombreGenero?: Prisma.StringWithAggregatesFilter<"Genero"> | string
+  estado?: Prisma.EnumEstadoRegistroWithAggregatesFilter<"Genero"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeWithAggregatesFilter<"Genero"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeWithAggregatesFilter<"Genero"> | Date | string
 }
 
 export type GeneroCreateInput = {
   nombreGenero: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutGeneroInput
 }
 
 export type GeneroUncheckedCreateInput = {
   idGenero?: number
   nombreGenero: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutGeneroInput
 }
 
 export type GeneroUpdateInput = {
   nombreGenero?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUpdateManyWithoutGeneroNestedInput
 }
 
 export type GeneroUncheckedUpdateInput = {
   idGenero?: Prisma.IntFieldUpdateOperationsInput | number
   nombreGenero?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutGeneroNestedInput
 }
 
 export type GeneroCreateManyInput = {
   idGenero?: number
   nombreGenero: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type GeneroUpdateManyMutationInput = {
   nombreGenero?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GeneroUncheckedUpdateManyInput = {
   idGenero?: Prisma.IntFieldUpdateOperationsInput | number
   nombreGenero?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GeneroScalarRelationFilter = {
@@ -279,6 +336,9 @@ export type GeneroOrderByRelevanceInput = {
 export type GeneroCountOrderByAggregateInput = {
   idGenero?: Prisma.SortOrder
   nombreGenero?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type GeneroAvgOrderByAggregateInput = {
@@ -288,11 +348,17 @@ export type GeneroAvgOrderByAggregateInput = {
 export type GeneroMaxOrderByAggregateInput = {
   idGenero?: Prisma.SortOrder
   nombreGenero?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type GeneroMinOrderByAggregateInput = {
   idGenero?: Prisma.SortOrder
   nombreGenero?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type GeneroSumOrderByAggregateInput = {
@@ -315,11 +381,17 @@ export type GeneroUpdateOneRequiredWithoutUsuariosNestedInput = {
 
 export type GeneroCreateWithoutUsuariosInput = {
   nombreGenero: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type GeneroUncheckedCreateWithoutUsuariosInput = {
   idGenero?: number
   nombreGenero: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type GeneroCreateOrConnectWithoutUsuariosInput = {
@@ -340,11 +412,17 @@ export type GeneroUpdateToOneWithWhereWithoutUsuariosInput = {
 
 export type GeneroUpdateWithoutUsuariosInput = {
   nombreGenero?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GeneroUncheckedUpdateWithoutUsuariosInput = {
   idGenero?: Prisma.IntFieldUpdateOperationsInput | number
   nombreGenero?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -381,6 +459,9 @@ export type GeneroCountOutputTypeCountUsuariosArgs<ExtArgs extends runtime.Types
 export type GeneroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idGenero?: boolean
   nombreGenero?: boolean
+  estado?: boolean
+  fechaCreacion?: boolean
+  fechaActualizacion?: boolean
   usuarios?: boolean | Prisma.Genero$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.GeneroCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["genero"]>
@@ -390,9 +471,12 @@ export type GeneroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type GeneroSelectScalar = {
   idGenero?: boolean
   nombreGenero?: boolean
+  estado?: boolean
+  fechaCreacion?: boolean
+  fechaActualizacion?: boolean
 }
 
-export type GeneroOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idGenero" | "nombreGenero", ExtArgs["result"]["genero"]>
+export type GeneroOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idGenero" | "nombreGenero" | "estado" | "fechaCreacion" | "fechaActualizacion", ExtArgs["result"]["genero"]>
 export type GeneroInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuarios?: boolean | Prisma.Genero$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.GeneroCountOutputTypeDefaultArgs<ExtArgs>
@@ -406,6 +490,9 @@ export type $GeneroPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idGenero: number
     nombreGenero: string
+    estado: $Enums.EstadoRegistro
+    fechaCreacion: Date
+    fechaActualizacion: Date
   }, ExtArgs["result"]["genero"]>
   composites: {}
 }
@@ -778,6 +865,9 @@ export interface Prisma__GeneroClient<T, Null = never, ExtArgs extends runtime.T
 export interface GeneroFieldRefs {
   readonly idGenero: Prisma.FieldRef<"Genero", 'Int'>
   readonly nombreGenero: Prisma.FieldRef<"Genero", 'String'>
+  readonly estado: Prisma.FieldRef<"Genero", 'EstadoRegistro'>
+  readonly fechaCreacion: Prisma.FieldRef<"Genero", 'DateTime'>
+  readonly fechaActualizacion: Prisma.FieldRef<"Genero", 'DateTime'>
 }
     
 

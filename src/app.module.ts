@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { PrismaModule } from './shared/database/prisma/prisma.module';
+import { UsuariosModule } from './modules/configuracion/usuarios/usuarios.module';
+import { CasinosModule } from './modules/configuracion/casinos/casinos.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { PrismaModule } from './shared/database/prisma/prisma.module';
 
     PrismaModule,
     AuthModule,
+    UsuariosModule,
+    CasinosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

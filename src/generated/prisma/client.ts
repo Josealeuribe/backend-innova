@@ -59,3 +59,23 @@ export type TipoDocumento = Prisma.TipoDocumentoModel
  * 
  */
 export type Genero = Prisma.GeneroModel
+/**
+ * Model Ciudad
+ * 
+ */
+export type Ciudad = Prisma.CiudadModel
+/**
+ * Model CentroCosto
+ * 
+ */
+export type CentroCosto = Prisma.CentroCostoModel
+/**
+ * Model RazonSocial
+ * 
+ */
+export type RazonSocial = Prisma.RazonSocialModel
+/**
+ * Model Casino
+ * 
+ */
+export type Casino = Prisma.CasinoModel

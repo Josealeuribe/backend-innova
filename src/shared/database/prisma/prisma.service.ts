@@ -1,4 +1,8 @@
-import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import {
+  Injectable,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 
@@ -9,23 +13,54 @@ export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  constructor(configService: ConfigService) {
+  constructor(
+    configService: ConfigService,
+  ) {
+    const databaseUrl =
+      configService.getOrThrow<string>(
+        'DATABASE_URL',
+      );
+
+    const parsedUrl = new URL(databaseUrl);
+
+    const databaseName = decodeURIComponent(
+      parsedUrl.pathname.replace(/^\//, ''),
+    );
+
+    if (!databaseName) {
+      throw new Error(
+        'DATABASE_URL no contiene el nombre de la base de datos.',
+      );
+    }
+
     const adapter = new PrismaMariaDb({
-      host: configService.getOrThrow<string>('DATABASE_HOST'),
+      host: parsedUrl.hostname,
+      port: Number(parsedUrl.port || 3306),
 
-      port: Number(configService.get<string>('DATABASE_PORT') ?? 3306),
-
-      user: configService.getOrThrow<string>('DATABASE_USER'),
-
-      password: configService.getOrThrow<string>('DATABASE_PASSWORD'),
-
-      database: configService.getOrThrow<string>('DATABASE_NAME'),
-
-      connectionLimit: Number(
-        configService.get<string>('DATABASE_CONNECTION_LIMIT') ?? 5,
+      user: decodeURIComponent(
+        parsedUrl.username,
       ),
 
-      connectTimeout: 10000,
+      password: decodeURIComponent(
+        parsedUrl.password,
+      ),
+
+      database: databaseName,
+
+      connectionLimit: Number(
+        configService.get<string>(
+          'DATABASE_CONNECTION_LIMIT',
+        ) ?? 5,
+      ),
+
+      connectTimeout: 10_000,
+      acquireTimeout: 20_000,
+
+      /*
+       * Necesario en desarrollo local cuando MySQL usa
+       * caching_sha2_password y no hay TLS configurado.
+       */
+      allowPublicKeyRetrieval: true,
     });
 
     super({

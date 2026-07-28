@@ -37,22 +37,28 @@ export type RolSumAggregateOutputType = {
 export type RolMinAggregateOutputType = {
   idRol: number | null
   nombreRol: string | null
-  estado: $Enums.EstadoRegistro | null
   descripcion: string | null
+  estado: $Enums.EstadoRegistro | null
+  fechaCreacion: Date | null
+  fechaActualizacion: Date | null
 }
 
 export type RolMaxAggregateOutputType = {
   idRol: number | null
   nombreRol: string | null
-  estado: $Enums.EstadoRegistro | null
   descripcion: string | null
+  estado: $Enums.EstadoRegistro | null
+  fechaCreacion: Date | null
+  fechaActualizacion: Date | null
 }
 
 export type RolCountAggregateOutputType = {
   idRol: number
   nombreRol: number
-  estado: number
   descripcion: number
+  estado: number
+  fechaCreacion: number
+  fechaActualizacion: number
   _all: number
 }
 
@@ -68,22 +74,28 @@ export type RolSumAggregateInputType = {
 export type RolMinAggregateInputType = {
   idRol?: true
   nombreRol?: true
-  estado?: true
   descripcion?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
 }
 
 export type RolMaxAggregateInputType = {
   idRol?: true
   nombreRol?: true
-  estado?: true
   descripcion?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
 }
 
 export type RolCountAggregateInputType = {
   idRol?: true
   nombreRol?: true
-  estado?: true
   descripcion?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
   _all?: true
 }
 
@@ -176,8 +188,10 @@ export type RolGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type RolGroupByOutputType = {
   idRol: number
   nombreRol: string
-  estado: $Enums.EstadoRegistro
   descripcion: string | null
+  estado: $Enums.EstadoRegistro
+  fechaCreacion: Date
+  fechaActualizacion: Date
   _count: RolCountAggregateOutputType | null
   _avg: RolAvgAggregateOutputType | null
   _sum: RolSumAggregateOutputType | null
@@ -206,16 +220,20 @@ export type RolWhereInput = {
   NOT?: Prisma.RolWhereInput | Prisma.RolWhereInput[]
   idRol?: Prisma.IntFilter<"Rol"> | number
   nombreRol?: Prisma.StringFilter<"Rol"> | string
-  estado?: Prisma.EnumEstadoRegistroFilter<"Rol"> | $Enums.EstadoRegistro
   descripcion?: Prisma.StringNullableFilter<"Rol"> | string | null
+  estado?: Prisma.EnumEstadoRegistroFilter<"Rol"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFilter<"Rol"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"Rol"> | Date | string
   usuarios?: Prisma.UsuarioListRelationFilter
 }
 
 export type RolOrderByWithRelationInput = {
   idRol?: Prisma.SortOrder
   nombreRol?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
   usuarios?: Prisma.UsuarioOrderByRelationAggregateInput
   _relevance?: Prisma.RolOrderByRelevanceInput
 }
@@ -226,16 +244,20 @@ export type RolWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RolWhereInput | Prisma.RolWhereInput[]
   OR?: Prisma.RolWhereInput[]
   NOT?: Prisma.RolWhereInput | Prisma.RolWhereInput[]
-  estado?: Prisma.EnumEstadoRegistroFilter<"Rol"> | $Enums.EstadoRegistro
   descripcion?: Prisma.StringNullableFilter<"Rol"> | string | null
+  estado?: Prisma.EnumEstadoRegistroFilter<"Rol"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFilter<"Rol"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"Rol"> | Date | string
   usuarios?: Prisma.UsuarioListRelationFilter
 }, "idRol" | "nombreRol">
 
 export type RolOrderByWithAggregationInput = {
   idRol?: Prisma.SortOrder
   nombreRol?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
   _count?: Prisma.RolCountOrderByAggregateInput
   _avg?: Prisma.RolAvgOrderByAggregateInput
   _max?: Prisma.RolMaxOrderByAggregateInput
@@ -249,58 +271,74 @@ export type RolScalarWhereWithAggregatesInput = {
   NOT?: Prisma.RolScalarWhereWithAggregatesInput | Prisma.RolScalarWhereWithAggregatesInput[]
   idRol?: Prisma.IntWithAggregatesFilter<"Rol"> | number
   nombreRol?: Prisma.StringWithAggregatesFilter<"Rol"> | string
-  estado?: Prisma.EnumEstadoRegistroWithAggregatesFilter<"Rol"> | $Enums.EstadoRegistro
   descripcion?: Prisma.StringNullableWithAggregatesFilter<"Rol"> | string | null
+  estado?: Prisma.EnumEstadoRegistroWithAggregatesFilter<"Rol"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeWithAggregatesFilter<"Rol"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeWithAggregatesFilter<"Rol"> | Date | string
 }
 
 export type RolCreateInput = {
   nombreRol: string
-  estado?: $Enums.EstadoRegistro
   descripcion?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutRolInput
 }
 
 export type RolUncheckedCreateInput = {
   idRol?: number
   nombreRol: string
-  estado?: $Enums.EstadoRegistro
   descripcion?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutRolInput
 }
 
 export type RolUpdateInput = {
   nombreRol?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUpdateManyWithoutRolNestedInput
 }
 
 export type RolUncheckedUpdateInput = {
   idRol?: Prisma.IntFieldUpdateOperationsInput | number
   nombreRol?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutRolNestedInput
 }
 
 export type RolCreateManyInput = {
   idRol?: number
   nombreRol: string
-  estado?: $Enums.EstadoRegistro
   descripcion?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type RolUpdateManyMutationInput = {
   nombreRol?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RolUncheckedUpdateManyInput = {
   idRol?: Prisma.IntFieldUpdateOperationsInput | number
   nombreRol?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RolScalarRelationFilter = {
@@ -317,8 +355,10 @@ export type RolOrderByRelevanceInput = {
 export type RolCountOrderByAggregateInput = {
   idRol?: Prisma.SortOrder
   nombreRol?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type RolAvgOrderByAggregateInput = {
@@ -328,15 +368,19 @@ export type RolAvgOrderByAggregateInput = {
 export type RolMaxOrderByAggregateInput = {
   idRol?: Prisma.SortOrder
   nombreRol?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type RolMinOrderByAggregateInput = {
   idRol?: Prisma.SortOrder
   nombreRol?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type RolSumOrderByAggregateInput = {
@@ -359,15 +403,19 @@ export type RolUpdateOneRequiredWithoutUsuariosNestedInput = {
 
 export type RolCreateWithoutUsuariosInput = {
   nombreRol: string
-  estado?: $Enums.EstadoRegistro
   descripcion?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type RolUncheckedCreateWithoutUsuariosInput = {
   idRol?: number
   nombreRol: string
-  estado?: $Enums.EstadoRegistro
   descripcion?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type RolCreateOrConnectWithoutUsuariosInput = {
@@ -388,15 +436,19 @@ export type RolUpdateToOneWithWhereWithoutUsuariosInput = {
 
 export type RolUpdateWithoutUsuariosInput = {
   nombreRol?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RolUncheckedUpdateWithoutUsuariosInput = {
   idRol?: Prisma.IntFieldUpdateOperationsInput | number
   nombreRol?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -433,8 +485,10 @@ export type RolCountOutputTypeCountUsuariosArgs<ExtArgs extends runtime.Types.Ex
 export type RolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idRol?: boolean
   nombreRol?: boolean
-  estado?: boolean
   descripcion?: boolean
+  estado?: boolean
+  fechaCreacion?: boolean
+  fechaActualizacion?: boolean
   usuarios?: boolean | Prisma.Rol$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.RolCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rol"]>
@@ -444,11 +498,13 @@ export type RolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type RolSelectScalar = {
   idRol?: boolean
   nombreRol?: boolean
-  estado?: boolean
   descripcion?: boolean
+  estado?: boolean
+  fechaCreacion?: boolean
+  fechaActualizacion?: boolean
 }
 
-export type RolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idRol" | "nombreRol" | "estado" | "descripcion", ExtArgs["result"]["rol"]>
+export type RolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idRol" | "nombreRol" | "descripcion" | "estado" | "fechaCreacion" | "fechaActualizacion", ExtArgs["result"]["rol"]>
 export type RolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuarios?: boolean | Prisma.Rol$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.RolCountOutputTypeDefaultArgs<ExtArgs>
@@ -462,8 +518,10 @@ export type $RolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idRol: number
     nombreRol: string
-    estado: $Enums.EstadoRegistro
     descripcion: string | null
+    estado: $Enums.EstadoRegistro
+    fechaCreacion: Date
+    fechaActualizacion: Date
   }, ExtArgs["result"]["rol"]>
   composites: {}
 }
@@ -836,8 +894,10 @@ export interface Prisma__RolClient<T, Null = never, ExtArgs extends runtime.Type
 export interface RolFieldRefs {
   readonly idRol: Prisma.FieldRef<"Rol", 'Int'>
   readonly nombreRol: Prisma.FieldRef<"Rol", 'String'>
-  readonly estado: Prisma.FieldRef<"Rol", 'EstadoRegistro'>
   readonly descripcion: Prisma.FieldRef<"Rol", 'String'>
+  readonly estado: Prisma.FieldRef<"Rol", 'EstadoRegistro'>
+  readonly fechaCreacion: Prisma.FieldRef<"Rol", 'DateTime'>
+  readonly fechaActualizacion: Prisma.FieldRef<"Rol", 'DateTime'>
 }
     
 

@@ -54,7 +54,11 @@ export const ModelName = {
   Usuario: 'Usuario',
   Rol: 'Rol',
   TipoDocumento: 'TipoDocumento',
-  Genero: 'Genero'
+  Genero: 'Genero',
+  Ciudad: 'Ciudad',
+  CentroCosto: 'CentroCosto',
+  RazonSocial: 'RazonSocial',
+  Casino: 'Casino'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -81,19 +85,19 @@ export const UsuarioScalarFieldEnum = {
   correo: 'correo',
   passwordHash: 'passwordHash',
   cargo: 'cargo',
-  ciudad: 'ciudad',
-  casino: 'casino',
   fechaNacimiento: 'fechaNacimiento',
   telefono: 'telefono',
+  codigoHelisa: 'codigoHelisa',
+  cuentaPuc: 'cuentaPuc',
+  imgUrl: 'imgUrl',
+  estado: 'estado',
   idTipoDoc: 'idTipoDoc',
   idGenero: 'idGenero',
   idRol: 'idRol',
-  codigoHelisa: 'codigoHelisa',
-  cuentaPuc: 'cuentaPuc',
+  idCiudad: 'idCiudad',
+  idCasino: 'idCasino',
   fechaCreacion: 'fechaCreacion',
-  fechaActualizacion: 'fechaActualizacion',
-  imgUrl: 'imgUrl',
-  estado: 'estado'
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
@@ -102,8 +106,10 @@ export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeo
 export const RolScalarFieldEnum = {
   idRol: 'idRol',
   nombreRol: 'nombreRol',
+  descripcion: 'descripcion',
   estado: 'estado',
-  descripcion: 'descripcion'
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type RolScalarFieldEnum = (typeof RolScalarFieldEnum)[keyof typeof RolScalarFieldEnum]
@@ -111,7 +117,10 @@ export type RolScalarFieldEnum = (typeof RolScalarFieldEnum)[keyof typeof RolSca
 
 export const TipoDocumentoScalarFieldEnum = {
   idTipoDoc: 'idTipoDoc',
-  nombreDoc: 'nombreDoc'
+  nombreDoc: 'nombreDoc',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type TipoDocumentoScalarFieldEnum = (typeof TipoDocumentoScalarFieldEnum)[keyof typeof TipoDocumentoScalarFieldEnum]
@@ -119,10 +128,66 @@ export type TipoDocumentoScalarFieldEnum = (typeof TipoDocumentoScalarFieldEnum)
 
 export const GeneroScalarFieldEnum = {
   idGenero: 'idGenero',
-  nombreGenero: 'nombreGenero'
+  nombreGenero: 'nombreGenero',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
 } as const
 
 export type GeneroScalarFieldEnum = (typeof GeneroScalarFieldEnum)[keyof typeof GeneroScalarFieldEnum]
+
+
+export const CiudadScalarFieldEnum = {
+  idCiudad: 'idCiudad',
+  nombreCiudad: 'nombreCiudad',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type CiudadScalarFieldEnum = (typeof CiudadScalarFieldEnum)[keyof typeof CiudadScalarFieldEnum]
+
+
+export const CentroCostoScalarFieldEnum = {
+  idCentroCosto: 'idCentroCosto',
+  codigoCentroCosto: 'codigoCentroCosto',
+  nombreCentroCosto: 'nombreCentroCosto',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type CentroCostoScalarFieldEnum = (typeof CentroCostoScalarFieldEnum)[keyof typeof CentroCostoScalarFieldEnum]
+
+
+export const RazonSocialScalarFieldEnum = {
+  idRazonSocial: 'idRazonSocial',
+  nit: 'nit',
+  nombreRazonSocial: 'nombreRazonSocial',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type RazonSocialScalarFieldEnum = (typeof RazonSocialScalarFieldEnum)[keyof typeof RazonSocialScalarFieldEnum]
+
+
+export const CasinoScalarFieldEnum = {
+  idCasino: 'idCasino',
+  nombreCasino: 'nombreCasino',
+  codigoDane: 'codigoDane',
+  codigoEstablecimiento: 'codigoEstablecimiento',
+  telefono: 'telefono',
+  direccion: 'direccion',
+  estado: 'estado',
+  idCiudad: 'idCiudad',
+  idCentroCosto: 'idCentroCosto',
+  idRazonSocial: 'idRazonSocial',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type CasinoScalarFieldEnum = (typeof CasinoScalarFieldEnum)[keyof typeof CasinoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -148,8 +213,6 @@ export const UsuarioOrderByRelevanceFieldEnum = {
   correo: 'correo',
   passwordHash: 'passwordHash',
   cargo: 'cargo',
-  ciudad: 'ciudad',
-  casino: 'casino',
   telefono: 'telefono',
   codigoHelisa: 'codigoHelisa',
   cuentaPuc: 'cuentaPuc',
@@ -179,4 +242,38 @@ export const GeneroOrderByRelevanceFieldEnum = {
 } as const
 
 export type GeneroOrderByRelevanceFieldEnum = (typeof GeneroOrderByRelevanceFieldEnum)[keyof typeof GeneroOrderByRelevanceFieldEnum]
+
+
+export const CiudadOrderByRelevanceFieldEnum = {
+  nombreCiudad: 'nombreCiudad'
+} as const
+
+export type CiudadOrderByRelevanceFieldEnum = (typeof CiudadOrderByRelevanceFieldEnum)[keyof typeof CiudadOrderByRelevanceFieldEnum]
+
+
+export const CentroCostoOrderByRelevanceFieldEnum = {
+  codigoCentroCosto: 'codigoCentroCosto',
+  nombreCentroCosto: 'nombreCentroCosto'
+} as const
+
+export type CentroCostoOrderByRelevanceFieldEnum = (typeof CentroCostoOrderByRelevanceFieldEnum)[keyof typeof CentroCostoOrderByRelevanceFieldEnum]
+
+
+export const RazonSocialOrderByRelevanceFieldEnum = {
+  nit: 'nit',
+  nombreRazonSocial: 'nombreRazonSocial'
+} as const
+
+export type RazonSocialOrderByRelevanceFieldEnum = (typeof RazonSocialOrderByRelevanceFieldEnum)[keyof typeof RazonSocialOrderByRelevanceFieldEnum]
+
+
+export const CasinoOrderByRelevanceFieldEnum = {
+  nombreCasino: 'nombreCasino',
+  codigoDane: 'codigoDane',
+  codigoEstablecimiento: 'codigoEstablecimiento',
+  telefono: 'telefono',
+  direccion: 'direccion'
+} as const
+
+export type CasinoOrderByRelevanceFieldEnum = (typeof CasinoOrderByRelevanceFieldEnum)[keyof typeof CasinoOrderByRelevanceFieldEnum]
 

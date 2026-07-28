@@ -37,16 +37,25 @@ export type TipoDocumentoSumAggregateOutputType = {
 export type TipoDocumentoMinAggregateOutputType = {
   idTipoDoc: number | null
   nombreDoc: string | null
+  estado: $Enums.EstadoRegistro | null
+  fechaCreacion: Date | null
+  fechaActualizacion: Date | null
 }
 
 export type TipoDocumentoMaxAggregateOutputType = {
   idTipoDoc: number | null
   nombreDoc: string | null
+  estado: $Enums.EstadoRegistro | null
+  fechaCreacion: Date | null
+  fechaActualizacion: Date | null
 }
 
 export type TipoDocumentoCountAggregateOutputType = {
   idTipoDoc: number
   nombreDoc: number
+  estado: number
+  fechaCreacion: number
+  fechaActualizacion: number
   _all: number
 }
 
@@ -62,16 +71,25 @@ export type TipoDocumentoSumAggregateInputType = {
 export type TipoDocumentoMinAggregateInputType = {
   idTipoDoc?: true
   nombreDoc?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
 }
 
 export type TipoDocumentoMaxAggregateInputType = {
   idTipoDoc?: true
   nombreDoc?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
 }
 
 export type TipoDocumentoCountAggregateInputType = {
   idTipoDoc?: true
   nombreDoc?: true
+  estado?: true
+  fechaCreacion?: true
+  fechaActualizacion?: true
   _all?: true
 }
 
@@ -164,6 +182,9 @@ export type TipoDocumentoGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type TipoDocumentoGroupByOutputType = {
   idTipoDoc: number
   nombreDoc: string
+  estado: $Enums.EstadoRegistro
+  fechaCreacion: Date
+  fechaActualizacion: Date
   _count: TipoDocumentoCountAggregateOutputType | null
   _avg: TipoDocumentoAvgAggregateOutputType | null
   _sum: TipoDocumentoSumAggregateOutputType | null
@@ -192,12 +213,18 @@ export type TipoDocumentoWhereInput = {
   NOT?: Prisma.TipoDocumentoWhereInput | Prisma.TipoDocumentoWhereInput[]
   idTipoDoc?: Prisma.IntFilter<"TipoDocumento"> | number
   nombreDoc?: Prisma.StringFilter<"TipoDocumento"> | string
+  estado?: Prisma.EnumEstadoRegistroFilter<"TipoDocumento"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFilter<"TipoDocumento"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"TipoDocumento"> | Date | string
   usuarios?: Prisma.UsuarioListRelationFilter
 }
 
 export type TipoDocumentoOrderByWithRelationInput = {
   idTipoDoc?: Prisma.SortOrder
   nombreDoc?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
   usuarios?: Prisma.UsuarioOrderByRelationAggregateInput
   _relevance?: Prisma.TipoDocumentoOrderByRelevanceInput
 }
@@ -208,12 +235,18 @@ export type TipoDocumentoWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TipoDocumentoWhereInput | Prisma.TipoDocumentoWhereInput[]
   OR?: Prisma.TipoDocumentoWhereInput[]
   NOT?: Prisma.TipoDocumentoWhereInput | Prisma.TipoDocumentoWhereInput[]
+  estado?: Prisma.EnumEstadoRegistroFilter<"TipoDocumento"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFilter<"TipoDocumento"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"TipoDocumento"> | Date | string
   usuarios?: Prisma.UsuarioListRelationFilter
 }, "idTipoDoc" | "nombreDoc">
 
 export type TipoDocumentoOrderByWithAggregationInput = {
   idTipoDoc?: Prisma.SortOrder
   nombreDoc?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
   _count?: Prisma.TipoDocumentoCountOrderByAggregateInput
   _avg?: Prisma.TipoDocumentoAvgOrderByAggregateInput
   _max?: Prisma.TipoDocumentoMaxOrderByAggregateInput
@@ -227,42 +260,66 @@ export type TipoDocumentoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TipoDocumentoScalarWhereWithAggregatesInput | Prisma.TipoDocumentoScalarWhereWithAggregatesInput[]
   idTipoDoc?: Prisma.IntWithAggregatesFilter<"TipoDocumento"> | number
   nombreDoc?: Prisma.StringWithAggregatesFilter<"TipoDocumento"> | string
+  estado?: Prisma.EnumEstadoRegistroWithAggregatesFilter<"TipoDocumento"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeWithAggregatesFilter<"TipoDocumento"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeWithAggregatesFilter<"TipoDocumento"> | Date | string
 }
 
 export type TipoDocumentoCreateInput = {
   nombreDoc: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutTipoDocumentoInput
 }
 
 export type TipoDocumentoUncheckedCreateInput = {
   idTipoDoc?: number
   nombreDoc: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutTipoDocumentoInput
 }
 
 export type TipoDocumentoUpdateInput = {
   nombreDoc?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUpdateManyWithoutTipoDocumentoNestedInput
 }
 
 export type TipoDocumentoUncheckedUpdateInput = {
   idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
   nombreDoc?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutTipoDocumentoNestedInput
 }
 
 export type TipoDocumentoCreateManyInput = {
   idTipoDoc?: number
   nombreDoc: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type TipoDocumentoUpdateManyMutationInput = {
   nombreDoc?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TipoDocumentoUncheckedUpdateManyInput = {
   idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
   nombreDoc?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TipoDocumentoScalarRelationFilter = {
@@ -279,6 +336,9 @@ export type TipoDocumentoOrderByRelevanceInput = {
 export type TipoDocumentoCountOrderByAggregateInput = {
   idTipoDoc?: Prisma.SortOrder
   nombreDoc?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type TipoDocumentoAvgOrderByAggregateInput = {
@@ -288,11 +348,17 @@ export type TipoDocumentoAvgOrderByAggregateInput = {
 export type TipoDocumentoMaxOrderByAggregateInput = {
   idTipoDoc?: Prisma.SortOrder
   nombreDoc?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type TipoDocumentoMinOrderByAggregateInput = {
   idTipoDoc?: Prisma.SortOrder
   nombreDoc?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  fechaCreacion?: Prisma.SortOrder
+  fechaActualizacion?: Prisma.SortOrder
 }
 
 export type TipoDocumentoSumOrderByAggregateInput = {
@@ -315,11 +381,17 @@ export type TipoDocumentoUpdateOneRequiredWithoutUsuariosNestedInput = {
 
 export type TipoDocumentoCreateWithoutUsuariosInput = {
   nombreDoc: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type TipoDocumentoUncheckedCreateWithoutUsuariosInput = {
   idTipoDoc?: number
   nombreDoc: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
 }
 
 export type TipoDocumentoCreateOrConnectWithoutUsuariosInput = {
@@ -340,11 +412,17 @@ export type TipoDocumentoUpdateToOneWithWhereWithoutUsuariosInput = {
 
 export type TipoDocumentoUpdateWithoutUsuariosInput = {
   nombreDoc?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TipoDocumentoUncheckedUpdateWithoutUsuariosInput = {
   idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
   nombreDoc?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -381,6 +459,9 @@ export type TipoDocumentoCountOutputTypeCountUsuariosArgs<ExtArgs extends runtim
 export type TipoDocumentoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idTipoDoc?: boolean
   nombreDoc?: boolean
+  estado?: boolean
+  fechaCreacion?: boolean
+  fechaActualizacion?: boolean
   usuarios?: boolean | Prisma.TipoDocumento$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.TipoDocumentoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tipoDocumento"]>
@@ -390,9 +471,12 @@ export type TipoDocumentoSelect<ExtArgs extends runtime.Types.Extensions.Interna
 export type TipoDocumentoSelectScalar = {
   idTipoDoc?: boolean
   nombreDoc?: boolean
+  estado?: boolean
+  fechaCreacion?: boolean
+  fechaActualizacion?: boolean
 }
 
-export type TipoDocumentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idTipoDoc" | "nombreDoc", ExtArgs["result"]["tipoDocumento"]>
+export type TipoDocumentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idTipoDoc" | "nombreDoc" | "estado" | "fechaCreacion" | "fechaActualizacion", ExtArgs["result"]["tipoDocumento"]>
 export type TipoDocumentoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuarios?: boolean | Prisma.TipoDocumento$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.TipoDocumentoCountOutputTypeDefaultArgs<ExtArgs>
@@ -406,6 +490,9 @@ export type $TipoDocumentoPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idTipoDoc: number
     nombreDoc: string
+    estado: $Enums.EstadoRegistro
+    fechaCreacion: Date
+    fechaActualizacion: Date
   }, ExtArgs["result"]["tipoDocumento"]>
   composites: {}
 }
@@ -778,6 +865,9 @@ export interface Prisma__TipoDocumentoClient<T, Null = never, ExtArgs extends ru
 export interface TipoDocumentoFieldRefs {
   readonly idTipoDoc: Prisma.FieldRef<"TipoDocumento", 'Int'>
   readonly nombreDoc: Prisma.FieldRef<"TipoDocumento", 'String'>
+  readonly estado: Prisma.FieldRef<"TipoDocumento", 'EstadoRegistro'>
+  readonly fechaCreacion: Prisma.FieldRef<"TipoDocumento", 'DateTime'>
+  readonly fechaActualizacion: Prisma.FieldRef<"TipoDocumento", 'DateTime'>
 }
     
 
