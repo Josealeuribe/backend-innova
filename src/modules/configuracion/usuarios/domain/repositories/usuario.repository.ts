@@ -79,6 +79,41 @@ export interface MissingUsuarioRelations {
   casino: boolean;
 }
 
+export interface UsuarioCatalogos {
+  roles: Array<{
+    idRol: number;
+    nombreRol: string;
+  }>;
+
+  generos: Array<{
+    idGenero: number;
+    nombreGenero: string;
+  }>;
+
+  tiposDocumento: Array<{
+    idTipoDoc: number;
+    nombreDoc: string;
+  }>;
+
+  departamentos: Array<{
+    idDepartamento: number;
+    nombre: string;
+    idPais: number;
+  }>;
+
+  ciudades: Array<{
+    idCiudad: number;
+    nombreCiudad: string;
+    idDepartamento: number;
+  }>;
+
+  casinos: Array<{
+    idCasino: number;
+    nombreCasino: string;
+    idCiudad: number;
+  }>;
+}
+
 export interface UsuarioRepository {
   create(data: CreateUsuarioData): Promise<UsuarioEntity>;
 
@@ -100,4 +135,6 @@ export interface UsuarioRepository {
   checkForeignKeys(
     foreignKeys: UsuarioForeignKeys,
   ): Promise<MissingUsuarioRelations>;
+
+  getCatalogos(): Promise<UsuarioCatalogos>;
 }

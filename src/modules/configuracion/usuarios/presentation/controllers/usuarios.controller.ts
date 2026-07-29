@@ -14,7 +14,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-
+import { JwtAuthGuard } from
+  'src/modules/auth/presentation/guards/jwt-auth.guard';
 
 import {
   UsuarioCedulaAlreadyExistsError,
@@ -23,26 +24,54 @@ import {
   UsuarioNotFoundError,
 } from '../../application/errors/usuario.errors';
 
-import { ActualizarUsuarioUseCase } from '../../application/use-cases/actualizar-usuario.use-case';
-import { CrearUsuarioUseCase } from '../../application/use-cases/crear-usuario.use-case';
-import { EliminarUsuarioUseCase } from '../../application/use-cases/eliminar-usuario.use-case';
-import { ListarUsuariosUseCase } from '../../application/use-cases/listar-usuarios.use-case';
-import { ObtenerUsuarioUseCase } from '../../application/use-cases/obtener-usuario.use-case';
+import { ActualizarUsuarioUseCase } from
+  '../../application/use-cases/actualizar-usuario.use-case';
 
-import { ActualizarUsuarioDto } from '../dto/actualizar-usuario.dto';
-import { CrearUsuarioDto } from '../dto/crear-usuario.dto';
-import { ListarUsuariosQueryDto } from '../dto/listar-usuarios-query.dto';
-import { JwtAuthGuard } from 'src/modules/auth/presentation/guards/jwt-auth.guard';
+import { CrearUsuarioUseCase } from
+  '../../application/use-cases/crear-usuario.use-case';
+
+import { EliminarUsuarioUseCase } from
+  '../../application/use-cases/eliminar-usuario.use-case';
+
+import { ListarUsuariosUseCase } from
+  '../../application/use-cases/listar-usuarios.use-case';
+
+
+
+import { ObtenerUsuarioUseCase } from
+  '../../application/use-cases/obtener-usuario.use-case';
+
+import { ActualizarUsuarioDto } from
+  '../dto/actualizar-usuario.dto';
+
+import { CrearUsuarioDto } from
+  '../dto/crear-usuario.dto';
+
+import { ListarUsuariosQueryDto } from
+  '../dto/listar-usuarios-query.dto';
+import { ObtenerCatalogosUsuarioUseCase } from '../../application/use-cases/obtener-catalogo.use-case';
 
 @Controller('usuarios')
 @UseGuards(JwtAuthGuard)
 export class UsuariosController {
   constructor(
-    private readonly crearUsuarioUseCase: CrearUsuarioUseCase,
-    private readonly listarUsuariosUseCase: ListarUsuariosUseCase,
-    private readonly obtenerUsuarioUseCase: ObtenerUsuarioUseCase,
-    private readonly actualizarUsuarioUseCase: ActualizarUsuarioUseCase,
-    private readonly eliminarUsuarioUseCase: EliminarUsuarioUseCase,
+    private readonly crearUsuarioUseCase:
+      CrearUsuarioUseCase,
+
+    private readonly listarUsuariosUseCase:
+      ListarUsuariosUseCase,
+
+    private readonly obtenerUsuarioUseCase:
+      ObtenerUsuarioUseCase,
+
+    private readonly obtenerCatalogosUsuarioUseCase:
+      ObtenerCatalogosUsuarioUseCase,
+
+    private readonly actualizarUsuarioUseCase:
+      ActualizarUsuarioUseCase,
+
+    private readonly eliminarUsuarioUseCase:
+      EliminarUsuarioUseCase,
   ) {}
 
   @Post()
@@ -50,7 +79,9 @@ export class UsuariosController {
     @Body() dto: CrearUsuarioDto,
   ) {
     try {
-      return await this.crearUsuarioUseCase.execute(dto);
+      return await this.crearUsuarioUseCase.execute(
+        dto,
+      );
     } catch (error: unknown) {
       this.handleError(error);
     }
@@ -74,12 +105,21 @@ export class UsuariosController {
     });
   }
 
+  // Debe estar antes de @Get(':id')
+  @Get('catalogos')
+  getCatalogos() {
+    return this.obtenerCatalogosUsuarioUseCase.execute();
+  }
+
   @Get(':id')
   async findOne(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseIntPipe)
+    id: number,
   ) {
     try {
-      return await this.obtenerUsuarioUseCase.execute(id);
+      return await this.obtenerUsuarioUseCase.execute(
+        id,
+      );
     } catch (error: unknown) {
       this.handleError(error);
     }
@@ -87,8 +127,11 @@ export class UsuariosController {
 
   @Patch(':id')
   async update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: ActualizarUsuarioDto,
+    @Param('id', ParseIntPipe)
+    id: number,
+
+    @Body()
+    dto: ActualizarUsuarioDto,
   ) {
     try {
       return await this.actualizarUsuarioUseCase.execute(
@@ -102,14 +145,18 @@ export class UsuariosController {
 
   @Delete(':id')
   async remove(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseIntPipe)
+    id: number,
   ) {
     try {
       const usuario =
-        await this.eliminarUsuarioUseCase.execute(id);
+        await this.eliminarUsuarioUseCase.execute(
+          id,
+        );
 
       return {
-        message: 'Usuario desactivado correctamente.',
+        message:
+          'Usuario desactivado correctamente.',
         usuario,
       };
     } catch (error: unknown) {
@@ -117,19 +164,31 @@ export class UsuariosController {
     }
   }
 
-  private handleError(error: unknown): never {
-    if (error instanceof UsuarioNotFoundError) {
-      throw new NotFoundException(error.message);
+  private handleError(
+    error: unknown,
+  ): never {
+    if (
+      error instanceof UsuarioNotFoundError
+    ) {
+      throw new NotFoundException(
+        error.message,
+      );
     }
 
     if (
-      error instanceof UsuarioCorreoAlreadyExistsError ||
-      error instanceof UsuarioCedulaAlreadyExistsError
+      error instanceof
+        UsuarioCorreoAlreadyExistsError ||
+      error instanceof
+        UsuarioCedulaAlreadyExistsError
     ) {
-      throw new ConflictException(error.message);
+      throw new ConflictException(
+        error.message,
+      );
     }
 
-    if (error instanceof UsuarioForeignKeyError) {
+    if (
+      error instanceof UsuarioForeignKeyError
+    ) {
       throw new BadRequestException({
         message: error.message,
         relacionesFaltantes:

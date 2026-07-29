@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { PrismaModule } from './shared/database/prisma/prisma.module';
 import { UsuariosModule } from './modules/configuracion/usuarios/usuarios.module';
 import { CasinosModule } from './modules/configuracion/casinos/casinos.module';
+import { UbicacionesModule } from './modules/ubicaciones/ubicaciones.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CasinosModule } from './modules/configuracion/casinos/casinos.module';
     AuthModule,
     UsuariosModule,
     CasinosModule,
+    UbicacionesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

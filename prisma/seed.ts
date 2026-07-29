@@ -7,6 +7,11 @@ import {
   PrismaClient,
 } from '../src/generated/prisma/client';
 
+type SeedCity = {
+  nombreDepartamento: string;
+  nombreCiudad: string;
+};
+
 function requiredEnv(name: string): string {
   const value = process.env[name];
 
@@ -45,6 +50,59 @@ const adapter = new PrismaMariaDb({
 const prisma = new PrismaClient({
   adapter,
 });
+
+/**
+ * Obtiene el país Colombia.
+ *
+ * El catálogo territorial completo debe haberse cargado previamente
+ * en MySQL mediante el script de países, departamentos y ciudades.
+ */
+async function getColombia() {
+  return prisma.pais.findUniqueOrThrow({
+    where: {
+      nombre: 'Colombia',
+    },
+  });
+}
+
+/**
+ * Busca un departamento dentro de Colombia.
+ */
+async function getDepartmentOrThrow(
+  nombreDepartamento: string,
+) {
+  const colombia = await getColombia();
+
+  return prisma.departamento.findFirstOrThrow({
+    where: {
+      idPais: colombia.idPais,
+      nombre: nombreDepartamento,
+    },
+  });
+}
+
+/**
+ * Busca una ciudad utilizando tanto el nombre como el departamento.
+ *
+ * nombreCiudad ya no es único por sí solo. La identificación correcta
+ * se realiza mediante la combinación:
+ * idDepartamento + nombreCiudad.
+ */
+async function getCityOrThrow(
+  nombreDepartamento: string,
+  nombreCiudad: string,
+) {
+  const departamento = await getDepartmentOrThrow(
+    nombreDepartamento,
+  );
+
+  return prisma.ciudad.findFirstOrThrow({
+    where: {
+      idDepartamento: departamento.idDepartamento,
+      nombreCiudad,
+    },
+  });
+}
 
 async function createRoles(): Promise<void> {
   const roles = [
@@ -99,9 +157,11 @@ async function createDocumentTypes(): Promise<void> {
         nombreDoc,
       },
       update: {
+        estado: EstadoRegistro.ACTIVO,
       },
       create: {
         nombreDoc,
+        estado: EstadoRegistro.ACTIVO,
       },
     });
   }
@@ -120,33 +180,76 @@ async function createGenders(): Promise<void> {
         nombreGenero,
       },
       update: {
+        estado: EstadoRegistro.ACTIVO,
       },
       create: {
         nombreGenero,
+        estado: EstadoRegistro.ACTIVO,
       },
     });
   }
 }
 
+/**
+ * Garantiza que las ciudades utilizadas por este seed estén activas.
+ *
+ * El catálogo completo ya debe existir en la base de datos. Aun así,
+ * si alguna de estas cinco ciudades no existe, se crea asociándola al
+ * departamento correcto.
+ */
 async function createCities(): Promise<void> {
-  const cities = [
-    'MEDELLÍN',
-    'BOGOTÁ',
-    'CALI',
-    'BARRANQUILLA',
-    'CARTAGENA',
+  const cities: SeedCity[] = [
+    {
+      nombreDepartamento: 'Antioquia',
+      nombreCiudad: 'Medellín',
+    },
+    {
+      nombreDepartamento: 'Bogotá, D.C.',
+      nombreCiudad: 'Bogotá, D.C.',
+    },
+    {
+      nombreDepartamento: 'Valle del Cauca',
+      nombreCiudad: 'Cali',
+    },
+    {
+      nombreDepartamento: 'Atlántico',
+      nombreCiudad: 'Barranquilla',
+    },
+    {
+      nombreDepartamento: 'Bolívar',
+      nombreCiudad: 'Cartagena de Indias',
+    },
   ];
 
-  for (const nombreCiudad of cities) {
-    await prisma.ciudad.upsert({
+  for (const city of cities) {
+    const departamento = await getDepartmentOrThrow(
+      city.nombreDepartamento,
+    );
+
+    const existingCity = await prisma.ciudad.findFirst({
       where: {
-        nombreCiudad,
+        idDepartamento: departamento.idDepartamento,
+        nombreCiudad: city.nombreCiudad,
       },
-      update: {
-        estado: EstadoRegistro.ACTIVO,
-      },
-      create: {
-        nombreCiudad,
+    });
+
+    if (existingCity) {
+      await prisma.ciudad.update({
+        where: {
+          idCiudad: existingCity.idCiudad,
+        },
+        data: {
+          estado: EstadoRegistro.ACTIVO,
+        },
+      });
+
+      continue;
+    }
+
+    await prisma.ciudad.create({
+      data: {
+        nombreCiudad: city.nombreCiudad,
+        idDepartamento: departamento.idDepartamento,
         estado: EstadoRegistro.ACTIVO,
       },
     });
@@ -155,39 +258,88 @@ async function createCities(): Promise<void> {
 
 async function createCentrosCostos(): Promise<void> {
   const centros = [
-    { codigo: 'CC-001', nombre: 'Centro Costo Principal' },
-    { codigo: 'CC-002', nombre: 'Centro Costo Norte' },
+    {
+      codigo: 'CC-001',
+      nombre: 'Centro Costo Principal',
+    },
+    {
+      codigo: 'CC-002',
+      nombre: 'Centro Costo Norte',
+    },
   ];
 
   for (const cc of centros) {
     await prisma.centroCosto.upsert({
-      where: { codigoCentroCosto: cc.codigo },
-      update: { nombreCentroCosto: cc.nombre, estado: EstadoRegistro.ACTIVO },
-      create: { codigoCentroCosto: cc.codigo, nombreCentroCosto: cc.nombre, estado: EstadoRegistro.ACTIVO },
+      where: {
+        codigoCentroCosto: cc.codigo,
+      },
+      update: {
+        nombreCentroCosto: cc.nombre,
+        estado: EstadoRegistro.ACTIVO,
+      },
+      create: {
+        codigoCentroCosto: cc.codigo,
+        nombreCentroCosto: cc.nombre,
+        estado: EstadoRegistro.ACTIVO,
+      },
     });
   }
 }
 
 async function createRazonesSociales(): Promise<void> {
   const razones = [
-    { nit: '900.123.456-1', nombre: 'Razon Social Principal S.A.S.' },
-    { nit: '800.987.654-2', nombre: 'Operadora de Casinos Ltda.' },
+    {
+      nit: '900.123.456-1',
+      nombre: 'Razon Social Principal S.A.S.',
+    },
+    {
+      nit: '800.987.654-2',
+      nombre: 'Operadora de Casinos Ltda.',
+    },
   ];
 
   for (const rs of razones) {
     await prisma.razonSocial.upsert({
-      where: { nit: rs.nit },
-      update: { nombreRazonSocial: rs.nombre, estado: EstadoRegistro.ACTIVO },
-      create: { nit: rs.nit, nombreRazonSocial: rs.nombre, estado: EstadoRegistro.ACTIVO },
+      where: {
+        nit: rs.nit,
+      },
+      update: {
+        nombreRazonSocial: rs.nombre,
+        estado: EstadoRegistro.ACTIVO,
+      },
+      create: {
+        nit: rs.nit,
+        nombreRazonSocial: rs.nombre,
+        estado: EstadoRegistro.ACTIVO,
+      },
     });
   }
 }
 
 async function createCasinos(): Promise<void> {
-  const medellin = await prisma.ciudad.findUniqueOrThrow({ where: { nombreCiudad: 'MEDELLÍN' } });
-  const bogota = await prisma.ciudad.findUniqueOrThrow({ where: { nombreCiudad: 'BOGOTÁ' } });
-  const ccPrincipal = await prisma.centroCosto.findUniqueOrThrow({ where: { codigoCentroCosto: 'CC-001' } });
-  const rsPrincipal = await prisma.razonSocial.findUniqueOrThrow({ where: { nit: '900.123.456-1' } });
+  const medellin = await getCityOrThrow(
+    'Antioquia',
+    'Medellín',
+  );
+
+  const bogota = await getCityOrThrow(
+    'Bogotá, D.C.',
+    'Bogotá, D.C.',
+  );
+
+  const ccPrincipal =
+    await prisma.centroCosto.findUniqueOrThrow({
+      where: {
+        codigoCentroCosto: 'CC-001',
+      },
+    });
+
+  const rsPrincipal =
+    await prisma.razonSocial.findUniqueOrThrow({
+      where: {
+        nit: '900.123.456-1',
+      },
+    });
 
   const casinos = [
     {
@@ -219,15 +371,18 @@ async function createCasinos(): Promise<void> {
       idCiudad: medellin.idCiudad,
       idCentroCosto: ccPrincipal.idCentroCosto,
       idRazonSocial: rsPrincipal.idRazonSocial,
-    }
+    },
   ];
 
   for (const casino of casinos) {
     await prisma.casino.upsert({
-      where: { nombreCasino: casino.nombreCasino },
+      where: {
+        nombreCasino: casino.nombreCasino,
+      },
       update: {
         codigoDane: casino.codigoDane,
-        codigoEstablecimiento: casino.codigoEstablecimiento,
+        codigoEstablecimiento:
+          casino.codigoEstablecimiento,
         telefono: casino.telefono,
         direccion: casino.direccion,
         idCiudad: casino.idCiudad,
@@ -244,23 +399,26 @@ async function createCasinos(): Promise<void> {
 }
 
 async function createUsers(): Promise<void> {
-  const adminRole = await prisma.rol.findUniqueOrThrow({
-    where: {
-      nombreRol: 'ADMINISTRADOR',
-    },
-  });
+  const adminRole =
+    await prisma.rol.findUniqueOrThrow({
+      where: {
+        nombreRol: 'ADMINISTRADOR',
+      },
+    });
 
-  const accountantRole = await prisma.rol.findUniqueOrThrow({
-    where: {
-      nombreRol: 'CONTADOR',
-    },
-  });
+  const accountantRole =
+    await prisma.rol.findUniqueOrThrow({
+      where: {
+        nombreRol: 'CONTADOR',
+      },
+    });
 
-  const cc = await prisma.tipoDocumento.findUniqueOrThrow({
-    where: {
-      nombreDoc: 'CC',
-    },
-  });
+  const cc =
+    await prisma.tipoDocumento.findUniqueOrThrow({
+      where: {
+        nombreDoc: 'CC',
+      },
+    });
 
   const unspecifiedGender =
     await prisma.genero.findUniqueOrThrow({
@@ -276,12 +434,10 @@ async function createUsers(): Promise<void> {
       },
     });
 
-  const medellin =
-    await prisma.ciudad.findUniqueOrThrow({
-      where: {
-        nombreCiudad: 'MEDELLÍN',
-      },
-    });
+  const medellin = await getCityOrThrow(
+    'Antioquia',
+    'Medellín',
+  );
 
   const casinoPrincipal =
     await prisma.casino.findUniqueOrThrow({
@@ -312,69 +468,53 @@ async function createUsers(): Promise<void> {
     where: {
       correo: adminEmail,
     },
-
     update: {
       nombre:
         process.env.ADMIN_NOMBRE?.trim() ||
         'Administrador',
-
       apellido:
         process.env.ADMIN_APELLIDO?.trim() ||
         'Principal',
-
       cedula:
         process.env.ADMIN_DOCUMENTO?.trim() ||
         '1000000000',
-
       passwordHash: adminPasswordHash,
-
       cargo: 'Administrador del sistema',
       fechaNacimiento: new Date('1990-01-01'),
       telefono: '3000000000',
-
       codigoHelisa: 'ADM001',
       cuentaPuc: '510506',
       imgUrl: null,
-
       idTipoDoc: cc.idTipoDoc,
       idGenero: unspecifiedGender.idGenero,
       idRol: adminRole.idRol,
       idCiudad: medellin.idCiudad,
       idCasino: casinoPrincipal.idCasino,
-
       estado: EstadoRegistro.ACTIVO,
     },
-
     create: {
       nombre:
         process.env.ADMIN_NOMBRE?.trim() ||
         'Administrador',
-
       apellido:
         process.env.ADMIN_APELLIDO?.trim() ||
         'Principal',
-
       cedula:
         process.env.ADMIN_DOCUMENTO?.trim() ||
         '1000000000',
-
       correo: adminEmail,
       passwordHash: adminPasswordHash,
-
       cargo: 'Administrador del sistema',
       fechaNacimiento: new Date('1990-01-01'),
       telefono: '3000000000',
-
       codigoHelisa: 'ADM001',
       cuentaPuc: '510506',
       imgUrl: null,
-
       idTipoDoc: cc.idTipoDoc,
       idGenero: unspecifiedGender.idGenero,
       idRol: adminRole.idRol,
       idCiudad: medellin.idCiudad,
       idCasino: casinoPrincipal.idCasino,
-
       estado: EstadoRegistro.ACTIVO,
     },
   });
@@ -388,51 +528,41 @@ async function createUsers(): Promise<void> {
     where: {
       correo: 'contador@sistema.com',
     },
-
     update: {
       nombre: 'Carlos',
       apellido: 'Ramírez',
       cedula: '1020304050',
       passwordHash: accountantPasswordHash,
-
       cargo: 'Contador',
       fechaNacimiento: new Date('1995-05-15'),
       telefono: '3012345678',
-
       codigoHelisa: 'CONT001',
       cuentaPuc: '511030',
       imgUrl: null,
-
       idTipoDoc: cc.idTipoDoc,
       idGenero: maleGender.idGenero,
       idRol: accountantRole.idRol,
       idCiudad: medellin.idCiudad,
       idCasino: casinoCentro.idCasino,
-
       estado: EstadoRegistro.ACTIVO,
     },
-
     create: {
       nombre: 'Carlos',
       apellido: 'Ramírez',
       cedula: '1020304050',
       correo: 'contador@sistema.com',
       passwordHash: accountantPasswordHash,
-
       cargo: 'Contador',
       fechaNacimiento: new Date('1995-05-15'),
       telefono: '3012345678',
-
       codigoHelisa: 'CONT001',
       cuentaPuc: '511030',
       imgUrl: null,
-
       idTipoDoc: cc.idTipoDoc,
       idGenero: maleGender.idGenero,
       idRol: accountantRole.idRol,
       idCiudad: medellin.idCiudad,
       idCasino: casinoCentro.idCasino,
-
       estado: EstadoRegistro.ACTIVO,
     },
   });
@@ -445,19 +575,27 @@ async function main(): Promise<void> {
   console.log('Roles creados o actualizados.');
 
   await createDocumentTypes();
-  console.log('Tipos de documento creados o actualizados.');
+  console.log(
+    'Tipos de documento creados o actualizados.',
+  );
 
   await createGenders();
   console.log('Géneros creados o actualizados.');
 
   await createCities();
-  console.log('Ciudades creadas o actualizadas.');
+  console.log(
+    'Ciudades requeridas validadas o actualizadas.',
+  );
 
   await createCentrosCostos();
-  console.log('Centros de costos creados o actualizados.');
+  console.log(
+    'Centros de costos creados o actualizados.',
+  );
 
   await createRazonesSociales();
-  console.log('Razones sociales creadas o actualizadas.');
+  console.log(
+    'Razones sociales creadas o actualizadas.',
+  );
 
   await createCasinos();
   console.log('Casinos creados o actualizados.');

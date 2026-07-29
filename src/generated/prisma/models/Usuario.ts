@@ -630,6 +630,16 @@ export type UsuarioUncheckedUpdateManyInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type UsuarioListRelationFilter = {
+  every?: Prisma.UsuarioWhereInput
+  some?: Prisma.UsuarioWhereInput
+  none?: Prisma.UsuarioWhereInput
+}
+
+export type UsuarioOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type UsuarioOrderByRelevanceInput = {
   fields: Prisma.UsuarioOrderByRelevanceFieldEnum | Prisma.UsuarioOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
@@ -723,38 +733,50 @@ export type UsuarioSumOrderByAggregateInput = {
   idCasino?: Prisma.SortOrder
 }
 
-export type UsuarioListRelationFilter = {
-  every?: Prisma.UsuarioWhereInput
-  some?: Prisma.UsuarioWhereInput
-  none?: Prisma.UsuarioWhereInput
+export type UsuarioCreateNestedManyWithoutCiudadInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
+  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
+  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
 }
 
-export type UsuarioOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+export type UsuarioUncheckedCreateNestedManyWithoutCiudadInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
+  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
+  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type UsuarioUpdateManyWithoutCiudadNestedInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
+  upsert?: Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput[]
+  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
+  set?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  disconnect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  delete?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  update?: Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput[]
+  updateMany?: Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput | Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput[]
+  deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type UsuarioUncheckedUpdateManyWithoutCiudadNestedInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
+  upsert?: Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput[]
+  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
+  set?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  disconnect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  delete?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
+  update?: Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput[]
+  updateMany?: Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput | Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput[]
+  deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type EnumEstadoRegistroFieldUpdateOperationsInput = {
-  set?: $Enums.EstadoRegistro
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type UsuarioCreateNestedManyWithoutRolInput = {
@@ -883,48 +905,6 @@ export type UsuarioUncheckedUpdateManyWithoutGeneroNestedInput = {
   deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
 }
 
-export type UsuarioCreateNestedManyWithoutCiudadInput = {
-  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
-  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
-  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
-  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-}
-
-export type UsuarioUncheckedCreateNestedManyWithoutCiudadInput = {
-  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
-  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
-  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
-  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-}
-
-export type UsuarioUpdateManyWithoutCiudadNestedInput = {
-  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
-  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
-  upsert?: Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput[]
-  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
-  set?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  disconnect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  delete?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  update?: Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput[]
-  updateMany?: Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput | Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput[]
-  deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
-}
-
-export type UsuarioUncheckedUpdateManyWithoutCiudadNestedInput = {
-  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput> | Prisma.UsuarioCreateWithoutCiudadInput[] | Prisma.UsuarioUncheckedCreateWithoutCiudadInput[]
-  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCiudadInput | Prisma.UsuarioCreateOrConnectWithoutCiudadInput[]
-  upsert?: Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpsertWithWhereUniqueWithoutCiudadInput[]
-  createMany?: Prisma.UsuarioCreateManyCiudadInputEnvelope
-  set?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  disconnect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  delete?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  connect?: Prisma.UsuarioWhereUniqueInput | Prisma.UsuarioWhereUniqueInput[]
-  update?: Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput | Prisma.UsuarioUpdateWithWhereUniqueWithoutCiudadInput[]
-  updateMany?: Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput | Prisma.UsuarioUpdateManyWithWhereWithoutCiudadInput[]
-  deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
-}
-
 export type UsuarioCreateNestedManyWithoutCasinoInput = {
   create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCasinoInput, Prisma.UsuarioUncheckedCreateWithoutCasinoInput> | Prisma.UsuarioCreateWithoutCasinoInput[] | Prisma.UsuarioUncheckedCreateWithoutCasinoInput[]
   connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCasinoInput | Prisma.UsuarioCreateOrConnectWithoutCasinoInput[]
@@ -965,6 +945,101 @@ export type UsuarioUncheckedUpdateManyWithoutCasinoNestedInput = {
   update?: Prisma.UsuarioUpdateWithWhereUniqueWithoutCasinoInput | Prisma.UsuarioUpdateWithWhereUniqueWithoutCasinoInput[]
   updateMany?: Prisma.UsuarioUpdateManyWithWhereWithoutCasinoInput | Prisma.UsuarioUpdateManyWithWhereWithoutCasinoInput[]
   deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
+}
+
+export type UsuarioCreateWithoutCiudadInput = {
+  nombre: string
+  apellido: string
+  cedula: string
+  correo: string
+  passwordHash: string
+  cargo: string
+  fechaNacimiento: Date | string
+  telefono: string
+  codigoHelisa?: string | null
+  cuentaPuc?: string | null
+  imgUrl?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  tipoDocumento: Prisma.TipoDocumentoCreateNestedOneWithoutUsuariosInput
+  genero: Prisma.GeneroCreateNestedOneWithoutUsuariosInput
+  rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
+  casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+}
+
+export type UsuarioUncheckedCreateWithoutCiudadInput = {
+  id?: number
+  nombre: string
+  apellido: string
+  cedula: string
+  correo: string
+  passwordHash: string
+  cargo: string
+  fechaNacimiento: Date | string
+  telefono: string
+  codigoHelisa?: string | null
+  cuentaPuc?: string | null
+  imgUrl?: string | null
+  estado?: $Enums.EstadoRegistro
+  idTipoDoc: number
+  idGenero: number
+  idRol: number
+  idCasino: number
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+}
+
+export type UsuarioCreateOrConnectWithoutCiudadInput = {
+  where: Prisma.UsuarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput>
+}
+
+export type UsuarioCreateManyCiudadInputEnvelope = {
+  data: Prisma.UsuarioCreateManyCiudadInput | Prisma.UsuarioCreateManyCiudadInput[]
+  skipDuplicates?: boolean
+}
+
+export type UsuarioUpsertWithWhereUniqueWithoutCiudadInput = {
+  where: Prisma.UsuarioWhereUniqueInput
+  update: Prisma.XOR<Prisma.UsuarioUpdateWithoutCiudadInput, Prisma.UsuarioUncheckedUpdateWithoutCiudadInput>
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput>
+}
+
+export type UsuarioUpdateWithWhereUniqueWithoutCiudadInput = {
+  where: Prisma.UsuarioWhereUniqueInput
+  data: Prisma.XOR<Prisma.UsuarioUpdateWithoutCiudadInput, Prisma.UsuarioUncheckedUpdateWithoutCiudadInput>
+}
+
+export type UsuarioUpdateManyWithWhereWithoutCiudadInput = {
+  where: Prisma.UsuarioScalarWhereInput
+  data: Prisma.XOR<Prisma.UsuarioUpdateManyMutationInput, Prisma.UsuarioUncheckedUpdateManyWithoutCiudadInput>
+}
+
+export type UsuarioScalarWhereInput = {
+  AND?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
+  OR?: Prisma.UsuarioScalarWhereInput[]
+  NOT?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
+  id?: Prisma.IntFilter<"Usuario"> | number
+  nombre?: Prisma.StringFilter<"Usuario"> | string
+  apellido?: Prisma.StringFilter<"Usuario"> | string
+  cedula?: Prisma.StringFilter<"Usuario"> | string
+  correo?: Prisma.StringFilter<"Usuario"> | string
+  passwordHash?: Prisma.StringFilter<"Usuario"> | string
+  cargo?: Prisma.StringFilter<"Usuario"> | string
+  fechaNacimiento?: Prisma.DateTimeFilter<"Usuario"> | Date | string
+  telefono?: Prisma.StringFilter<"Usuario"> | string
+  codigoHelisa?: Prisma.StringNullableFilter<"Usuario"> | string | null
+  cuentaPuc?: Prisma.StringNullableFilter<"Usuario"> | string | null
+  imgUrl?: Prisma.StringNullableFilter<"Usuario"> | string | null
+  estado?: Prisma.EnumEstadoRegistroFilter<"Usuario"> | $Enums.EstadoRegistro
+  idTipoDoc?: Prisma.IntFilter<"Usuario"> | number
+  idGenero?: Prisma.IntFilter<"Usuario"> | number
+  idRol?: Prisma.IntFilter<"Usuario"> | number
+  idCiudad?: Prisma.IntFilter<"Usuario"> | number
+  idCasino?: Prisma.IntFilter<"Usuario"> | number
+  fechaCreacion?: Prisma.DateTimeFilter<"Usuario"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"Usuario"> | Date | string
 }
 
 export type UsuarioCreateWithoutRolInput = {
@@ -1034,32 +1109,6 @@ export type UsuarioUpdateWithWhereUniqueWithoutRolInput = {
 export type UsuarioUpdateManyWithWhereWithoutRolInput = {
   where: Prisma.UsuarioScalarWhereInput
   data: Prisma.XOR<Prisma.UsuarioUpdateManyMutationInput, Prisma.UsuarioUncheckedUpdateManyWithoutRolInput>
-}
-
-export type UsuarioScalarWhereInput = {
-  AND?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
-  OR?: Prisma.UsuarioScalarWhereInput[]
-  NOT?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
-  id?: Prisma.IntFilter<"Usuario"> | number
-  nombre?: Prisma.StringFilter<"Usuario"> | string
-  apellido?: Prisma.StringFilter<"Usuario"> | string
-  cedula?: Prisma.StringFilter<"Usuario"> | string
-  correo?: Prisma.StringFilter<"Usuario"> | string
-  passwordHash?: Prisma.StringFilter<"Usuario"> | string
-  cargo?: Prisma.StringFilter<"Usuario"> | string
-  fechaNacimiento?: Prisma.DateTimeFilter<"Usuario"> | Date | string
-  telefono?: Prisma.StringFilter<"Usuario"> | string
-  codigoHelisa?: Prisma.StringNullableFilter<"Usuario"> | string | null
-  cuentaPuc?: Prisma.StringNullableFilter<"Usuario"> | string | null
-  imgUrl?: Prisma.StringNullableFilter<"Usuario"> | string | null
-  estado?: Prisma.EnumEstadoRegistroFilter<"Usuario"> | $Enums.EstadoRegistro
-  idTipoDoc?: Prisma.IntFilter<"Usuario"> | number
-  idGenero?: Prisma.IntFilter<"Usuario"> | number
-  idRol?: Prisma.IntFilter<"Usuario"> | number
-  idCiudad?: Prisma.IntFilter<"Usuario"> | number
-  idCasino?: Prisma.IntFilter<"Usuario"> | number
-  fechaCreacion?: Prisma.DateTimeFilter<"Usuario"> | Date | string
-  fechaActualizacion?: Prisma.DateTimeFilter<"Usuario"> | Date | string
 }
 
 export type UsuarioCreateWithoutTipoDocumentoInput = {
@@ -1200,75 +1249,6 @@ export type UsuarioUpdateManyWithWhereWithoutGeneroInput = {
   data: Prisma.XOR<Prisma.UsuarioUpdateManyMutationInput, Prisma.UsuarioUncheckedUpdateManyWithoutGeneroInput>
 }
 
-export type UsuarioCreateWithoutCiudadInput = {
-  nombre: string
-  apellido: string
-  cedula: string
-  correo: string
-  passwordHash: string
-  cargo: string
-  fechaNacimiento: Date | string
-  telefono: string
-  codigoHelisa?: string | null
-  cuentaPuc?: string | null
-  imgUrl?: string | null
-  estado?: $Enums.EstadoRegistro
-  fechaCreacion?: Date | string
-  fechaActualizacion?: Date | string
-  tipoDocumento: Prisma.TipoDocumentoCreateNestedOneWithoutUsuariosInput
-  genero: Prisma.GeneroCreateNestedOneWithoutUsuariosInput
-  rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
-  casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
-}
-
-export type UsuarioUncheckedCreateWithoutCiudadInput = {
-  id?: number
-  nombre: string
-  apellido: string
-  cedula: string
-  correo: string
-  passwordHash: string
-  cargo: string
-  fechaNacimiento: Date | string
-  telefono: string
-  codigoHelisa?: string | null
-  cuentaPuc?: string | null
-  imgUrl?: string | null
-  estado?: $Enums.EstadoRegistro
-  idTipoDoc: number
-  idGenero: number
-  idRol: number
-  idCasino: number
-  fechaCreacion?: Date | string
-  fechaActualizacion?: Date | string
-}
-
-export type UsuarioCreateOrConnectWithoutCiudadInput = {
-  where: Prisma.UsuarioWhereUniqueInput
-  create: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput>
-}
-
-export type UsuarioCreateManyCiudadInputEnvelope = {
-  data: Prisma.UsuarioCreateManyCiudadInput | Prisma.UsuarioCreateManyCiudadInput[]
-  skipDuplicates?: boolean
-}
-
-export type UsuarioUpsertWithWhereUniqueWithoutCiudadInput = {
-  where: Prisma.UsuarioWhereUniqueInput
-  update: Prisma.XOR<Prisma.UsuarioUpdateWithoutCiudadInput, Prisma.UsuarioUncheckedUpdateWithoutCiudadInput>
-  create: Prisma.XOR<Prisma.UsuarioCreateWithoutCiudadInput, Prisma.UsuarioUncheckedCreateWithoutCiudadInput>
-}
-
-export type UsuarioUpdateWithWhereUniqueWithoutCiudadInput = {
-  where: Prisma.UsuarioWhereUniqueInput
-  data: Prisma.XOR<Prisma.UsuarioUpdateWithoutCiudadInput, Prisma.UsuarioUncheckedUpdateWithoutCiudadInput>
-}
-
-export type UsuarioUpdateManyWithWhereWithoutCiudadInput = {
-  where: Prisma.UsuarioScalarWhereInput
-  data: Prisma.XOR<Prisma.UsuarioUpdateManyMutationInput, Prisma.UsuarioUncheckedUpdateManyWithoutCiudadInput>
-}
-
 export type UsuarioCreateWithoutCasinoInput = {
   nombre: string
   apellido: string
@@ -1336,6 +1316,93 @@ export type UsuarioUpdateWithWhereUniqueWithoutCasinoInput = {
 export type UsuarioUpdateManyWithWhereWithoutCasinoInput = {
   where: Prisma.UsuarioScalarWhereInput
   data: Prisma.XOR<Prisma.UsuarioUpdateManyMutationInput, Prisma.UsuarioUncheckedUpdateManyWithoutCasinoInput>
+}
+
+export type UsuarioCreateManyCiudadInput = {
+  id?: number
+  nombre: string
+  apellido: string
+  cedula: string
+  correo: string
+  passwordHash: string
+  cargo: string
+  fechaNacimiento: Date | string
+  telefono: string
+  codigoHelisa?: string | null
+  cuentaPuc?: string | null
+  imgUrl?: string | null
+  estado?: $Enums.EstadoRegistro
+  idTipoDoc: number
+  idGenero: number
+  idRol: number
+  idCasino: number
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+}
+
+export type UsuarioUpdateWithoutCiudadInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  cedula?: Prisma.StringFieldUpdateOperationsInput | string
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tipoDocumento?: Prisma.TipoDocumentoUpdateOneRequiredWithoutUsuariosNestedInput
+  genero?: Prisma.GeneroUpdateOneRequiredWithoutUsuariosNestedInput
+  rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
+  casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+}
+
+export type UsuarioUncheckedUpdateWithoutCiudadInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  cedula?: Prisma.StringFieldUpdateOperationsInput | string
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
+  idGenero?: Prisma.IntFieldUpdateOperationsInput | number
+  idRol?: Prisma.IntFieldUpdateOperationsInput | number
+  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UsuarioUncheckedUpdateManyWithoutCiudadInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  cedula?: Prisma.StringFieldUpdateOperationsInput | string
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
+  idGenero?: Prisma.IntFieldUpdateOperationsInput | number
+  idRol?: Prisma.IntFieldUpdateOperationsInput | number
+  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UsuarioCreateManyRolInput = {
@@ -1594,93 +1661,6 @@ export type UsuarioUncheckedUpdateManyWithoutGeneroInput = {
   idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
   idRol?: Prisma.IntFieldUpdateOperationsInput | number
   idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
-  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
-  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UsuarioCreateManyCiudadInput = {
-  id?: number
-  nombre: string
-  apellido: string
-  cedula: string
-  correo: string
-  passwordHash: string
-  cargo: string
-  fechaNacimiento: Date | string
-  telefono: string
-  codigoHelisa?: string | null
-  cuentaPuc?: string | null
-  imgUrl?: string | null
-  estado?: $Enums.EstadoRegistro
-  idTipoDoc: number
-  idGenero: number
-  idRol: number
-  idCasino: number
-  fechaCreacion?: Date | string
-  fechaActualizacion?: Date | string
-}
-
-export type UsuarioUpdateWithoutCiudadInput = {
-  nombre?: Prisma.StringFieldUpdateOperationsInput | string
-  apellido?: Prisma.StringFieldUpdateOperationsInput | string
-  cedula?: Prisma.StringFieldUpdateOperationsInput | string
-  correo?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
-  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  telefono?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
-  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tipoDocumento?: Prisma.TipoDocumentoUpdateOneRequiredWithoutUsuariosNestedInput
-  genero?: Prisma.GeneroUpdateOneRequiredWithoutUsuariosNestedInput
-  rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
-  casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
-}
-
-export type UsuarioUncheckedUpdateWithoutCiudadInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  nombre?: Prisma.StringFieldUpdateOperationsInput | string
-  apellido?: Prisma.StringFieldUpdateOperationsInput | string
-  cedula?: Prisma.StringFieldUpdateOperationsInput | string
-  correo?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
-  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  telefono?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
-  idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
-  idGenero?: Prisma.IntFieldUpdateOperationsInput | number
-  idRol?: Prisma.IntFieldUpdateOperationsInput | number
-  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
-  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UsuarioUncheckedUpdateManyWithoutCiudadInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  nombre?: Prisma.StringFieldUpdateOperationsInput | string
-  apellido?: Prisma.StringFieldUpdateOperationsInput | string
-  cedula?: Prisma.StringFieldUpdateOperationsInput | string
-  correo?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
-  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  telefono?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
-  idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
-  idGenero?: Prisma.IntFieldUpdateOperationsInput | number
-  idRol?: Prisma.IntFieldUpdateOperationsInput | number
   idCasino?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string

@@ -51,11 +51,13 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Pais: 'Pais',
+  Departamento: 'Departamento',
+  Ciudad: 'Ciudad',
   Usuario: 'Usuario',
   Rol: 'Rol',
   TipoDocumento: 'TipoDocumento',
   Genero: 'Genero',
-  Ciudad: 'Ciudad',
   CentroCosto: 'CentroCosto',
   RazonSocial: 'RazonSocial',
   Casino: 'Casino'
@@ -75,6 +77,35 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const PaisScalarFieldEnum = {
+  idPais: 'idPais',
+  nombre: 'nombre'
+} as const
+
+export type PaisScalarFieldEnum = (typeof PaisScalarFieldEnum)[keyof typeof PaisScalarFieldEnum]
+
+
+export const DepartamentoScalarFieldEnum = {
+  idDepartamento: 'idDepartamento',
+  nombre: 'nombre',
+  idPais: 'idPais'
+} as const
+
+export type DepartamentoScalarFieldEnum = (typeof DepartamentoScalarFieldEnum)[keyof typeof DepartamentoScalarFieldEnum]
+
+
+export const CiudadScalarFieldEnum = {
+  idCiudad: 'idCiudad',
+  nombreCiudad: 'nombreCiudad',
+  idDepartamento: 'idDepartamento',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type CiudadScalarFieldEnum = (typeof CiudadScalarFieldEnum)[keyof typeof CiudadScalarFieldEnum]
 
 
 export const UsuarioScalarFieldEnum = {
@@ -137,17 +168,6 @@ export const GeneroScalarFieldEnum = {
 export type GeneroScalarFieldEnum = (typeof GeneroScalarFieldEnum)[keyof typeof GeneroScalarFieldEnum]
 
 
-export const CiudadScalarFieldEnum = {
-  idCiudad: 'idCiudad',
-  nombreCiudad: 'nombreCiudad',
-  estado: 'estado',
-  fechaCreacion: 'fechaCreacion',
-  fechaActualizacion: 'fechaActualizacion'
-} as const
-
-export type CiudadScalarFieldEnum = (typeof CiudadScalarFieldEnum)[keyof typeof CiudadScalarFieldEnum]
-
-
 export const CentroCostoScalarFieldEnum = {
   idCentroCosto: 'idCentroCosto',
   codigoCentroCosto: 'codigoCentroCosto',
@@ -198,6 +218,27 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const PaisOrderByRelevanceFieldEnum = {
+  nombre: 'nombre'
+} as const
+
+export type PaisOrderByRelevanceFieldEnum = (typeof PaisOrderByRelevanceFieldEnum)[keyof typeof PaisOrderByRelevanceFieldEnum]
+
+
+export const DepartamentoOrderByRelevanceFieldEnum = {
+  nombre: 'nombre'
+} as const
+
+export type DepartamentoOrderByRelevanceFieldEnum = (typeof DepartamentoOrderByRelevanceFieldEnum)[keyof typeof DepartamentoOrderByRelevanceFieldEnum]
+
+
+export const CiudadOrderByRelevanceFieldEnum = {
+  nombreCiudad: 'nombreCiudad'
+} as const
+
+export type CiudadOrderByRelevanceFieldEnum = (typeof CiudadOrderByRelevanceFieldEnum)[keyof typeof CiudadOrderByRelevanceFieldEnum]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
@@ -242,13 +283,6 @@ export const GeneroOrderByRelevanceFieldEnum = {
 } as const
 
 export type GeneroOrderByRelevanceFieldEnum = (typeof GeneroOrderByRelevanceFieldEnum)[keyof typeof GeneroOrderByRelevanceFieldEnum]
-
-
-export const CiudadOrderByRelevanceFieldEnum = {
-  nombreCiudad: 'nombreCiudad'
-} as const
-
-export type CiudadOrderByRelevanceFieldEnum = (typeof CiudadOrderByRelevanceFieldEnum)[keyof typeof CiudadOrderByRelevanceFieldEnum]
 
 
 export const CentroCostoOrderByRelevanceFieldEnum = {

@@ -28,15 +28,18 @@ export type AggregateCiudad = {
 
 export type CiudadAvgAggregateOutputType = {
   idCiudad: number | null
+  idDepartamento: number | null
 }
 
 export type CiudadSumAggregateOutputType = {
   idCiudad: number | null
+  idDepartamento: number | null
 }
 
 export type CiudadMinAggregateOutputType = {
   idCiudad: number | null
   nombreCiudad: string | null
+  idDepartamento: number | null
   estado: $Enums.EstadoRegistro | null
   fechaCreacion: Date | null
   fechaActualizacion: Date | null
@@ -45,6 +48,7 @@ export type CiudadMinAggregateOutputType = {
 export type CiudadMaxAggregateOutputType = {
   idCiudad: number | null
   nombreCiudad: string | null
+  idDepartamento: number | null
   estado: $Enums.EstadoRegistro | null
   fechaCreacion: Date | null
   fechaActualizacion: Date | null
@@ -53,6 +57,7 @@ export type CiudadMaxAggregateOutputType = {
 export type CiudadCountAggregateOutputType = {
   idCiudad: number
   nombreCiudad: number
+  idDepartamento: number
   estado: number
   fechaCreacion: number
   fechaActualizacion: number
@@ -62,15 +67,18 @@ export type CiudadCountAggregateOutputType = {
 
 export type CiudadAvgAggregateInputType = {
   idCiudad?: true
+  idDepartamento?: true
 }
 
 export type CiudadSumAggregateInputType = {
   idCiudad?: true
+  idDepartamento?: true
 }
 
 export type CiudadMinAggregateInputType = {
   idCiudad?: true
   nombreCiudad?: true
+  idDepartamento?: true
   estado?: true
   fechaCreacion?: true
   fechaActualizacion?: true
@@ -79,6 +87,7 @@ export type CiudadMinAggregateInputType = {
 export type CiudadMaxAggregateInputType = {
   idCiudad?: true
   nombreCiudad?: true
+  idDepartamento?: true
   estado?: true
   fechaCreacion?: true
   fechaActualizacion?: true
@@ -87,6 +96,7 @@ export type CiudadMaxAggregateInputType = {
 export type CiudadCountAggregateInputType = {
   idCiudad?: true
   nombreCiudad?: true
+  idDepartamento?: true
   estado?: true
   fechaCreacion?: true
   fechaActualizacion?: true
@@ -182,6 +192,7 @@ export type CiudadGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type CiudadGroupByOutputType = {
   idCiudad: number
   nombreCiudad: string
+  idDepartamento: number
   estado: $Enums.EstadoRegistro
   fechaCreacion: Date
   fechaActualizacion: Date
@@ -213,9 +224,11 @@ export type CiudadWhereInput = {
   NOT?: Prisma.CiudadWhereInput | Prisma.CiudadWhereInput[]
   idCiudad?: Prisma.IntFilter<"Ciudad"> | number
   nombreCiudad?: Prisma.StringFilter<"Ciudad"> | string
+  idDepartamento?: Prisma.IntFilter<"Ciudad"> | number
   estado?: Prisma.EnumEstadoRegistroFilter<"Ciudad"> | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFilter<"Ciudad"> | Date | string
   fechaActualizacion?: Prisma.DateTimeFilter<"Ciudad"> | Date | string
+  departamento?: Prisma.XOR<Prisma.DepartamentoScalarRelationFilter, Prisma.DepartamentoWhereInput>
   usuarios?: Prisma.UsuarioListRelationFilter
   casinos?: Prisma.CasinoListRelationFilter
 }
@@ -223,9 +236,11 @@ export type CiudadWhereInput = {
 export type CiudadOrderByWithRelationInput = {
   idCiudad?: Prisma.SortOrder
   nombreCiudad?: Prisma.SortOrder
+  idDepartamento?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaCreacion?: Prisma.SortOrder
   fechaActualizacion?: Prisma.SortOrder
+  departamento?: Prisma.DepartamentoOrderByWithRelationInput
   usuarios?: Prisma.UsuarioOrderByRelationAggregateInput
   casinos?: Prisma.CasinoOrderByRelationAggregateInput
   _relevance?: Prisma.CiudadOrderByRelevanceInput
@@ -233,20 +248,24 @@ export type CiudadOrderByWithRelationInput = {
 
 export type CiudadWhereUniqueInput = Prisma.AtLeast<{
   idCiudad?: number
-  nombreCiudad?: string
+  idDepartamento_nombreCiudad?: Prisma.CiudadIdDepartamentoNombreCiudadCompoundUniqueInput
   AND?: Prisma.CiudadWhereInput | Prisma.CiudadWhereInput[]
   OR?: Prisma.CiudadWhereInput[]
   NOT?: Prisma.CiudadWhereInput | Prisma.CiudadWhereInput[]
+  nombreCiudad?: Prisma.StringFilter<"Ciudad"> | string
+  idDepartamento?: Prisma.IntFilter<"Ciudad"> | number
   estado?: Prisma.EnumEstadoRegistroFilter<"Ciudad"> | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFilter<"Ciudad"> | Date | string
   fechaActualizacion?: Prisma.DateTimeFilter<"Ciudad"> | Date | string
+  departamento?: Prisma.XOR<Prisma.DepartamentoScalarRelationFilter, Prisma.DepartamentoWhereInput>
   usuarios?: Prisma.UsuarioListRelationFilter
   casinos?: Prisma.CasinoListRelationFilter
-}, "idCiudad" | "nombreCiudad">
+}, "idCiudad" | "idDepartamento_nombreCiudad">
 
 export type CiudadOrderByWithAggregationInput = {
   idCiudad?: Prisma.SortOrder
   nombreCiudad?: Prisma.SortOrder
+  idDepartamento?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaCreacion?: Prisma.SortOrder
   fechaActualizacion?: Prisma.SortOrder
@@ -263,6 +282,7 @@ export type CiudadScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CiudadScalarWhereWithAggregatesInput | Prisma.CiudadScalarWhereWithAggregatesInput[]
   idCiudad?: Prisma.IntWithAggregatesFilter<"Ciudad"> | number
   nombreCiudad?: Prisma.StringWithAggregatesFilter<"Ciudad"> | string
+  idDepartamento?: Prisma.IntWithAggregatesFilter<"Ciudad"> | number
   estado?: Prisma.EnumEstadoRegistroWithAggregatesFilter<"Ciudad"> | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeWithAggregatesFilter<"Ciudad"> | Date | string
   fechaActualizacion?: Prisma.DateTimeWithAggregatesFilter<"Ciudad"> | Date | string
@@ -273,6 +293,7 @@ export type CiudadCreateInput = {
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutCiudadesInput
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutCiudadInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutCiudadInput
 }
@@ -280,6 +301,7 @@ export type CiudadCreateInput = {
 export type CiudadUncheckedCreateInput = {
   idCiudad?: number
   nombreCiudad: string
+  idDepartamento: number
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
@@ -292,6 +314,7 @@ export type CiudadUpdateInput = {
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput
   usuarios?: Prisma.UsuarioUpdateManyWithoutCiudadNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutCiudadNestedInput
 }
@@ -299,6 +322,7 @@ export type CiudadUpdateInput = {
 export type CiudadUncheckedUpdateInput = {
   idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
   nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -309,6 +333,7 @@ export type CiudadUncheckedUpdateInput = {
 export type CiudadCreateManyInput = {
   idCiudad?: number
   nombreCiudad: string
+  idDepartamento: number
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
@@ -324,14 +349,20 @@ export type CiudadUpdateManyMutationInput = {
 export type CiudadUncheckedUpdateManyInput = {
   idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
   nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type CiudadScalarRelationFilter = {
-  is?: Prisma.CiudadWhereInput
-  isNot?: Prisma.CiudadWhereInput
+export type CiudadListRelationFilter = {
+  every?: Prisma.CiudadWhereInput
+  some?: Prisma.CiudadWhereInput
+  none?: Prisma.CiudadWhereInput
+}
+
+export type CiudadOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type CiudadOrderByRelevanceInput = {
@@ -340,9 +371,15 @@ export type CiudadOrderByRelevanceInput = {
   search: string
 }
 
+export type CiudadIdDepartamentoNombreCiudadCompoundUniqueInput = {
+  idDepartamento: number
+  nombreCiudad: string
+}
+
 export type CiudadCountOrderByAggregateInput = {
   idCiudad?: Prisma.SortOrder
   nombreCiudad?: Prisma.SortOrder
+  idDepartamento?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaCreacion?: Prisma.SortOrder
   fechaActualizacion?: Prisma.SortOrder
@@ -350,11 +387,13 @@ export type CiudadCountOrderByAggregateInput = {
 
 export type CiudadAvgOrderByAggregateInput = {
   idCiudad?: Prisma.SortOrder
+  idDepartamento?: Prisma.SortOrder
 }
 
 export type CiudadMaxOrderByAggregateInput = {
   idCiudad?: Prisma.SortOrder
   nombreCiudad?: Prisma.SortOrder
+  idDepartamento?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaCreacion?: Prisma.SortOrder
   fechaActualizacion?: Prisma.SortOrder
@@ -363,6 +402,7 @@ export type CiudadMaxOrderByAggregateInput = {
 export type CiudadMinOrderByAggregateInput = {
   idCiudad?: Prisma.SortOrder
   nombreCiudad?: Prisma.SortOrder
+  idDepartamento?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaCreacion?: Prisma.SortOrder
   fechaActualizacion?: Prisma.SortOrder
@@ -370,6 +410,62 @@ export type CiudadMinOrderByAggregateInput = {
 
 export type CiudadSumOrderByAggregateInput = {
   idCiudad?: Prisma.SortOrder
+  idDepartamento?: Prisma.SortOrder
+}
+
+export type CiudadScalarRelationFilter = {
+  is?: Prisma.CiudadWhereInput
+  isNot?: Prisma.CiudadWhereInput
+}
+
+export type CiudadCreateNestedManyWithoutDepartamentoInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutDepartamentoInput, Prisma.CiudadUncheckedCreateWithoutDepartamentoInput> | Prisma.CiudadCreateWithoutDepartamentoInput[] | Prisma.CiudadUncheckedCreateWithoutDepartamentoInput[]
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutDepartamentoInput | Prisma.CiudadCreateOrConnectWithoutDepartamentoInput[]
+  createMany?: Prisma.CiudadCreateManyDepartamentoInputEnvelope
+  connect?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+}
+
+export type CiudadUncheckedCreateNestedManyWithoutDepartamentoInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutDepartamentoInput, Prisma.CiudadUncheckedCreateWithoutDepartamentoInput> | Prisma.CiudadCreateWithoutDepartamentoInput[] | Prisma.CiudadUncheckedCreateWithoutDepartamentoInput[]
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutDepartamentoInput | Prisma.CiudadCreateOrConnectWithoutDepartamentoInput[]
+  createMany?: Prisma.CiudadCreateManyDepartamentoInputEnvelope
+  connect?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+}
+
+export type CiudadUpdateManyWithoutDepartamentoNestedInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutDepartamentoInput, Prisma.CiudadUncheckedCreateWithoutDepartamentoInput> | Prisma.CiudadCreateWithoutDepartamentoInput[] | Prisma.CiudadUncheckedCreateWithoutDepartamentoInput[]
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutDepartamentoInput | Prisma.CiudadCreateOrConnectWithoutDepartamentoInput[]
+  upsert?: Prisma.CiudadUpsertWithWhereUniqueWithoutDepartamentoInput | Prisma.CiudadUpsertWithWhereUniqueWithoutDepartamentoInput[]
+  createMany?: Prisma.CiudadCreateManyDepartamentoInputEnvelope
+  set?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  disconnect?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  delete?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  connect?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  update?: Prisma.CiudadUpdateWithWhereUniqueWithoutDepartamentoInput | Prisma.CiudadUpdateWithWhereUniqueWithoutDepartamentoInput[]
+  updateMany?: Prisma.CiudadUpdateManyWithWhereWithoutDepartamentoInput | Prisma.CiudadUpdateManyWithWhereWithoutDepartamentoInput[]
+  deleteMany?: Prisma.CiudadScalarWhereInput | Prisma.CiudadScalarWhereInput[]
+}
+
+export type CiudadUncheckedUpdateManyWithoutDepartamentoNestedInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutDepartamentoInput, Prisma.CiudadUncheckedCreateWithoutDepartamentoInput> | Prisma.CiudadCreateWithoutDepartamentoInput[] | Prisma.CiudadUncheckedCreateWithoutDepartamentoInput[]
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutDepartamentoInput | Prisma.CiudadCreateOrConnectWithoutDepartamentoInput[]
+  upsert?: Prisma.CiudadUpsertWithWhereUniqueWithoutDepartamentoInput | Prisma.CiudadUpsertWithWhereUniqueWithoutDepartamentoInput[]
+  createMany?: Prisma.CiudadCreateManyDepartamentoInputEnvelope
+  set?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  disconnect?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  delete?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  connect?: Prisma.CiudadWhereUniqueInput | Prisma.CiudadWhereUniqueInput[]
+  update?: Prisma.CiudadUpdateWithWhereUniqueWithoutDepartamentoInput | Prisma.CiudadUpdateWithWhereUniqueWithoutDepartamentoInput[]
+  updateMany?: Prisma.CiudadUpdateManyWithWhereWithoutDepartamentoInput | Prisma.CiudadUpdateManyWithWhereWithoutDepartamentoInput[]
+  deleteMany?: Prisma.CiudadScalarWhereInput | Prisma.CiudadScalarWhereInput[]
+}
+
+export type EnumEstadoRegistroFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoRegistro
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 export type CiudadCreateNestedOneWithoutUsuariosInput = {
@@ -400,17 +496,76 @@ export type CiudadUpdateOneRequiredWithoutCasinosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CiudadUpdateToOneWithWhereWithoutCasinosInput, Prisma.CiudadUpdateWithoutCasinosInput>, Prisma.CiudadUncheckedUpdateWithoutCasinosInput>
 }
 
+export type CiudadCreateWithoutDepartamentoInput = {
+  nombreCiudad: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  usuarios?: Prisma.UsuarioCreateNestedManyWithoutCiudadInput
+  casinos?: Prisma.CasinoCreateNestedManyWithoutCiudadInput
+}
+
+export type CiudadUncheckedCreateWithoutDepartamentoInput = {
+  idCiudad?: number
+  nombreCiudad: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCiudadInput
+  casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutCiudadInput
+}
+
+export type CiudadCreateOrConnectWithoutDepartamentoInput = {
+  where: Prisma.CiudadWhereUniqueInput
+  create: Prisma.XOR<Prisma.CiudadCreateWithoutDepartamentoInput, Prisma.CiudadUncheckedCreateWithoutDepartamentoInput>
+}
+
+export type CiudadCreateManyDepartamentoInputEnvelope = {
+  data: Prisma.CiudadCreateManyDepartamentoInput | Prisma.CiudadCreateManyDepartamentoInput[]
+  skipDuplicates?: boolean
+}
+
+export type CiudadUpsertWithWhereUniqueWithoutDepartamentoInput = {
+  where: Prisma.CiudadWhereUniqueInput
+  update: Prisma.XOR<Prisma.CiudadUpdateWithoutDepartamentoInput, Prisma.CiudadUncheckedUpdateWithoutDepartamentoInput>
+  create: Prisma.XOR<Prisma.CiudadCreateWithoutDepartamentoInput, Prisma.CiudadUncheckedCreateWithoutDepartamentoInput>
+}
+
+export type CiudadUpdateWithWhereUniqueWithoutDepartamentoInput = {
+  where: Prisma.CiudadWhereUniqueInput
+  data: Prisma.XOR<Prisma.CiudadUpdateWithoutDepartamentoInput, Prisma.CiudadUncheckedUpdateWithoutDepartamentoInput>
+}
+
+export type CiudadUpdateManyWithWhereWithoutDepartamentoInput = {
+  where: Prisma.CiudadScalarWhereInput
+  data: Prisma.XOR<Prisma.CiudadUpdateManyMutationInput, Prisma.CiudadUncheckedUpdateManyWithoutDepartamentoInput>
+}
+
+export type CiudadScalarWhereInput = {
+  AND?: Prisma.CiudadScalarWhereInput | Prisma.CiudadScalarWhereInput[]
+  OR?: Prisma.CiudadScalarWhereInput[]
+  NOT?: Prisma.CiudadScalarWhereInput | Prisma.CiudadScalarWhereInput[]
+  idCiudad?: Prisma.IntFilter<"Ciudad"> | number
+  nombreCiudad?: Prisma.StringFilter<"Ciudad"> | string
+  idDepartamento?: Prisma.IntFilter<"Ciudad"> | number
+  estado?: Prisma.EnumEstadoRegistroFilter<"Ciudad"> | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFilter<"Ciudad"> | Date | string
+  fechaActualizacion?: Prisma.DateTimeFilter<"Ciudad"> | Date | string
+}
+
 export type CiudadCreateWithoutUsuariosInput = {
   nombreCiudad: string
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutCiudadesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadUncheckedCreateWithoutUsuariosInput = {
   idCiudad?: number
   nombreCiudad: string
+  idDepartamento: number
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
@@ -438,12 +593,14 @@ export type CiudadUpdateWithoutUsuariosInput = {
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadUncheckedUpdateWithoutUsuariosInput = {
   idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
   nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -455,12 +612,14 @@ export type CiudadCreateWithoutCasinosInput = {
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutCiudadesInput
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadUncheckedCreateWithoutCasinosInput = {
   idCiudad?: number
   nombreCiudad: string
+  idDepartamento: number
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
@@ -488,16 +647,53 @@ export type CiudadUpdateWithoutCasinosInput = {
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput
   usuarios?: Prisma.UsuarioUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadUncheckedUpdateWithoutCasinosInput = {
   idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
   nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutCiudadNestedInput
+}
+
+export type CiudadCreateManyDepartamentoInput = {
+  idCiudad?: number
+  nombreCiudad: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+}
+
+export type CiudadUpdateWithoutDepartamentoInput = {
+  nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuarios?: Prisma.UsuarioUpdateManyWithoutCiudadNestedInput
+  casinos?: Prisma.CasinoUpdateManyWithoutCiudadNestedInput
+}
+
+export type CiudadUncheckedUpdateWithoutDepartamentoInput = {
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutCiudadNestedInput
+  casinos?: Prisma.CasinoUncheckedUpdateManyWithoutCiudadNestedInput
+}
+
+export type CiudadUncheckedUpdateManyWithoutDepartamentoInput = {
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -543,9 +739,11 @@ export type CiudadCountOutputTypeCountCasinosArgs<ExtArgs extends runtime.Types.
 export type CiudadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idCiudad?: boolean
   nombreCiudad?: boolean
+  idDepartamento?: boolean
   estado?: boolean
   fechaCreacion?: boolean
   fechaActualizacion?: boolean
+  departamento?: boolean | Prisma.DepartamentoDefaultArgs<ExtArgs>
   usuarios?: boolean | Prisma.Ciudad$usuariosArgs<ExtArgs>
   casinos?: boolean | Prisma.Ciudad$casinosArgs<ExtArgs>
   _count?: boolean | Prisma.CiudadCountOutputTypeDefaultArgs<ExtArgs>
@@ -556,13 +754,15 @@ export type CiudadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type CiudadSelectScalar = {
   idCiudad?: boolean
   nombreCiudad?: boolean
+  idDepartamento?: boolean
   estado?: boolean
   fechaCreacion?: boolean
   fechaActualizacion?: boolean
 }
 
-export type CiudadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idCiudad" | "nombreCiudad" | "estado" | "fechaCreacion" | "fechaActualizacion", ExtArgs["result"]["ciudad"]>
+export type CiudadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idCiudad" | "nombreCiudad" | "idDepartamento" | "estado" | "fechaCreacion" | "fechaActualizacion", ExtArgs["result"]["ciudad"]>
 export type CiudadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  departamento?: boolean | Prisma.DepartamentoDefaultArgs<ExtArgs>
   usuarios?: boolean | Prisma.Ciudad$usuariosArgs<ExtArgs>
   casinos?: boolean | Prisma.Ciudad$casinosArgs<ExtArgs>
   _count?: boolean | Prisma.CiudadCountOutputTypeDefaultArgs<ExtArgs>
@@ -571,12 +771,14 @@ export type CiudadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type $CiudadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Ciudad"
   objects: {
+    departamento: Prisma.$DepartamentoPayload<ExtArgs>
     usuarios: Prisma.$UsuarioPayload<ExtArgs>[]
     casinos: Prisma.$CasinoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idCiudad: number
     nombreCiudad: string
+    idDepartamento: number
     estado: $Enums.EstadoRegistro
     fechaCreacion: Date
     fechaActualizacion: Date
@@ -920,6 +1122,7 @@ readonly fields: CiudadFieldRefs;
  */
 export interface Prisma__CiudadClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  departamento<T extends Prisma.DepartamentoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartamentoDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartamentoClient<runtime.Types.Result.GetResult<Prisma.$DepartamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   usuarios<T extends Prisma.Ciudad$usuariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ciudad$usuariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   casinos<T extends Prisma.Ciudad$casinosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ciudad$casinosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasinoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -953,6 +1156,7 @@ export interface Prisma__CiudadClient<T, Null = never, ExtArgs extends runtime.T
 export interface CiudadFieldRefs {
   readonly idCiudad: Prisma.FieldRef<"Ciudad", 'Int'>
   readonly nombreCiudad: Prisma.FieldRef<"Ciudad", 'String'>
+  readonly idDepartamento: Prisma.FieldRef<"Ciudad", 'Int'>
   readonly estado: Prisma.FieldRef<"Ciudad", 'EstadoRegistro'>
   readonly fechaCreacion: Prisma.FieldRef<"Ciudad", 'DateTime'>
   readonly fechaActualizacion: Prisma.FieldRef<"Ciudad", 'DateTime'>

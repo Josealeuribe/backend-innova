@@ -13,6 +13,57 @@ enum EstadoRegistro {
   INACTIVO
 }
 
+// ======================================================
+// PAÍSES, DEPARTAMENTOS Y CIUDADES
+// ======================================================
+
+model Pais {
+  idPais Int    @id @default(autoincrement()) @map("id_pais")
+  nombre String @unique @db.VarChar(100)
+
+  departamentos Departamento[]
+
+  @@map("paises")
+}
+
+model Departamento {
+  idDepartamento Int    @id @default(autoincrement()) @map("id_departamentos")
+  nombre         String @db.VarChar(120)
+  idPais         Int    @map("id_pais")
+
+  pais     Pais     @relation(fields: [idPais], references: [idPais], onDelete: Restrict, onUpdate: Cascade)
+  ciudades Ciudad[]
+
+  @@unique([idPais, nombre])
+  @@index([idPais])
+  @@index([nombre])
+  @@map("departamentos")
+}
+
+model Ciudad {
+  idCiudad       Int            @id @default(autoincrement()) @map("id_ciudad")
+  nombreCiudad   String         @map("nombre_ciudad") @db.VarChar(150)
+  idDepartamento Int            @map("id_departamentos")
+  estado         EstadoRegistro @default(ACTIVO)
+
+  departamento Departamento @relation(fields: [idDepartamento], references: [idDepartamento], onDelete: Restrict, onUpdate: Cascade)
+  usuarios     Usuario[]
+  casinos      Casino[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+
+  @@unique([idDepartamento, nombreCiudad])
+  @@index([idDepartamento])
+  @@index([nombreCiudad])
+  @@index([estado])
+  @@map("ciudades")
+}
+
+// ======================================================
+// USUARIOS
+// ======================================================
+
 model Usuario {
   id           Int    @id @default(autoincrement())
   nombre       String @db.VarChar(100)
@@ -56,6 +107,10 @@ model Usuario {
   @@map("usuarios")
 }
 
+// ======================================================
+// ROLES
+// ======================================================
+
 model Rol {
   idRol       Int            @id @default(autoincrement()) @map("id_rol")
   nombreRol   String         @unique @map("nombre_rol") @db.VarChar(100)
@@ -71,6 +126,10 @@ model Rol {
   @@map("roles")
 }
 
+// ======================================================
+// TIPOS DE DOCUMENTO
+// ======================================================
+
 model TipoDocumento {
   idTipoDoc Int            @id @default(autoincrement()) @map("id_tipo_doc")
   nombreDoc String         @unique @map("nombre_doc") @db.VarChar(50)
@@ -84,6 +143,10 @@ model TipoDocumento {
   @@index([estado])
   @@map("tipos_documento")
 }
+
+// ======================================================
+// GÉNEROS
+// ======================================================
 
 model Genero {
   idGenero     Int            @id @default(autoincrement()) @map("id_genero")
@@ -99,20 +162,9 @@ model Genero {
   @@map("generos")
 }
 
-model Ciudad {
-  idCiudad     Int            @id @default(autoincrement()) @map("id_ciudad")
-  nombreCiudad String         @unique @map("nombre_ciudad") @db.VarChar(100)
-  estado       EstadoRegistro @default(ACTIVO)
-
-  usuarios Usuario[]
-  casinos  Casino[]
-
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
-
-  @@index([estado])
-  @@map("ciudades")
-}
+// ======================================================
+// CENTROS DE COSTOS
+// ======================================================
 
 model CentroCosto {
   idCentroCosto     Int            @id @default(autoincrement()) @map("id_centro_costo")
@@ -130,6 +182,10 @@ model CentroCosto {
   @@map("centros_costos")
 }
 
+// ======================================================
+// RAZONES SOCIALES
+// ======================================================
+
 model RazonSocial {
   idRazonSocial     Int            @id @default(autoincrement()) @map("id_razon_social")
   nit               String         @unique @db.VarChar(30)
@@ -145,6 +201,10 @@ model RazonSocial {
   @@index([nombreRazonSocial])
   @@map("razones_sociales")
 }
+
+// ======================================================
+// CASINOS
+// ======================================================
 
 model Casino {
   idCasino Int @id @default(autoincrement()) @map("id_casino")

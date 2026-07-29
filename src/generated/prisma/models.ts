@@ -8,11 +8,13 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Pais.js'
+export type * from './models/Departamento.js'
+export type * from './models/Ciudad.js'
 export type * from './models/Usuario.js'
 export type * from './models/Rol.js'
 export type * from './models/TipoDocumento.js'
 export type * from './models/Genero.js'
-export type * from './models/Ciudad.js'
 export type * from './models/CentroCosto.js'
 export type * from './models/RazonSocial.js'
 export type * from './models/Casino.js'

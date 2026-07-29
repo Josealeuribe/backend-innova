@@ -1,418 +1,525 @@
 import { Injectable } from '@nestjs/common';
 import {
-    EstadoRegistro,
-    Prisma,
+  EstadoRegistro,
+  Prisma,
 } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/shared/database/prisma/prisma.service';
 
 import { UsuarioEntity } from '../../domain/entities/usuario.entity';
 import {
-    CreateUsuarioData,
-    ListUsuariosQuery,
-    ListUsuariosResult,
-    MissingUsuarioRelations,
-    UpdateUsuarioData,
-    UsuarioForeignKeys,
-    UsuarioRepository,
+  CreateUsuarioData,
+  ListUsuariosQuery,
+  ListUsuariosResult,
+  MissingUsuarioRelations,
+  UpdateUsuarioData,
+  UsuarioCatalogos,
+  UsuarioForeignKeys,
+  UsuarioRepository,
 } from '../../domain/repositories/usuario.repository';
 
 const usuarioSelect = {
-    id: true,
-    nombre: true,
-    apellido: true,
-    cedula: true,
-    correo: true,
+  id: true,
+  nombre: true,
+  apellido: true,
+  cedula: true,
+  correo: true,
 
-    cargo: true,
-    fechaNacimiento: true,
-    telefono: true,
+  cargo: true,
+  fechaNacimiento: true,
+  telefono: true,
 
-    codigoHelisa: true,
-    cuentaPuc: true,
-    imgUrl: true,
-    estado: true,
+  codigoHelisa: true,
+  cuentaPuc: true,
+  imgUrl: true,
+  estado: true,
 
-    fechaCreacion: true,
-    fechaActualizacion: true,
+  fechaCreacion: true,
+  fechaActualizacion: true,
 
-    tipoDocumento: {
-        select: {
-            idTipoDoc: true,
-            nombreDoc: true,
-        },
+  tipoDocumento: {
+    select: {
+      idTipoDoc: true,
+      nombreDoc: true,
     },
+  },
 
-    genero: {
-        select: {
-            idGenero: true,
-            nombreGenero: true,
-        },
+  genero: {
+    select: {
+      idGenero: true,
+      nombreGenero: true,
     },
+  },
 
-    rol: {
-        select: {
-            idRol: true,
-            nombreRol: true,
-        },
+  rol: {
+    select: {
+      idRol: true,
+      nombreRol: true,
     },
+  },
 
-    ciudad: {
+  ciudad: {
+    select: {
+      idCiudad: true,
+      nombreCiudad: true,
+      idDepartamento: true,
+      departamento: {
         select: {
-            idCiudad: true,
-            nombreCiudad: true,
+          idDepartamento: true,
+          nombre: true,
         },
+      },
     },
+  },
 
-    casino: {
-        select: {
-            idCasino: true,
-            nombreCasino: true,
-        },
+  casino: {
+    select: {
+      idCasino: true,
+      nombreCasino: true,
     },
+  },
 } satisfies Prisma.UsuarioSelect;
 
 type UsuarioRecord = Prisma.UsuarioGetPayload<{
-    select: typeof usuarioSelect;
+  select: typeof usuarioSelect;
 }>;
 
 @Injectable()
 export class PrismaUsuarioRepository
-    implements UsuarioRepository {
-    constructor(
-        private readonly prisma: PrismaService,
-    ) { }
+  implements UsuarioRepository
+{
+  constructor(
+    private readonly prisma: PrismaService,
+  ) {}
 
-    async create(
-        data: CreateUsuarioData,
-    ): Promise<UsuarioEntity> {
-        const usuario = await this.prisma.usuario.create({
-            data: {
-                nombre: data.nombre,
-                apellido: data.apellido,
-                cedula: data.cedula,
-                correo: data.correo,
-                passwordHash: data.passwordHash,
+  async create(
+    data: CreateUsuarioData,
+  ): Promise<UsuarioEntity> {
+    const usuario = await this.prisma.usuario.create({
+      data: {
+        nombre: data.nombre,
+        apellido: data.apellido,
+        cedula: data.cedula,
+        correo: data.correo,
+        passwordHash: data.passwordHash,
 
-                cargo: data.cargo,
-                fechaNacimiento: data.fechaNacimiento,
-                telefono: data.telefono,
+        cargo: data.cargo,
+        fechaNacimiento: data.fechaNacimiento,
+        telefono: data.telefono,
 
-                codigoHelisa: data.codigoHelisa ?? null,
-                cuentaPuc: data.cuentaPuc ?? null,
-                imgUrl: data.imgUrl ?? null,
+        codigoHelisa: data.codigoHelisa ?? null,
+        cuentaPuc: data.cuentaPuc ?? null,
+        imgUrl: data.imgUrl ?? null,
 
-                estado:
-                    data.estado === 'ACTIVO'
-                        ? EstadoRegistro.ACTIVO
-                        : EstadoRegistro.INACTIVO,
+        estado:
+          data.estado === 'ACTIVO'
+            ? EstadoRegistro.ACTIVO
+            : EstadoRegistro.INACTIVO,
 
-                idTipoDoc: data.idTipoDoc,
-                idGenero: data.idGenero,
-                idRol: data.idRol,
-                idCiudad: data.idCiudad,
-                idCasino: data.idCasino,
-            },
+        idTipoDoc: data.idTipoDoc,
+        idGenero: data.idGenero,
+        idRol: data.idRol,
+        idCiudad: data.idCiudad,
+        idCasino: data.idCasino,
+      },
 
-            select: usuarioSelect,
-        });
+      select: usuarioSelect,
+    });
 
-        return this.mapUsuario(usuario);
+    return this.mapUsuario(usuario);
+  }
+
+  async findById(
+    id: number,
+  ): Promise<UsuarioEntity | null> {
+    const usuario = await this.prisma.usuario.findUnique({
+      where: {
+        id,
+      },
+
+      select: usuarioSelect,
+    });
+
+    return usuario
+      ? this.mapUsuario(usuario)
+      : null;
+  }
+
+  async findIdByCorreo(
+    correo: string,
+  ): Promise<number | null> {
+    const usuario = await this.prisma.usuario.findUnique({
+      where: {
+        correo,
+      },
+
+      select: {
+        id: true,
+      },
+    });
+
+    return usuario?.id ?? null;
+  }
+
+  async findIdByCedula(
+    cedula: string,
+  ): Promise<number | null> {
+    const usuario = await this.prisma.usuario.findUnique({
+      where: {
+        cedula,
+      },
+
+      select: {
+        id: true,
+      },
+    });
+
+    return usuario?.id ?? null;
+  }
+
+  async findMany(
+    query: ListUsuariosQuery,
+  ): Promise<ListUsuariosResult> {
+    const where: Prisma.UsuarioWhereInput = {};
+
+    if (query.estado) {
+      where.estado =
+        query.estado === 'ACTIVO'
+          ? EstadoRegistro.ACTIVO
+          : EstadoRegistro.INACTIVO;
     }
 
-    async findById(
-        id: number,
-    ): Promise<UsuarioEntity | null> {
-        const usuario = await this.prisma.usuario.findUnique({
-            where: {
-                id,
-            },
-
-            select: usuarioSelect,
-        });
-
-        return usuario
-            ? this.mapUsuario(usuario)
-            : null;
+    if (query.idRol) {
+      where.idRol = query.idRol;
     }
 
-    async findIdByCorreo(
-        correo: string,
-    ): Promise<number | null> {
-        const usuario = await this.prisma.usuario.findUnique({
-            where: {
-                correo,
-            },
-
-            select: {
-                id: true,
-            },
-        });
-
-        return usuario?.id ?? null;
+    if (query.idGenero) {
+      where.idGenero = query.idGenero;
     }
 
-    async findIdByCedula(
-        cedula: string,
-    ): Promise<number | null> {
-        const usuario = await this.prisma.usuario.findUnique({
-            where: {
-                cedula,
-            },
-
-            select: {
-                id: true,
-            },
-        });
-
-        return usuario?.id ?? null;
+    if (query.idTipoDoc) {
+      where.idTipoDoc = query.idTipoDoc;
     }
 
-    async findMany(
-        query: ListUsuariosQuery,
-    ): Promise<ListUsuariosResult> {
-        const where: Prisma.UsuarioWhereInput = {};
-
-        if (query.estado) {
-            where.estado =
-                query.estado === 'ACTIVO'
-                    ? EstadoRegistro.ACTIVO
-                    : EstadoRegistro.INACTIVO;
-        }
-
-        if (query.idRol) {
-            where.idRol = query.idRol;
-        }
-
-        if (query.idGenero) {
-            where.idGenero = query.idGenero;
-        }
-
-        if (query.idTipoDoc) {
-            where.idTipoDoc = query.idTipoDoc;
-        }
-
-        if (query.idCiudad) {
-            where.idCiudad = query.idCiudad;
-        }
-
-        if (query.idCasino) {
-            where.idCasino = query.idCasino;
-        }
-
-        if (query.buscar) {
-            where.OR = [
-                {
-                    nombre: {
-                        contains: query.buscar,
-                    },
-                },
-                {
-                    apellido: {
-                        contains: query.buscar,
-                    },
-                },
-                {
-                    correo: {
-                        contains: query.buscar,
-                    },
-                },
-                {
-                    cedula: {
-                        contains: query.buscar,
-                    },
-                },
-                {
-                    codigoHelisa: {
-                        contains: query.buscar,
-                    },
-                },
-            ];
-        }
-
-        const skip = (query.page - 1) * query.limit;
-
-        const [usuarios, total] = await Promise.all([
-            this.prisma.usuario.findMany({
-                where,
-                skip,
-                take: query.limit,
-
-                orderBy: {
-                    id: 'desc',
-                },
-
-                select: usuarioSelect,
-            }),
-
-            this.prisma.usuario.count({
-                where,
-            }),
-        ]);
-
-        return {
-            usuarios: usuarios.map((usuario) =>
-                this.mapUsuario(usuario),
-            ),
-            total,
-        };
+    if (query.idCiudad) {
+      where.idCiudad = query.idCiudad;
     }
 
-    async update(
-        id: number,
-        data: UpdateUsuarioData,
-    ): Promise<UsuarioEntity> {
-        const usuario = await this.prisma.usuario.update({
-            where: {
-                id,
-            },
-
-            data: {
-                nombre: data.nombre,
-                apellido: data.apellido,
-                cedula: data.cedula,
-                correo: data.correo,
-                passwordHash: data.passwordHash,
-
-                cargo: data.cargo,
-                fechaNacimiento: data.fechaNacimiento,
-                telefono: data.telefono,
-
-                codigoHelisa: data.codigoHelisa,
-                cuentaPuc: data.cuentaPuc,
-                imgUrl: data.imgUrl,
-
-                estado:
-                    data.estado === undefined
-                        ? undefined
-                        : data.estado === 'ACTIVO'
-                            ? EstadoRegistro.ACTIVO
-                            : EstadoRegistro.INACTIVO,
-
-                idTipoDoc: data.idTipoDoc,
-                idGenero: data.idGenero,
-                idRol: data.idRol,
-                idCiudad: data.idCiudad,
-                idCasino: data.idCasino,
-            },
-
-            select: usuarioSelect,
-        });
-
-        return this.mapUsuario(usuario);
+    if (query.idCasino) {
+      where.idCasino = query.idCasino;
     }
 
-    async deactivate(
-        id: number,
-    ): Promise<UsuarioEntity> {
-        const usuario = await this.prisma.usuario.update({
-            where: {
-                id,
-            },
-
-            data: {
-                estado: EstadoRegistro.INACTIVO,
-            },
-
-            select: usuarioSelect,
-        });
-
-        return this.mapUsuario(usuario);
+    if (query.buscar) {
+      where.OR = [
+        {
+          nombre: {
+            contains: query.buscar,
+          },
+        },
+        {
+          apellido: {
+            contains: query.buscar,
+          },
+        },
+        {
+          correo: {
+            contains: query.buscar,
+          },
+        },
+        {
+          cedula: {
+            contains: query.buscar,
+          },
+        },
+        {
+          codigoHelisa: {
+            contains: query.buscar,
+          },
+        },
+      ];
     }
 
-    async checkForeignKeys(
-        foreignKeys: UsuarioForeignKeys,
-    ): Promise<MissingUsuarioRelations> {
-        const [
-            rol,
-            genero,
-            tipoDocumento,
-            ciudad,
-            casino,
-        ] = await Promise.all([
-            this.prisma.rol.findUnique({
-                where: {
-                    idRol: foreignKeys.idRol,
-                },
-                select: {
-                    idRol: true,
-                },
-            }),
+    const skip = (query.page - 1) * query.limit;
 
-            this.prisma.genero.findUnique({
-                where: {
-                    idGenero: foreignKeys.idGenero,
-                },
-                select: {
-                    idGenero: true,
-                },
-            }),
+    const [usuarios, total] = await Promise.all([
+      this.prisma.usuario.findMany({
+        where,
+        skip,
+        take: query.limit,
 
-            this.prisma.tipoDocumento.findUnique({
-                where: {
-                    idTipoDoc: foreignKeys.idTipoDoc,
-                },
-                select: {
-                    idTipoDoc: true,
-                },
-            }),
+        orderBy: {
+          id: 'desc',
+        },
 
-            this.prisma.ciudad.findUnique({
-                where: {
-                    idCiudad: foreignKeys.idCiudad,
-                },
-                select: {
-                    idCiudad: true,
-                },
-            }),
+        select: usuarioSelect,
+      }),
 
-            this.prisma.casino.findUnique({
-                where: {
-                    idCasino: foreignKeys.idCasino,
-                },
-                select: {
-                    idCasino: true,
-                },
-            }),
-        ]);
+      this.prisma.usuario.count({
+        where,
+      }),
+    ]);
 
-        return {
-            rol: rol !== null,
-            genero: genero !== null,
-            tipoDocumento: tipoDocumento !== null,
-            ciudad: ciudad !== null,
-            casino: casino !== null,
-        };
-    }
+    return {
+      usuarios: usuarios.map((usuario) =>
+        this.mapUsuario(usuario),
+      ),
+      total,
+    };
+  }
 
-    private mapUsuario(
-        usuario: UsuarioRecord,
-    ): UsuarioEntity {
-        return {
-            id: usuario.id,
-            nombre: usuario.nombre,
-            apellido: usuario.apellido,
-            cedula: usuario.cedula,
-            correo: usuario.correo,
+  async update(
+    id: number,
+    data: UpdateUsuarioData,
+  ): Promise<UsuarioEntity> {
+    const usuario = await this.prisma.usuario.update({
+      where: {
+        id,
+      },
 
-            cargo: usuario.cargo,
-            fechaNacimiento: usuario.fechaNacimiento,
-            telefono: usuario.telefono,
+      data: {
+        nombre: data.nombre,
+        apellido: data.apellido,
+        cedula: data.cedula,
+        correo: data.correo,
+        passwordHash: data.passwordHash,
 
-            codigoHelisa: usuario.codigoHelisa,
-            cuentaPuc: usuario.cuentaPuc,
-            imgUrl: usuario.imgUrl,
+        cargo: data.cargo,
+        fechaNacimiento: data.fechaNacimiento,
+        telefono: data.telefono,
 
-            estado: usuario.estado,
+        codigoHelisa: data.codigoHelisa,
+        cuentaPuc: data.cuentaPuc,
+        imgUrl: data.imgUrl,
 
-            tipoDocumento: usuario.tipoDocumento,
-            genero: usuario.genero,
-            rol: usuario.rol,
-            ciudad: usuario.ciudad,
-            casino: usuario.casino,
+        estado:
+          data.estado === undefined
+            ? undefined
+            : data.estado === 'ACTIVO'
+              ? EstadoRegistro.ACTIVO
+              : EstadoRegistro.INACTIVO,
 
-            fechaCreacion: usuario.fechaCreacion,
-            fechaActualizacion:
-                usuario.fechaActualizacion,
-        };
-    }
+        idTipoDoc: data.idTipoDoc,
+        idGenero: data.idGenero,
+        idRol: data.idRol,
+        idCiudad: data.idCiudad,
+        idCasino: data.idCasino,
+      },
+
+      select: usuarioSelect,
+    });
+
+    return this.mapUsuario(usuario);
+  }
+
+  async deactivate(
+    id: number,
+  ): Promise<UsuarioEntity> {
+    const usuario = await this.prisma.usuario.update({
+      where: {
+        id,
+      },
+
+      data: {
+        estado: EstadoRegistro.INACTIVO,
+      },
+
+      select: usuarioSelect,
+    });
+
+    return this.mapUsuario(usuario);
+  }
+
+  async checkForeignKeys(
+    foreignKeys: UsuarioForeignKeys,
+  ): Promise<MissingUsuarioRelations> {
+    const [
+      rol,
+      genero,
+      tipoDocumento,
+      ciudad,
+      casino,
+    ] = await Promise.all([
+      this.prisma.rol.findUnique({
+        where: {
+          idRol: foreignKeys.idRol,
+        },
+        select: {
+          idRol: true,
+        },
+      }),
+
+      this.prisma.genero.findUnique({
+        where: {
+          idGenero: foreignKeys.idGenero,
+        },
+        select: {
+          idGenero: true,
+        },
+      }),
+
+      this.prisma.tipoDocumento.findUnique({
+        where: {
+          idTipoDoc: foreignKeys.idTipoDoc,
+        },
+        select: {
+          idTipoDoc: true,
+        },
+      }),
+
+      this.prisma.ciudad.findUnique({
+        where: {
+          idCiudad: foreignKeys.idCiudad,
+        },
+        select: {
+          idCiudad: true,
+        },
+      }),
+
+      this.prisma.casino.findUnique({
+        where: {
+          idCasino: foreignKeys.idCasino,
+        },
+        select: {
+          idCasino: true,
+        },
+      }),
+    ]);
+
+    return {
+      rol: rol !== null,
+      genero: genero !== null,
+      tipoDocumento: tipoDocumento !== null,
+      ciudad: ciudad !== null,
+      casino: casino !== null,
+    };
+  }
+
+  async getCatalogos(): Promise<UsuarioCatalogos> {
+    const [
+      roles,
+      generos,
+      tiposDocumento,
+      departamentos,
+      ciudades,
+      casinos,
+    ] = await Promise.all([
+      this.prisma.rol.findMany({
+        where: {
+          estado: EstadoRegistro.ACTIVO,
+        },
+        select: {
+          idRol: true,
+          nombreRol: true,
+        },
+        orderBy: {
+          nombreRol: 'asc',
+        },
+      }),
+
+      this.prisma.genero.findMany({
+        where: {
+          estado: EstadoRegistro.ACTIVO,
+        },
+        select: {
+          idGenero: true,
+          nombreGenero: true,
+        },
+        orderBy: {
+          nombreGenero: 'asc',
+        },
+      }),
+
+      this.prisma.tipoDocumento.findMany({
+        where: {
+          estado: EstadoRegistro.ACTIVO,
+        },
+        select: {
+          idTipoDoc: true,
+          nombreDoc: true,
+        },
+        orderBy: {
+          nombreDoc: 'asc',
+        },
+      }),
+
+      this.prisma.departamento.findMany({
+        select: {
+          idDepartamento: true,
+          nombre: true,
+          idPais: true,
+        },
+        orderBy: {
+          nombre: 'asc',
+        },
+      }),
+
+      this.prisma.ciudad.findMany({
+        where: {
+          estado: EstadoRegistro.ACTIVO,
+        },
+        select: {
+          idCiudad: true,
+          nombreCiudad: true,
+          idDepartamento: true,
+        },
+        orderBy: {
+          nombreCiudad: 'asc',
+        },
+      }),
+
+      this.prisma.casino.findMany({
+        where: {
+          estado: EstadoRegistro.ACTIVO,
+        },
+        select: {
+          idCasino: true,
+          nombreCasino: true,
+          idCiudad: true,
+        },
+        orderBy: {
+          nombreCasino: 'asc',
+        },
+      }),
+    ]);
+
+    return {
+      roles,
+      generos,
+      tiposDocumento,
+      departamentos,
+      ciudades,
+      casinos,
+    };
+  }
+
+  private mapUsuario(
+    usuario: UsuarioRecord,
+  ): UsuarioEntity {
+    return {
+      id: usuario.id,
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      cedula: usuario.cedula,
+      correo: usuario.correo,
+
+      cargo: usuario.cargo,
+      fechaNacimiento: usuario.fechaNacimiento,
+      telefono: usuario.telefono,
+
+      codigoHelisa: usuario.codigoHelisa,
+      cuentaPuc: usuario.cuentaPuc,
+      imgUrl: usuario.imgUrl,
+
+      estado: usuario.estado,
+
+      tipoDocumento: usuario.tipoDocumento,
+      genero: usuario.genero,
+      rol: usuario.rol,
+      ciudad: usuario.ciudad,
+      casino: usuario.casino,
+
+      fechaCreacion: usuario.fechaCreacion,
+      fechaActualizacion:
+        usuario.fechaActualizacion,
+    };
+  }
 }

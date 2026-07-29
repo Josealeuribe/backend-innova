@@ -18,6 +18,21 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
+ * Model Pais
+ * 
+ */
+export type Pais = Prisma.PaisModel
+/**
+ * Model Departamento
+ * 
+ */
+export type Departamento = Prisma.DepartamentoModel
+/**
+ * Model Ciudad
+ * 
+ */
+export type Ciudad = Prisma.CiudadModel
+/**
  * Model Usuario
  * 
  */
@@ -37,11 +52,6 @@ export type TipoDocumento = Prisma.TipoDocumentoModel
  * 
  */
 export type Genero = Prisma.GeneroModel
-/**
- * Model Ciudad
- * 
- */
-export type Ciudad = Prisma.CiudadModel
 /**
  * Model CentroCosto
  * 

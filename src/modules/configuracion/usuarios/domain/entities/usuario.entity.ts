@@ -35,6 +35,11 @@ export interface UsuarioEntity {
   ciudad: {
     idCiudad: number;
     nombreCiudad: string;
+    idDepartamento: number;
+    departamento: {
+      idDepartamento: number;
+      nombre: string;
+    };
   };
 
   casino: {

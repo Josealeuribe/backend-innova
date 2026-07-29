@@ -1,23 +1,27 @@
 import {
-    Body,
-    ConflictException,
-    Controller,
-    Delete,
-    Get,
-    NotFoundException,
-    Param,
-    ParseIntPipe,
-    Patch,
-    Post,
-    Query,
-    UseGuards,
+  BadRequestException,
+  Body,
+  ConflictException,
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 
 import { JwtAuthGuard } from 'src/modules/auth/presentation/guards/jwt-auth.guard';
 
 import {
-    CasinoNameAlreadyExistsError,
-    CasinoNotFoundError,
+  CasinoCodigoDaneAlreadyExistsError,
+  CasinoCodigoEstablecimientoAlreadyExistsError,
+  CasinoForeignKeyError,
+  CasinoNameAlreadyExistsError,
+  CasinoNotFoundError,
 } from '../../application/errors/casino.errors';
 
 import { ActualizarCasinoUseCase } from '../../application/use-cases/actualizar-casino.use-case';
@@ -33,132 +37,124 @@ import { ListarCasinosQueryDto } from '../dto/listar-casinos-query.dto';
 @Controller('casinos')
 @UseGuards(JwtAuthGuard)
 export class CasinosController {
-    constructor(
-        private readonly crearCasinoUseCase:
-            CrearCasinoUseCase,
+  constructor(
+    private readonly crearCasinoUseCase:
+      CrearCasinoUseCase,
+    private readonly listarCasinosUseCase:
+      ListarCasinosUseCase,
+    private readonly obtenerCasinoUseCase:
+      ObtenerCasinoUseCase,
+    private readonly actualizarCasinoUseCase:
+      ActualizarCasinoUseCase,
+    private readonly eliminarCasinoUseCase:
+      EliminarCasinoUseCase,
+  ) {}
 
-        private readonly listarCasinosUseCase:
-            ListarCasinosUseCase,
+  @Post()
+  async create(@Body() dto: CrearCasinoDto) {
+    try {
+      return await this.crearCasinoUseCase.execute(
+        dto,
+      );
+    } catch (error: unknown) {
+      this.handleError(error);
+    }
+  }
 
-        private readonly obtenerCasinoUseCase:
-            ObtenerCasinoUseCase,
+  @Get()
+  findAll(
+    @Query() query: ListarCasinosQueryDto,
+  ) {
+    return this.listarCasinosUseCase.execute({
+      page: query.page,
+      limit: query.limit,
+      buscar: query.buscar,
+      estado: query.estado,
+      idCiudad: query.idCiudad,
+      idCentroCosto:
+        query.idCentroCosto,
+      idRazonSocial:
+        query.idRazonSocial,
+    });
+  }
 
-        private readonly actualizarCasinoUseCase:
-            ActualizarCasinoUseCase,
+  @Get(':idCasino')
+  async findOne(
+    @Param('idCasino', ParseIntPipe)
+    idCasino: number,
+  ) {
+    try {
+      return await this.obtenerCasinoUseCase.execute(
+        idCasino,
+      );
+    } catch (error: unknown) {
+      this.handleError(error);
+    }
+  }
 
-        private readonly eliminarCasinoUseCase:
-            EliminarCasinoUseCase,
-    ) { }
+  @Patch(':idCasino')
+  async update(
+    @Param('idCasino', ParseIntPipe)
+    idCasino: number,
+    @Body() dto: ActualizarCasinoDto,
+  ) {
+    try {
+      return await this.actualizarCasinoUseCase.execute(
+        idCasino,
+        dto,
+      );
+    } catch (error: unknown) {
+      this.handleError(error);
+    }
+  }
 
-    @Post()
-    async create(
-        @Body() dto: CrearCasinoDto,
+  @Delete(':idCasino')
+  async remove(
+    @Param('idCasino', ParseIntPipe)
+    idCasino: number,
+  ) {
+    try {
+      const casino =
+        await this.eliminarCasinoUseCase.execute(
+          idCasino,
+        );
+
+      return {
+        message:
+          'Casino desactivado correctamente.',
+        casino,
+      };
+    } catch (error: unknown) {
+      this.handleError(error);
+    }
+  }
+
+  private handleError(error: unknown): never {
+    if (error instanceof CasinoNotFoundError) {
+      throw new NotFoundException(
+        error.message,
+      );
+    }
+
+    if (
+      error instanceof
+        CasinoNameAlreadyExistsError ||
+      error instanceof
+        CasinoCodigoDaneAlreadyExistsError ||
+      error instanceof
+        CasinoCodigoEstablecimientoAlreadyExistsError
     ) {
-        try {
-            return await this.crearCasinoUseCase
-                .execute(dto);
-        } catch (error: unknown) {
-            this.handleError(error);
-        }
+      throw new ConflictException(
+        error.message,
+      );
     }
 
-    @Get()
-    findAll(
-        @Query()
-        query: ListarCasinosQueryDto,
-    ) {
-        return this.listarCasinosUseCase.execute({
-            page: query.page,
-            limit: query.limit,
-            buscar: query.buscar,
-            estado: query.estado,
-
-            idCiudad: query.idCiudad,
-            idCentroCosto: query.idCentroCosto,
-            idRazonSocial: query.idRazonSocial,
-        });
+    if (error instanceof CasinoForeignKeyError) {
+      throw new BadRequestException(
+        error.message,
+      );
     }
 
-    @Get(':idCasino')
-    async findOne(
-        @Param(
-            'idCasino',
-            ParseIntPipe,
-        )
-        idCasino: number,
-    ) {
-        try {
-            return await this.obtenerCasinoUseCase
-                .execute(idCasino);
-        } catch (error: unknown) {
-            this.handleError(error);
-        }
-    }
-
-    @Patch(':idCasino')
-    async update(
-        @Param(
-            'idCasino',
-            ParseIntPipe,
-        )
-        idCasino: number,
-
-        @Body()
-        dto: ActualizarCasinoDto,
-    ) {
-        try {
-            return await this
-                .actualizarCasinoUseCase
-                .execute(idCasino, dto);
-        } catch (error: unknown) {
-            this.handleError(error);
-        }
-    }
-
-    @Delete(':idCasino')
-    async remove(
-        @Param(
-            'idCasino',
-            ParseIntPipe,
-        )
-        idCasino: number,
-    ) {
-        try {
-            const casino =
-                await this.eliminarCasinoUseCase
-                    .execute(idCasino);
-
-            return {
-                message:
-                    'Casino desactivado correctamente.',
-                casino,
-            };
-        } catch (error: unknown) {
-            this.handleError(error);
-        }
-    }
-
-    private handleError(
-        error: unknown,
-    ): never {
-        if (
-            error instanceof
-            CasinoNotFoundError
-        ) {
-            throw new NotFoundException(
-                error.message,
-            );
-        }
-
-        if (
-            error instanceof
-            CasinoNameAlreadyExistsError
-        ) {
-            throw new ConflictException(
-                error.message,
-            );
-        }
-
-        throw error;
-    }
+    throw error;
+  }
 }
