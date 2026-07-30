@@ -231,6 +231,7 @@ export type CiudadWhereInput = {
   departamento?: Prisma.XOR<Prisma.DepartamentoScalarRelationFilter, Prisma.DepartamentoWhereInput>
   usuarios?: Prisma.UsuarioListRelationFilter
   casinos?: Prisma.CasinoListRelationFilter
+  razonesSociales?: Prisma.RazonSocialListRelationFilter
 }
 
 export type CiudadOrderByWithRelationInput = {
@@ -243,6 +244,7 @@ export type CiudadOrderByWithRelationInput = {
   departamento?: Prisma.DepartamentoOrderByWithRelationInput
   usuarios?: Prisma.UsuarioOrderByRelationAggregateInput
   casinos?: Prisma.CasinoOrderByRelationAggregateInput
+  razonesSociales?: Prisma.RazonSocialOrderByRelationAggregateInput
   _relevance?: Prisma.CiudadOrderByRelevanceInput
 }
 
@@ -260,6 +262,7 @@ export type CiudadWhereUniqueInput = Prisma.AtLeast<{
   departamento?: Prisma.XOR<Prisma.DepartamentoScalarRelationFilter, Prisma.DepartamentoWhereInput>
   usuarios?: Prisma.UsuarioListRelationFilter
   casinos?: Prisma.CasinoListRelationFilter
+  razonesSociales?: Prisma.RazonSocialListRelationFilter
 }, "idCiudad" | "idDepartamento_nombreCiudad">
 
 export type CiudadOrderByWithAggregationInput = {
@@ -296,6 +299,7 @@ export type CiudadCreateInput = {
   departamento: Prisma.DepartamentoCreateNestedOneWithoutCiudadesInput
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutCiudadInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadUncheckedCreateInput = {
@@ -307,6 +311,7 @@ export type CiudadUncheckedCreateInput = {
   fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCiudadInput
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadUpdateInput = {
@@ -317,6 +322,7 @@ export type CiudadUpdateInput = {
   departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput
   usuarios?: Prisma.UsuarioUpdateManyWithoutCiudadNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadUncheckedUpdateInput = {
@@ -328,6 +334,7 @@ export type CiudadUncheckedUpdateInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutCiudadNestedInput
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadCreateManyInput = {
@@ -468,18 +475,18 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type CiudadCreateNestedOneWithoutUsuariosInput = {
-  create?: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
-  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutUsuariosInput
+export type CiudadCreateNestedOneWithoutRazonesSocialesInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutRazonesSocialesInput, Prisma.CiudadUncheckedCreateWithoutRazonesSocialesInput>
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutRazonesSocialesInput
   connect?: Prisma.CiudadWhereUniqueInput
 }
 
-export type CiudadUpdateOneRequiredWithoutUsuariosNestedInput = {
-  create?: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
-  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutUsuariosInput
-  upsert?: Prisma.CiudadUpsertWithoutUsuariosInput
+export type CiudadUpdateOneRequiredWithoutRazonesSocialesNestedInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutRazonesSocialesInput, Prisma.CiudadUncheckedCreateWithoutRazonesSocialesInput>
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutRazonesSocialesInput
+  upsert?: Prisma.CiudadUpsertWithoutRazonesSocialesInput
   connect?: Prisma.CiudadWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CiudadUpdateToOneWithWhereWithoutUsuariosInput, Prisma.CiudadUpdateWithoutUsuariosInput>, Prisma.CiudadUncheckedUpdateWithoutUsuariosInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CiudadUpdateToOneWithWhereWithoutRazonesSocialesInput, Prisma.CiudadUpdateWithoutRazonesSocialesInput>, Prisma.CiudadUncheckedUpdateWithoutRazonesSocialesInput>
 }
 
 export type CiudadCreateNestedOneWithoutCasinosInput = {
@@ -496,6 +503,20 @@ export type CiudadUpdateOneRequiredWithoutCasinosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CiudadUpdateToOneWithWhereWithoutCasinosInput, Prisma.CiudadUpdateWithoutCasinosInput>, Prisma.CiudadUncheckedUpdateWithoutCasinosInput>
 }
 
+export type CiudadCreateNestedOneWithoutUsuariosInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutUsuariosInput
+  connect?: Prisma.CiudadWhereUniqueInput
+}
+
+export type CiudadUpdateOneRequiredWithoutUsuariosNestedInput = {
+  create?: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
+  connectOrCreate?: Prisma.CiudadCreateOrConnectWithoutUsuariosInput
+  upsert?: Prisma.CiudadUpsertWithoutUsuariosInput
+  connect?: Prisma.CiudadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CiudadUpdateToOneWithWhereWithoutUsuariosInput, Prisma.CiudadUpdateWithoutUsuariosInput>, Prisma.CiudadUncheckedUpdateWithoutUsuariosInput>
+}
+
 export type CiudadCreateWithoutDepartamentoInput = {
   nombreCiudad: string
   estado?: $Enums.EstadoRegistro
@@ -503,6 +524,7 @@ export type CiudadCreateWithoutDepartamentoInput = {
   fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutCiudadInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadUncheckedCreateWithoutDepartamentoInput = {
@@ -513,6 +535,7 @@ export type CiudadUncheckedCreateWithoutDepartamentoInput = {
   fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCiudadInput
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadCreateOrConnectWithoutDepartamentoInput = {
@@ -553,57 +576,61 @@ export type CiudadScalarWhereInput = {
   fechaActualizacion?: Prisma.DateTimeFilter<"Ciudad"> | Date | string
 }
 
-export type CiudadCreateWithoutUsuariosInput = {
+export type CiudadCreateWithoutRazonesSocialesInput = {
   nombreCiudad: string
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   departamento: Prisma.DepartamentoCreateNestedOneWithoutCiudadesInput
+  usuarios?: Prisma.UsuarioCreateNestedManyWithoutCiudadInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutCiudadInput
 }
 
-export type CiudadUncheckedCreateWithoutUsuariosInput = {
+export type CiudadUncheckedCreateWithoutRazonesSocialesInput = {
   idCiudad?: number
   nombreCiudad: string
   idDepartamento: number
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCiudadInput
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutCiudadInput
 }
 
-export type CiudadCreateOrConnectWithoutUsuariosInput = {
+export type CiudadCreateOrConnectWithoutRazonesSocialesInput = {
   where: Prisma.CiudadWhereUniqueInput
-  create: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
+  create: Prisma.XOR<Prisma.CiudadCreateWithoutRazonesSocialesInput, Prisma.CiudadUncheckedCreateWithoutRazonesSocialesInput>
 }
 
-export type CiudadUpsertWithoutUsuariosInput = {
-  update: Prisma.XOR<Prisma.CiudadUpdateWithoutUsuariosInput, Prisma.CiudadUncheckedUpdateWithoutUsuariosInput>
-  create: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
+export type CiudadUpsertWithoutRazonesSocialesInput = {
+  update: Prisma.XOR<Prisma.CiudadUpdateWithoutRazonesSocialesInput, Prisma.CiudadUncheckedUpdateWithoutRazonesSocialesInput>
+  create: Prisma.XOR<Prisma.CiudadCreateWithoutRazonesSocialesInput, Prisma.CiudadUncheckedCreateWithoutRazonesSocialesInput>
   where?: Prisma.CiudadWhereInput
 }
 
-export type CiudadUpdateToOneWithWhereWithoutUsuariosInput = {
+export type CiudadUpdateToOneWithWhereWithoutRazonesSocialesInput = {
   where?: Prisma.CiudadWhereInput
-  data: Prisma.XOR<Prisma.CiudadUpdateWithoutUsuariosInput, Prisma.CiudadUncheckedUpdateWithoutUsuariosInput>
+  data: Prisma.XOR<Prisma.CiudadUpdateWithoutRazonesSocialesInput, Prisma.CiudadUncheckedUpdateWithoutRazonesSocialesInput>
 }
 
-export type CiudadUpdateWithoutUsuariosInput = {
+export type CiudadUpdateWithoutRazonesSocialesInput = {
   nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput
+  usuarios?: Prisma.UsuarioUpdateManyWithoutCiudadNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutCiudadNestedInput
 }
 
-export type CiudadUncheckedUpdateWithoutUsuariosInput = {
+export type CiudadUncheckedUpdateWithoutRazonesSocialesInput = {
   idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
   nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
   idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutCiudadNestedInput
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutCiudadNestedInput
 }
 
@@ -614,6 +641,7 @@ export type CiudadCreateWithoutCasinosInput = {
   fechaActualizacion?: Date | string
   departamento: Prisma.DepartamentoCreateNestedOneWithoutCiudadesInput
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadUncheckedCreateWithoutCasinosInput = {
@@ -624,6 +652,7 @@ export type CiudadUncheckedCreateWithoutCasinosInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutCiudadInput
 }
 
 export type CiudadCreateOrConnectWithoutCasinosInput = {
@@ -649,6 +678,7 @@ export type CiudadUpdateWithoutCasinosInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput
   usuarios?: Prisma.UsuarioUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadUncheckedUpdateWithoutCasinosInput = {
@@ -659,6 +689,65 @@ export type CiudadUncheckedUpdateWithoutCasinosInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutCiudadNestedInput
+}
+
+export type CiudadCreateWithoutUsuariosInput = {
+  nombreCiudad: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutCiudadesInput
+  casinos?: Prisma.CasinoCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutCiudadInput
+}
+
+export type CiudadUncheckedCreateWithoutUsuariosInput = {
+  idCiudad?: number
+  nombreCiudad: string
+  idDepartamento: number
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutCiudadInput
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutCiudadInput
+}
+
+export type CiudadCreateOrConnectWithoutUsuariosInput = {
+  where: Prisma.CiudadWhereUniqueInput
+  create: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
+}
+
+export type CiudadUpsertWithoutUsuariosInput = {
+  update: Prisma.XOR<Prisma.CiudadUpdateWithoutUsuariosInput, Prisma.CiudadUncheckedUpdateWithoutUsuariosInput>
+  create: Prisma.XOR<Prisma.CiudadCreateWithoutUsuariosInput, Prisma.CiudadUncheckedCreateWithoutUsuariosInput>
+  where?: Prisma.CiudadWhereInput
+}
+
+export type CiudadUpdateToOneWithWhereWithoutUsuariosInput = {
+  where?: Prisma.CiudadWhereInput
+  data: Prisma.XOR<Prisma.CiudadUpdateWithoutUsuariosInput, Prisma.CiudadUncheckedUpdateWithoutUsuariosInput>
+}
+
+export type CiudadUpdateWithoutUsuariosInput = {
+  nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput
+  casinos?: Prisma.CasinoUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutCiudadNestedInput
+}
+
+export type CiudadUncheckedUpdateWithoutUsuariosInput = {
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  nombreCiudad?: Prisma.StringFieldUpdateOperationsInput | string
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  casinos?: Prisma.CasinoUncheckedUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadCreateManyDepartamentoInput = {
@@ -676,6 +765,7 @@ export type CiudadUpdateWithoutDepartamentoInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUpdateManyWithoutCiudadNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadUncheckedUpdateWithoutDepartamentoInput = {
@@ -686,6 +776,7 @@ export type CiudadUncheckedUpdateWithoutDepartamentoInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutCiudadNestedInput
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutCiudadNestedInput
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutCiudadNestedInput
 }
 
 export type CiudadUncheckedUpdateManyWithoutDepartamentoInput = {
@@ -704,11 +795,13 @@ export type CiudadUncheckedUpdateManyWithoutDepartamentoInput = {
 export type CiudadCountOutputType = {
   usuarios: number
   casinos: number
+  razonesSociales: number
 }
 
 export type CiudadCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuarios?: boolean | CiudadCountOutputTypeCountUsuariosArgs
   casinos?: boolean | CiudadCountOutputTypeCountCasinosArgs
+  razonesSociales?: boolean | CiudadCountOutputTypeCountRazonesSocialesArgs
 }
 
 /**
@@ -735,6 +828,13 @@ export type CiudadCountOutputTypeCountCasinosArgs<ExtArgs extends runtime.Types.
   where?: Prisma.CasinoWhereInput
 }
 
+/**
+ * CiudadCountOutputType without action
+ */
+export type CiudadCountOutputTypeCountRazonesSocialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RazonSocialWhereInput
+}
+
 
 export type CiudadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idCiudad?: boolean
@@ -746,6 +846,7 @@ export type CiudadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   departamento?: boolean | Prisma.DepartamentoDefaultArgs<ExtArgs>
   usuarios?: boolean | Prisma.Ciudad$usuariosArgs<ExtArgs>
   casinos?: boolean | Prisma.Ciudad$casinosArgs<ExtArgs>
+  razonesSociales?: boolean | Prisma.Ciudad$razonesSocialesArgs<ExtArgs>
   _count?: boolean | Prisma.CiudadCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ciudad"]>
 
@@ -765,6 +866,7 @@ export type CiudadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   departamento?: boolean | Prisma.DepartamentoDefaultArgs<ExtArgs>
   usuarios?: boolean | Prisma.Ciudad$usuariosArgs<ExtArgs>
   casinos?: boolean | Prisma.Ciudad$casinosArgs<ExtArgs>
+  razonesSociales?: boolean | Prisma.Ciudad$razonesSocialesArgs<ExtArgs>
   _count?: boolean | Prisma.CiudadCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -774,6 +876,7 @@ export type $CiudadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     departamento: Prisma.$DepartamentoPayload<ExtArgs>
     usuarios: Prisma.$UsuarioPayload<ExtArgs>[]
     casinos: Prisma.$CasinoPayload<ExtArgs>[]
+    razonesSociales: Prisma.$RazonSocialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idCiudad: number
@@ -1125,6 +1228,7 @@ export interface Prisma__CiudadClient<T, Null = never, ExtArgs extends runtime.T
   departamento<T extends Prisma.DepartamentoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartamentoDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartamentoClient<runtime.Types.Result.GetResult<Prisma.$DepartamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   usuarios<T extends Prisma.Ciudad$usuariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ciudad$usuariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   casinos<T extends Prisma.Ciudad$casinosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ciudad$casinosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasinoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  razonesSociales<T extends Prisma.Ciudad$razonesSocialesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ciudad$razonesSocialesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RazonSocialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1553,6 +1657,30 @@ export type Ciudad$casinosArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.CasinoScalarFieldEnum | Prisma.CasinoScalarFieldEnum[]
+}
+
+/**
+ * Ciudad.razonesSociales
+ */
+export type Ciudad$razonesSocialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RazonSocial
+   */
+  select?: Prisma.RazonSocialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RazonSocial
+   */
+  omit?: Prisma.RazonSocialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RazonSocialInclude<ExtArgs> | null
+  where?: Prisma.RazonSocialWhereInput
+  orderBy?: Prisma.RazonSocialOrderByWithRelationInput | Prisma.RazonSocialOrderByWithRelationInput[]
+  cursor?: Prisma.RazonSocialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RazonSocialScalarFieldEnum | Prisma.RazonSocialScalarFieldEnum[]
 }
 
 /**

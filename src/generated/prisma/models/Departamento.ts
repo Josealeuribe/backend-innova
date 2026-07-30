@@ -206,6 +206,7 @@ export type DepartamentoWhereInput = {
   idPais?: Prisma.IntFilter<"Departamento"> | number
   pais?: Prisma.XOR<Prisma.PaisScalarRelationFilter, Prisma.PaisWhereInput>
   ciudades?: Prisma.CiudadListRelationFilter
+  razonesSociales?: Prisma.RazonSocialListRelationFilter
 }
 
 export type DepartamentoOrderByWithRelationInput = {
@@ -214,6 +215,7 @@ export type DepartamentoOrderByWithRelationInput = {
   idPais?: Prisma.SortOrder
   pais?: Prisma.PaisOrderByWithRelationInput
   ciudades?: Prisma.CiudadOrderByRelationAggregateInput
+  razonesSociales?: Prisma.RazonSocialOrderByRelationAggregateInput
   _relevance?: Prisma.DepartamentoOrderByRelevanceInput
 }
 
@@ -227,6 +229,7 @@ export type DepartamentoWhereUniqueInput = Prisma.AtLeast<{
   idPais?: Prisma.IntFilter<"Departamento"> | number
   pais?: Prisma.XOR<Prisma.PaisScalarRelationFilter, Prisma.PaisWhereInput>
   ciudades?: Prisma.CiudadListRelationFilter
+  razonesSociales?: Prisma.RazonSocialListRelationFilter
 }, "idDepartamento" | "idPais_nombre">
 
 export type DepartamentoOrderByWithAggregationInput = {
@@ -253,6 +256,7 @@ export type DepartamentoCreateInput = {
   nombre: string
   pais: Prisma.PaisCreateNestedOneWithoutDepartamentosInput
   ciudades?: Prisma.CiudadCreateNestedManyWithoutDepartamentoInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutDepartamentoInput
 }
 
 export type DepartamentoUncheckedCreateInput = {
@@ -260,12 +264,14 @@ export type DepartamentoUncheckedCreateInput = {
   nombre: string
   idPais: number
   ciudades?: Prisma.CiudadUncheckedCreateNestedManyWithoutDepartamentoInput
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutDepartamentoInput
 }
 
 export type DepartamentoUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   pais?: Prisma.PaisUpdateOneRequiredWithoutDepartamentosNestedInput
   ciudades?: Prisma.CiudadUpdateManyWithoutDepartamentoNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutDepartamentoNestedInput
 }
 
 export type DepartamentoUncheckedUpdateInput = {
@@ -273,6 +279,7 @@ export type DepartamentoUncheckedUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   idPais?: Prisma.IntFieldUpdateOperationsInput | number
   ciudades?: Prisma.CiudadUncheckedUpdateManyWithoutDepartamentoNestedInput
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutDepartamentoNestedInput
 }
 
 export type DepartamentoCreateManyInput = {
@@ -401,15 +408,31 @@ export type DepartamentoUpdateOneRequiredWithoutCiudadesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartamentoUpdateToOneWithWhereWithoutCiudadesInput, Prisma.DepartamentoUpdateWithoutCiudadesInput>, Prisma.DepartamentoUncheckedUpdateWithoutCiudadesInput>
 }
 
+export type DepartamentoCreateNestedOneWithoutRazonesSocialesInput = {
+  create?: Prisma.XOR<Prisma.DepartamentoCreateWithoutRazonesSocialesInput, Prisma.DepartamentoUncheckedCreateWithoutRazonesSocialesInput>
+  connectOrCreate?: Prisma.DepartamentoCreateOrConnectWithoutRazonesSocialesInput
+  connect?: Prisma.DepartamentoWhereUniqueInput
+}
+
+export type DepartamentoUpdateOneRequiredWithoutRazonesSocialesNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartamentoCreateWithoutRazonesSocialesInput, Prisma.DepartamentoUncheckedCreateWithoutRazonesSocialesInput>
+  connectOrCreate?: Prisma.DepartamentoCreateOrConnectWithoutRazonesSocialesInput
+  upsert?: Prisma.DepartamentoUpsertWithoutRazonesSocialesInput
+  connect?: Prisma.DepartamentoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartamentoUpdateToOneWithWhereWithoutRazonesSocialesInput, Prisma.DepartamentoUpdateWithoutRazonesSocialesInput>, Prisma.DepartamentoUncheckedUpdateWithoutRazonesSocialesInput>
+}
+
 export type DepartamentoCreateWithoutPaisInput = {
   nombre: string
   ciudades?: Prisma.CiudadCreateNestedManyWithoutDepartamentoInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutDepartamentoInput
 }
 
 export type DepartamentoUncheckedCreateWithoutPaisInput = {
   idDepartamento?: number
   nombre: string
   ciudades?: Prisma.CiudadUncheckedCreateNestedManyWithoutDepartamentoInput
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutDepartamentoInput
 }
 
 export type DepartamentoCreateOrConnectWithoutPaisInput = {
@@ -450,12 +473,14 @@ export type DepartamentoScalarWhereInput = {
 export type DepartamentoCreateWithoutCiudadesInput = {
   nombre: string
   pais: Prisma.PaisCreateNestedOneWithoutDepartamentosInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutDepartamentoInput
 }
 
 export type DepartamentoUncheckedCreateWithoutCiudadesInput = {
   idDepartamento?: number
   nombre: string
   idPais: number
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutDepartamentoInput
 }
 
 export type DepartamentoCreateOrConnectWithoutCiudadesInput = {
@@ -477,12 +502,56 @@ export type DepartamentoUpdateToOneWithWhereWithoutCiudadesInput = {
 export type DepartamentoUpdateWithoutCiudadesInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   pais?: Prisma.PaisUpdateOneRequiredWithoutDepartamentosNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutDepartamentoNestedInput
 }
 
 export type DepartamentoUncheckedUpdateWithoutCiudadesInput = {
   idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutDepartamentoNestedInput
+}
+
+export type DepartamentoCreateWithoutRazonesSocialesInput = {
+  nombre: string
+  pais: Prisma.PaisCreateNestedOneWithoutDepartamentosInput
+  ciudades?: Prisma.CiudadCreateNestedManyWithoutDepartamentoInput
+}
+
+export type DepartamentoUncheckedCreateWithoutRazonesSocialesInput = {
+  idDepartamento?: number
+  nombre: string
+  idPais: number
+  ciudades?: Prisma.CiudadUncheckedCreateNestedManyWithoutDepartamentoInput
+}
+
+export type DepartamentoCreateOrConnectWithoutRazonesSocialesInput = {
+  where: Prisma.DepartamentoWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartamentoCreateWithoutRazonesSocialesInput, Prisma.DepartamentoUncheckedCreateWithoutRazonesSocialesInput>
+}
+
+export type DepartamentoUpsertWithoutRazonesSocialesInput = {
+  update: Prisma.XOR<Prisma.DepartamentoUpdateWithoutRazonesSocialesInput, Prisma.DepartamentoUncheckedUpdateWithoutRazonesSocialesInput>
+  create: Prisma.XOR<Prisma.DepartamentoCreateWithoutRazonesSocialesInput, Prisma.DepartamentoUncheckedCreateWithoutRazonesSocialesInput>
+  where?: Prisma.DepartamentoWhereInput
+}
+
+export type DepartamentoUpdateToOneWithWhereWithoutRazonesSocialesInput = {
+  where?: Prisma.DepartamentoWhereInput
+  data: Prisma.XOR<Prisma.DepartamentoUpdateWithoutRazonesSocialesInput, Prisma.DepartamentoUncheckedUpdateWithoutRazonesSocialesInput>
+}
+
+export type DepartamentoUpdateWithoutRazonesSocialesInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  pais?: Prisma.PaisUpdateOneRequiredWithoutDepartamentosNestedInput
+  ciudades?: Prisma.CiudadUpdateManyWithoutDepartamentoNestedInput
+}
+
+export type DepartamentoUncheckedUpdateWithoutRazonesSocialesInput = {
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  ciudades?: Prisma.CiudadUncheckedUpdateManyWithoutDepartamentoNestedInput
 }
 
 export type DepartamentoCreateManyPaisInput = {
@@ -493,12 +562,14 @@ export type DepartamentoCreateManyPaisInput = {
 export type DepartamentoUpdateWithoutPaisInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudades?: Prisma.CiudadUpdateManyWithoutDepartamentoNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutDepartamentoNestedInput
 }
 
 export type DepartamentoUncheckedUpdateWithoutPaisInput = {
   idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudades?: Prisma.CiudadUncheckedUpdateManyWithoutDepartamentoNestedInput
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutDepartamentoNestedInput
 }
 
 export type DepartamentoUncheckedUpdateManyWithoutPaisInput = {
@@ -513,10 +584,12 @@ export type DepartamentoUncheckedUpdateManyWithoutPaisInput = {
 
 export type DepartamentoCountOutputType = {
   ciudades: number
+  razonesSociales: number
 }
 
 export type DepartamentoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ciudades?: boolean | DepartamentoCountOutputTypeCountCiudadesArgs
+  razonesSociales?: boolean | DepartamentoCountOutputTypeCountRazonesSocialesArgs
 }
 
 /**
@@ -536,6 +609,13 @@ export type DepartamentoCountOutputTypeCountCiudadesArgs<ExtArgs extends runtime
   where?: Prisma.CiudadWhereInput
 }
 
+/**
+ * DepartamentoCountOutputType without action
+ */
+export type DepartamentoCountOutputTypeCountRazonesSocialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RazonSocialWhereInput
+}
+
 
 export type DepartamentoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idDepartamento?: boolean
@@ -543,6 +623,7 @@ export type DepartamentoSelect<ExtArgs extends runtime.Types.Extensions.Internal
   idPais?: boolean
   pais?: boolean | Prisma.PaisDefaultArgs<ExtArgs>
   ciudades?: boolean | Prisma.Departamento$ciudadesArgs<ExtArgs>
+  razonesSociales?: boolean | Prisma.Departamento$razonesSocialesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartamentoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["departamento"]>
 
@@ -558,6 +639,7 @@ export type DepartamentoOmit<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type DepartamentoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pais?: boolean | Prisma.PaisDefaultArgs<ExtArgs>
   ciudades?: boolean | Prisma.Departamento$ciudadesArgs<ExtArgs>
+  razonesSociales?: boolean | Prisma.Departamento$razonesSocialesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartamentoCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -566,6 +648,7 @@ export type $DepartamentoPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     pais: Prisma.$PaisPayload<ExtArgs>
     ciudades: Prisma.$CiudadPayload<ExtArgs>[]
+    razonesSociales: Prisma.$RazonSocialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idDepartamento: number
@@ -913,6 +996,7 @@ export interface Prisma__DepartamentoClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   pais<T extends Prisma.PaisDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaisDefaultArgs<ExtArgs>>): Prisma.Prisma__PaisClient<runtime.Types.Result.GetResult<Prisma.$PaisPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ciudades<T extends Prisma.Departamento$ciudadesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Departamento$ciudadesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CiudadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  razonesSociales<T extends Prisma.Departamento$razonesSocialesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Departamento$razonesSocialesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RazonSocialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1314,6 +1398,30 @@ export type Departamento$ciudadesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.CiudadScalarFieldEnum | Prisma.CiudadScalarFieldEnum[]
+}
+
+/**
+ * Departamento.razonesSociales
+ */
+export type Departamento$razonesSocialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RazonSocial
+   */
+  select?: Prisma.RazonSocialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RazonSocial
+   */
+  omit?: Prisma.RazonSocialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RazonSocialInclude<ExtArgs> | null
+  where?: Prisma.RazonSocialWhereInput
+  orderBy?: Prisma.RazonSocialOrderByWithRelationInput | Prisma.RazonSocialOrderByWithRelationInput[]
+  cursor?: Prisma.RazonSocialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RazonSocialScalarFieldEnum | Prisma.RazonSocialScalarFieldEnum[]
 }
 
 /**

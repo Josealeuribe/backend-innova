@@ -322,11 +322,6 @@ export type TipoDocumentoUncheckedUpdateManyInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type TipoDocumentoScalarRelationFilter = {
-  is?: Prisma.TipoDocumentoWhereInput
-  isNot?: Prisma.TipoDocumentoWhereInput
-}
-
 export type TipoDocumentoOrderByRelevanceInput = {
   fields: Prisma.TipoDocumentoOrderByRelevanceFieldEnum | Prisma.TipoDocumentoOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
@@ -363,6 +358,11 @@ export type TipoDocumentoMinOrderByAggregateInput = {
 
 export type TipoDocumentoSumOrderByAggregateInput = {
   idTipoDoc?: Prisma.SortOrder
+}
+
+export type TipoDocumentoScalarRelationFilter = {
+  is?: Prisma.TipoDocumentoWhereInput
+  isNot?: Prisma.TipoDocumentoWhereInput
 }
 
 export type TipoDocumentoCreateNestedOneWithoutUsuariosInput = {

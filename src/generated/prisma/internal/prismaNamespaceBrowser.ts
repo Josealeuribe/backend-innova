@@ -54,13 +54,20 @@ export const ModelName = {
   Pais: 'Pais',
   Departamento: 'Departamento',
   Ciudad: 'Ciudad',
-  Usuario: 'Usuario',
   Rol: 'Rol',
   TipoDocumento: 'TipoDocumento',
   Genero: 'Genero',
+  Modulo: 'Modulo',
+  Accion: 'Accion',
+  Permiso: 'Permiso',
+  RolPermiso: 'RolPermiso',
   CentroCosto: 'CentroCosto',
+  TipoPersona: 'TipoPersona',
+  AmbienteDian: 'AmbienteDian',
+  Regimen: 'Regimen',
   RazonSocial: 'RazonSocial',
-  Casino: 'Casino'
+  Casino: 'Casino',
+  Usuario: 'Usuario'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -108,32 +115,6 @@ export const CiudadScalarFieldEnum = {
 export type CiudadScalarFieldEnum = (typeof CiudadScalarFieldEnum)[keyof typeof CiudadScalarFieldEnum]
 
 
-export const UsuarioScalarFieldEnum = {
-  id: 'id',
-  nombre: 'nombre',
-  apellido: 'apellido',
-  cedula: 'cedula',
-  correo: 'correo',
-  passwordHash: 'passwordHash',
-  cargo: 'cargo',
-  fechaNacimiento: 'fechaNacimiento',
-  telefono: 'telefono',
-  codigoHelisa: 'codigoHelisa',
-  cuentaPuc: 'cuentaPuc',
-  imgUrl: 'imgUrl',
-  estado: 'estado',
-  idTipoDoc: 'idTipoDoc',
-  idGenero: 'idGenero',
-  idRol: 'idRol',
-  idCiudad: 'idCiudad',
-  idCasino: 'idCasino',
-  fechaCreacion: 'fechaCreacion',
-  fechaActualizacion: 'fechaActualizacion'
-} as const
-
-export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
-
-
 export const RolScalarFieldEnum = {
   idRol: 'idRol',
   nombreRol: 'nombreRol',
@@ -168,6 +149,60 @@ export const GeneroScalarFieldEnum = {
 export type GeneroScalarFieldEnum = (typeof GeneroScalarFieldEnum)[keyof typeof GeneroScalarFieldEnum]
 
 
+export const ModuloScalarFieldEnum = {
+  idModulo: 'idModulo',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  ruta: 'ruta',
+  icono: 'icono',
+  orden: 'orden',
+  visibleMenu: 'visibleMenu',
+  idModuloPadre: 'idModuloPadre',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type ModuloScalarFieldEnum = (typeof ModuloScalarFieldEnum)[keyof typeof ModuloScalarFieldEnum]
+
+
+export const AccionScalarFieldEnum = {
+  idAccion: 'idAccion',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type AccionScalarFieldEnum = (typeof AccionScalarFieldEnum)[keyof typeof AccionScalarFieldEnum]
+
+
+export const PermisoScalarFieldEnum = {
+  idPermiso: 'idPermiso',
+  idModulo: 'idModulo',
+  idAccion: 'idAccion',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type PermisoScalarFieldEnum = (typeof PermisoScalarFieldEnum)[keyof typeof PermisoScalarFieldEnum]
+
+
+export const RolPermisoScalarFieldEnum = {
+  idRol: 'idRol',
+  idPermiso: 'idPermiso',
+  permitido: 'permitido',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type RolPermisoScalarFieldEnum = (typeof RolPermisoScalarFieldEnum)[keyof typeof RolPermisoScalarFieldEnum]
+
+
 export const CentroCostoScalarFieldEnum = {
   idCentroCosto: 'idCentroCosto',
   codigoCentroCosto: 'codigoCentroCosto',
@@ -180,10 +215,71 @@ export const CentroCostoScalarFieldEnum = {
 export type CentroCostoScalarFieldEnum = (typeof CentroCostoScalarFieldEnum)[keyof typeof CentroCostoScalarFieldEnum]
 
 
+export const TipoPersonaScalarFieldEnum = {
+  idTipoPersona: 'idTipoPersona',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type TipoPersonaScalarFieldEnum = (typeof TipoPersonaScalarFieldEnum)[keyof typeof TipoPersonaScalarFieldEnum]
+
+
+export const AmbienteDianScalarFieldEnum = {
+  idAmbienteDian: 'idAmbienteDian',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type AmbienteDianScalarFieldEnum = (typeof AmbienteDianScalarFieldEnum)[keyof typeof AmbienteDianScalarFieldEnum]
+
+
+export const RegimenScalarFieldEnum = {
+  idRegimen: 'idRegimen',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type RegimenScalarFieldEnum = (typeof RegimenScalarFieldEnum)[keyof typeof RegimenScalarFieldEnum]
+
+
 export const RazonSocialScalarFieldEnum = {
   idRazonSocial: 'idRazonSocial',
   nit: 'nit',
   nombreRazonSocial: 'nombreRazonSocial',
+  telefono: 'telefono',
+  direccion: 'direccion',
+  codigoPostal: 'codigoPostal',
+  correo: 'correo',
+  idPais: 'idPais',
+  idDepartamento: 'idDepartamento',
+  idCiudad: 'idCiudad',
+  idTipoPersona: 'idTipoPersona',
+  idAmbienteDian: 'idAmbienteDian',
+  idRegimen: 'idRegimen',
+  responsabilidadFiscal: 'responsabilidadFiscal',
+  contratoColjuegos: 'contratoColjuegos',
+  fechaInicioContrato: 'fechaInicioContrato',
+  fechaFinContrato: 'fechaFinContrato',
+  softwareId: 'softwareId',
+  softwarePin: 'softwarePin',
+  testSetId: 'testSetId',
+  claveTecnica: 'claveTecnica',
+  numeroResolucion: 'numeroResolucion',
+  prefijoResolucion: 'prefijoResolucion',
+  rangoInicio: 'rangoInicio',
+  rangoFin: 'rangoFin',
+  fechaInicioResolucion: 'fechaInicioResolucion',
+  fechaFinResolucion: 'fechaFinResolucion',
+  codigoHelisa: 'codigoHelisa',
   estado: 'estado',
   fechaCreacion: 'fechaCreacion',
   fechaActualizacion: 'fechaActualizacion'
@@ -208,6 +304,32 @@ export const CasinoScalarFieldEnum = {
 } as const
 
 export type CasinoScalarFieldEnum = (typeof CasinoScalarFieldEnum)[keyof typeof CasinoScalarFieldEnum]
+
+
+export const UsuarioScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  apellido: 'apellido',
+  cedula: 'cedula',
+  correo: 'correo',
+  passwordHash: 'passwordHash',
+  cargo: 'cargo',
+  fechaNacimiento: 'fechaNacimiento',
+  telefono: 'telefono',
+  codigoHelisa: 'codigoHelisa',
+  cuentaPuc: 'cuentaPuc',
+  imgUrl: 'imgUrl',
+  estado: 'estado',
+  idTipoDoc: 'idTipoDoc',
+  idGenero: 'idGenero',
+  idRol: 'idRol',
+  idCiudad: 'idCiudad',
+  idCasino: 'idCasino',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -247,22 +369,6 @@ export const NullsOrder = {
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
-export const UsuarioOrderByRelevanceFieldEnum = {
-  nombre: 'nombre',
-  apellido: 'apellido',
-  cedula: 'cedula',
-  correo: 'correo',
-  passwordHash: 'passwordHash',
-  cargo: 'cargo',
-  telefono: 'telefono',
-  codigoHelisa: 'codigoHelisa',
-  cuentaPuc: 'cuentaPuc',
-  imgUrl: 'imgUrl'
-} as const
-
-export type UsuarioOrderByRelevanceFieldEnum = (typeof UsuarioOrderByRelevanceFieldEnum)[keyof typeof UsuarioOrderByRelevanceFieldEnum]
-
-
 export const RolOrderByRelevanceFieldEnum = {
   nombreRol: 'nombreRol',
   descripcion: 'descripcion'
@@ -285,6 +391,26 @@ export const GeneroOrderByRelevanceFieldEnum = {
 export type GeneroOrderByRelevanceFieldEnum = (typeof GeneroOrderByRelevanceFieldEnum)[keyof typeof GeneroOrderByRelevanceFieldEnum]
 
 
+export const ModuloOrderByRelevanceFieldEnum = {
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  ruta: 'ruta',
+  icono: 'icono'
+} as const
+
+export type ModuloOrderByRelevanceFieldEnum = (typeof ModuloOrderByRelevanceFieldEnum)[keyof typeof ModuloOrderByRelevanceFieldEnum]
+
+
+export const AccionOrderByRelevanceFieldEnum = {
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion'
+} as const
+
+export type AccionOrderByRelevanceFieldEnum = (typeof AccionOrderByRelevanceFieldEnum)[keyof typeof AccionOrderByRelevanceFieldEnum]
+
+
 export const CentroCostoOrderByRelevanceFieldEnum = {
   codigoCentroCosto: 'codigoCentroCosto',
   nombreCentroCosto: 'nombreCentroCosto'
@@ -293,9 +419,48 @@ export const CentroCostoOrderByRelevanceFieldEnum = {
 export type CentroCostoOrderByRelevanceFieldEnum = (typeof CentroCostoOrderByRelevanceFieldEnum)[keyof typeof CentroCostoOrderByRelevanceFieldEnum]
 
 
+export const TipoPersonaOrderByRelevanceFieldEnum = {
+  codigo: 'codigo',
+  nombre: 'nombre'
+} as const
+
+export type TipoPersonaOrderByRelevanceFieldEnum = (typeof TipoPersonaOrderByRelevanceFieldEnum)[keyof typeof TipoPersonaOrderByRelevanceFieldEnum]
+
+
+export const AmbienteDianOrderByRelevanceFieldEnum = {
+  codigo: 'codigo',
+  nombre: 'nombre'
+} as const
+
+export type AmbienteDianOrderByRelevanceFieldEnum = (typeof AmbienteDianOrderByRelevanceFieldEnum)[keyof typeof AmbienteDianOrderByRelevanceFieldEnum]
+
+
+export const RegimenOrderByRelevanceFieldEnum = {
+  codigo: 'codigo',
+  nombre: 'nombre'
+} as const
+
+export type RegimenOrderByRelevanceFieldEnum = (typeof RegimenOrderByRelevanceFieldEnum)[keyof typeof RegimenOrderByRelevanceFieldEnum]
+
+
 export const RazonSocialOrderByRelevanceFieldEnum = {
   nit: 'nit',
-  nombreRazonSocial: 'nombreRazonSocial'
+  nombreRazonSocial: 'nombreRazonSocial',
+  telefono: 'telefono',
+  direccion: 'direccion',
+  codigoPostal: 'codigoPostal',
+  correo: 'correo',
+  responsabilidadFiscal: 'responsabilidadFiscal',
+  contratoColjuegos: 'contratoColjuegos',
+  softwareId: 'softwareId',
+  softwarePin: 'softwarePin',
+  testSetId: 'testSetId',
+  claveTecnica: 'claveTecnica',
+  numeroResolucion: 'numeroResolucion',
+  prefijoResolucion: 'prefijoResolucion',
+  rangoInicio: 'rangoInicio',
+  rangoFin: 'rangoFin',
+  codigoHelisa: 'codigoHelisa'
 } as const
 
 export type RazonSocialOrderByRelevanceFieldEnum = (typeof RazonSocialOrderByRelevanceFieldEnum)[keyof typeof RazonSocialOrderByRelevanceFieldEnum]
@@ -310,4 +475,20 @@ export const CasinoOrderByRelevanceFieldEnum = {
 } as const
 
 export type CasinoOrderByRelevanceFieldEnum = (typeof CasinoOrderByRelevanceFieldEnum)[keyof typeof CasinoOrderByRelevanceFieldEnum]
+
+
+export const UsuarioOrderByRelevanceFieldEnum = {
+  nombre: 'nombre',
+  apellido: 'apellido',
+  cedula: 'cedula',
+  correo: 'correo',
+  passwordHash: 'passwordHash',
+  cargo: 'cargo',
+  telefono: 'telefono',
+  codigoHelisa: 'codigoHelisa',
+  cuentaPuc: 'cuentaPuc',
+  imgUrl: 'imgUrl'
+} as const
+
+export type UsuarioOrderByRelevanceFieldEnum = (typeof UsuarioOrderByRelevanceFieldEnum)[keyof typeof UsuarioOrderByRelevanceFieldEnum]
 

@@ -33,11 +33,6 @@ export type Departamento = Prisma.DepartamentoModel
  */
 export type Ciudad = Prisma.CiudadModel
 /**
- * Model Usuario
- * 
- */
-export type Usuario = Prisma.UsuarioModel
-/**
  * Model Rol
  * 
  */
@@ -53,10 +48,45 @@ export type TipoDocumento = Prisma.TipoDocumentoModel
  */
 export type Genero = Prisma.GeneroModel
 /**
+ * Model Modulo
+ * 
+ */
+export type Modulo = Prisma.ModuloModel
+/**
+ * Model Accion
+ * 
+ */
+export type Accion = Prisma.AccionModel
+/**
+ * Model Permiso
+ * 
+ */
+export type Permiso = Prisma.PermisoModel
+/**
+ * Model RolPermiso
+ * 
+ */
+export type RolPermiso = Prisma.RolPermisoModel
+/**
  * Model CentroCosto
  * 
  */
 export type CentroCosto = Prisma.CentroCostoModel
+/**
+ * Model TipoPersona
+ * 
+ */
+export type TipoPersona = Prisma.TipoPersonaModel
+/**
+ * Model AmbienteDian
+ * 
+ */
+export type AmbienteDian = Prisma.AmbienteDianModel
+/**
+ * Model Regimen
+ * 
+ */
+export type Regimen = Prisma.RegimenModel
 /**
  * Model RazonSocial
  * 
@@ -67,3 +97,8 @@ export type RazonSocial = Prisma.RazonSocialModel
  * 
  */
 export type Casino = Prisma.CasinoModel
+/**
+ * Model Usuario
+ * 
+ */
+export type Usuario = Prisma.UsuarioModel

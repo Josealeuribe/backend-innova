@@ -193,12 +193,14 @@ export type PaisWhereInput = {
   idPais?: Prisma.IntFilter<"Pais"> | number
   nombre?: Prisma.StringFilter<"Pais"> | string
   departamentos?: Prisma.DepartamentoListRelationFilter
+  razonesSociales?: Prisma.RazonSocialListRelationFilter
 }
 
 export type PaisOrderByWithRelationInput = {
   idPais?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   departamentos?: Prisma.DepartamentoOrderByRelationAggregateInput
+  razonesSociales?: Prisma.RazonSocialOrderByRelationAggregateInput
   _relevance?: Prisma.PaisOrderByRelevanceInput
 }
 
@@ -209,6 +211,7 @@ export type PaisWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.PaisWhereInput[]
   NOT?: Prisma.PaisWhereInput | Prisma.PaisWhereInput[]
   departamentos?: Prisma.DepartamentoListRelationFilter
+  razonesSociales?: Prisma.RazonSocialListRelationFilter
 }, "idPais" | "nombre">
 
 export type PaisOrderByWithAggregationInput = {
@@ -232,23 +235,27 @@ export type PaisScalarWhereWithAggregatesInput = {
 export type PaisCreateInput = {
   nombre: string
   departamentos?: Prisma.DepartamentoCreateNestedManyWithoutPaisInput
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutPaisInput
 }
 
 export type PaisUncheckedCreateInput = {
   idPais?: number
   nombre: string
   departamentos?: Prisma.DepartamentoUncheckedCreateNestedManyWithoutPaisInput
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutPaisInput
 }
 
 export type PaisUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   departamentos?: Prisma.DepartamentoUpdateManyWithoutPaisNestedInput
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutPaisNestedInput
 }
 
 export type PaisUncheckedUpdateInput = {
   idPais?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   departamentos?: Prisma.DepartamentoUncheckedUpdateManyWithoutPaisNestedInput
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutPaisNestedInput
 }
 
 export type PaisCreateManyInput = {
@@ -325,13 +332,29 @@ export type PaisUpdateOneRequiredWithoutDepartamentosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PaisUpdateToOneWithWhereWithoutDepartamentosInput, Prisma.PaisUpdateWithoutDepartamentosInput>, Prisma.PaisUncheckedUpdateWithoutDepartamentosInput>
 }
 
+export type PaisCreateNestedOneWithoutRazonesSocialesInput = {
+  create?: Prisma.XOR<Prisma.PaisCreateWithoutRazonesSocialesInput, Prisma.PaisUncheckedCreateWithoutRazonesSocialesInput>
+  connectOrCreate?: Prisma.PaisCreateOrConnectWithoutRazonesSocialesInput
+  connect?: Prisma.PaisWhereUniqueInput
+}
+
+export type PaisUpdateOneRequiredWithoutRazonesSocialesNestedInput = {
+  create?: Prisma.XOR<Prisma.PaisCreateWithoutRazonesSocialesInput, Prisma.PaisUncheckedCreateWithoutRazonesSocialesInput>
+  connectOrCreate?: Prisma.PaisCreateOrConnectWithoutRazonesSocialesInput
+  upsert?: Prisma.PaisUpsertWithoutRazonesSocialesInput
+  connect?: Prisma.PaisWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PaisUpdateToOneWithWhereWithoutRazonesSocialesInput, Prisma.PaisUpdateWithoutRazonesSocialesInput>, Prisma.PaisUncheckedUpdateWithoutRazonesSocialesInput>
+}
+
 export type PaisCreateWithoutDepartamentosInput = {
   nombre: string
+  razonesSociales?: Prisma.RazonSocialCreateNestedManyWithoutPaisInput
 }
 
 export type PaisUncheckedCreateWithoutDepartamentosInput = {
   idPais?: number
   nombre: string
+  razonesSociales?: Prisma.RazonSocialUncheckedCreateNestedManyWithoutPaisInput
 }
 
 export type PaisCreateOrConnectWithoutDepartamentosInput = {
@@ -352,11 +375,51 @@ export type PaisUpdateToOneWithWhereWithoutDepartamentosInput = {
 
 export type PaisUpdateWithoutDepartamentosInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  razonesSociales?: Prisma.RazonSocialUpdateManyWithoutPaisNestedInput
 }
 
 export type PaisUncheckedUpdateWithoutDepartamentosInput = {
   idPais?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  razonesSociales?: Prisma.RazonSocialUncheckedUpdateManyWithoutPaisNestedInput
+}
+
+export type PaisCreateWithoutRazonesSocialesInput = {
+  nombre: string
+  departamentos?: Prisma.DepartamentoCreateNestedManyWithoutPaisInput
+}
+
+export type PaisUncheckedCreateWithoutRazonesSocialesInput = {
+  idPais?: number
+  nombre: string
+  departamentos?: Prisma.DepartamentoUncheckedCreateNestedManyWithoutPaisInput
+}
+
+export type PaisCreateOrConnectWithoutRazonesSocialesInput = {
+  where: Prisma.PaisWhereUniqueInput
+  create: Prisma.XOR<Prisma.PaisCreateWithoutRazonesSocialesInput, Prisma.PaisUncheckedCreateWithoutRazonesSocialesInput>
+}
+
+export type PaisUpsertWithoutRazonesSocialesInput = {
+  update: Prisma.XOR<Prisma.PaisUpdateWithoutRazonesSocialesInput, Prisma.PaisUncheckedUpdateWithoutRazonesSocialesInput>
+  create: Prisma.XOR<Prisma.PaisCreateWithoutRazonesSocialesInput, Prisma.PaisUncheckedCreateWithoutRazonesSocialesInput>
+  where?: Prisma.PaisWhereInput
+}
+
+export type PaisUpdateToOneWithWhereWithoutRazonesSocialesInput = {
+  where?: Prisma.PaisWhereInput
+  data: Prisma.XOR<Prisma.PaisUpdateWithoutRazonesSocialesInput, Prisma.PaisUncheckedUpdateWithoutRazonesSocialesInput>
+}
+
+export type PaisUpdateWithoutRazonesSocialesInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  departamentos?: Prisma.DepartamentoUpdateManyWithoutPaisNestedInput
+}
+
+export type PaisUncheckedUpdateWithoutRazonesSocialesInput = {
+  idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  departamentos?: Prisma.DepartamentoUncheckedUpdateManyWithoutPaisNestedInput
 }
 
 
@@ -366,10 +429,12 @@ export type PaisUncheckedUpdateWithoutDepartamentosInput = {
 
 export type PaisCountOutputType = {
   departamentos: number
+  razonesSociales: number
 }
 
 export type PaisCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   departamentos?: boolean | PaisCountOutputTypeCountDepartamentosArgs
+  razonesSociales?: boolean | PaisCountOutputTypeCountRazonesSocialesArgs
 }
 
 /**
@@ -389,11 +454,19 @@ export type PaisCountOutputTypeCountDepartamentosArgs<ExtArgs extends runtime.Ty
   where?: Prisma.DepartamentoWhereInput
 }
 
+/**
+ * PaisCountOutputType without action
+ */
+export type PaisCountOutputTypeCountRazonesSocialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RazonSocialWhereInput
+}
+
 
 export type PaisSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idPais?: boolean
   nombre?: boolean
   departamentos?: boolean | Prisma.Pais$departamentosArgs<ExtArgs>
+  razonesSociales?: boolean | Prisma.Pais$razonesSocialesArgs<ExtArgs>
   _count?: boolean | Prisma.PaisCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pais"]>
 
@@ -407,6 +480,7 @@ export type PaisSelectScalar = {
 export type PaisOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idPais" | "nombre", ExtArgs["result"]["pais"]>
 export type PaisInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   departamentos?: boolean | Prisma.Pais$departamentosArgs<ExtArgs>
+  razonesSociales?: boolean | Prisma.Pais$razonesSocialesArgs<ExtArgs>
   _count?: boolean | Prisma.PaisCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -414,6 +488,7 @@ export type $PaisPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Pais"
   objects: {
     departamentos: Prisma.$DepartamentoPayload<ExtArgs>[]
+    razonesSociales: Prisma.$RazonSocialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idPais: number
@@ -759,6 +834,7 @@ readonly fields: PaisFieldRefs;
 export interface Prisma__PaisClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   departamentos<T extends Prisma.Pais$departamentosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pais$departamentosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartamentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  razonesSociales<T extends Prisma.Pais$razonesSocialesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pais$razonesSocialesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RazonSocialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1159,6 +1235,30 @@ export type Pais$departamentosArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.DepartamentoScalarFieldEnum | Prisma.DepartamentoScalarFieldEnum[]
+}
+
+/**
+ * Pais.razonesSociales
+ */
+export type Pais$razonesSocialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RazonSocial
+   */
+  select?: Prisma.RazonSocialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RazonSocial
+   */
+  omit?: Prisma.RazonSocialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RazonSocialInclude<ExtArgs> | null
+  where?: Prisma.RazonSocialWhereInput
+  orderBy?: Prisma.RazonSocialOrderByWithRelationInput | Prisma.RazonSocialOrderByWithRelationInput[]
+  cursor?: Prisma.RazonSocialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RazonSocialScalarFieldEnum | Prisma.RazonSocialScalarFieldEnum[]
 }
 
 /**

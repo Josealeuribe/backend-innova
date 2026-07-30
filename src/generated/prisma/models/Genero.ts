@@ -322,11 +322,6 @@ export type GeneroUncheckedUpdateManyInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type GeneroScalarRelationFilter = {
-  is?: Prisma.GeneroWhereInput
-  isNot?: Prisma.GeneroWhereInput
-}
-
 export type GeneroOrderByRelevanceInput = {
   fields: Prisma.GeneroOrderByRelevanceFieldEnum | Prisma.GeneroOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
@@ -363,6 +358,11 @@ export type GeneroMinOrderByAggregateInput = {
 
 export type GeneroSumOrderByAggregateInput = {
   idGenero?: Prisma.SortOrder
+}
+
+export type GeneroScalarRelationFilter = {
+  is?: Prisma.GeneroWhereInput
+  isNot?: Prisma.GeneroWhereInput
 }
 
 export type GeneroCreateNestedOneWithoutUsuariosInput = {

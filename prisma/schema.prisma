@@ -5,7 +5,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider     = "mysql"
+  relationMode = "foreignKeys"
 }
 
 enum EstadoRegistro {
@@ -14,152 +15,186 @@ enum EstadoRegistro {
 }
 
 // ======================================================
-// PAÍSES, DEPARTAMENTOS Y CIUDADES
+// UBICACIONES
 // ======================================================
 
 model Pais {
-  idPais Int    @id @default(autoincrement()) @map("id_pais")
-  nombre String @unique @db.VarChar(100)
+  idPais Int    @id @default(autoincrement()) @map("id_pais") @db.UnsignedInt
+  nombre String @unique(map: "uq_paises_nombre") @db.VarChar(100)
 
-  departamentos Departamento[]
+  departamentos   Departamento[]
+  razonesSociales RazonSocial[]
 
   @@map("paises")
 }
 
 model Departamento {
-  idDepartamento Int    @id @default(autoincrement()) @map("id_departamentos")
+  idDepartamento Int    @id @default(autoincrement()) @map("id_departamentos") @db.UnsignedInt
   nombre         String @db.VarChar(120)
-  idPais         Int    @map("id_pais")
+  idPais         Int    @map("id_pais") @db.UnsignedInt
 
-  pais     Pais     @relation(fields: [idPais], references: [idPais], onDelete: Restrict, onUpdate: Cascade)
-  ciudades Ciudad[]
+  pais            Pais          @relation(fields: [idPais], references: [idPais], onDelete: Restrict, onUpdate: Cascade, map: "fk_departamentos_paises")
+  ciudades        Ciudad[]
+  razonesSociales RazonSocial[]
 
-  @@unique([idPais, nombre])
-  @@index([idPais])
-  @@index([nombre])
+  @@unique([idPais, nombre], map: "uq_departamentos_pais_nombre")
+  @@index([idPais], map: "idx_departamentos_pais")
+  @@index([nombre], map: "idx_departamentos_nombre")
   @@map("departamentos")
 }
 
 model Ciudad {
-  idCiudad       Int            @id @default(autoincrement()) @map("id_ciudad")
+  idCiudad       Int            @id @default(autoincrement()) @map("id_ciudad") @db.UnsignedInt
   nombreCiudad   String         @map("nombre_ciudad") @db.VarChar(150)
-  idDepartamento Int            @map("id_departamentos")
+  idDepartamento Int            @map("id_departamentos") @db.UnsignedInt
   estado         EstadoRegistro @default(ACTIVO)
 
-  departamento Departamento @relation(fields: [idDepartamento], references: [idDepartamento], onDelete: Restrict, onUpdate: Cascade)
-  usuarios     Usuario[]
-  casinos      Casino[]
+  departamento    Departamento  @relation(fields: [idDepartamento], references: [idDepartamento], onDelete: Restrict, onUpdate: Cascade, map: "fk_ciudades_departamentos")
+  usuarios        Usuario[]
+  casinos         Casino[]
+  razonesSociales RazonSocial[]
 
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
-  @@unique([idDepartamento, nombreCiudad])
-  @@index([idDepartamento])
-  @@index([nombreCiudad])
-  @@index([estado])
+  @@unique([idDepartamento, nombreCiudad], map: "uq_ciudades_departamento_nombre")
+  @@index([idDepartamento], map: "idx_ciudades_departamento")
+  @@index([nombreCiudad], map: "idx_ciudades_nombre")
+  @@index([estado], map: "idx_ciudades_estado")
   @@map("ciudades")
 }
 
 // ======================================================
-// USUARIOS
-// ======================================================
-
-model Usuario {
-  id           Int    @id @default(autoincrement())
-  nombre       String @db.VarChar(100)
-  apellido     String @db.VarChar(100)
-  cedula       String @unique @db.VarChar(30)
-  correo       String @unique @db.VarChar(191)
-  passwordHash String @map("password_hash") @db.VarChar(255)
-
-  cargo           String   @db.VarChar(120)
-  fechaNacimiento DateTime @map("fecha_nacimiento") @db.Date
-  telefono        String   @db.VarChar(30)
-
-  codigoHelisa String? @map("codigo_helisa") @db.VarChar(50)
-  cuentaPuc    String? @map("cuenta_puc") @db.VarChar(50)
-  imgUrl       String? @map("img_url") @db.VarChar(500)
-
-  estado EstadoRegistro @default(ACTIVO)
-
-  idTipoDoc Int @map("id_tipo_doc")
-  idGenero  Int @map("id_genero")
-  idRol     Int @map("id_rol")
-  idCiudad  Int @map("id_ciudad")
-  idCasino  Int @map("id_casino")
-
-  tipoDocumento TipoDocumento @relation(fields: [idTipoDoc], references: [idTipoDoc], onDelete: Restrict, onUpdate: Cascade)
-  genero        Genero        @relation(fields: [idGenero], references: [idGenero], onDelete: Restrict, onUpdate: Cascade)
-  rol           Rol           @relation(fields: [idRol], references: [idRol], onDelete: Restrict, onUpdate: Cascade)
-  ciudad        Ciudad        @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade)
-  casino        Casino        @relation(fields: [idCasino], references: [idCasino], onDelete: Restrict, onUpdate: Cascade)
-
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
-
-  @@index([estado])
-  @@index([idTipoDoc])
-  @@index([idGenero])
-  @@index([idRol])
-  @@index([idCiudad])
-  @@index([idCasino])
-  @@index([apellido, nombre])
-  @@map("usuarios")
-}
-
-// ======================================================
-// ROLES
+// CATÁLOGOS DE USUARIOS
 // ======================================================
 
 model Rol {
-  idRol       Int            @id @default(autoincrement()) @map("id_rol")
-  nombreRol   String         @unique @map("nombre_rol") @db.VarChar(100)
+  idRol       Int            @id @default(autoincrement()) @map("id_rol") @db.UnsignedInt
+  nombreRol   String         @unique(map: "uq_roles_nombre") @map("nombre_rol") @db.VarChar(100)
   descripcion String?        @db.VarChar(255)
   estado      EstadoRegistro @default(ACTIVO)
 
   usuarios Usuario[]
+  permisos RolPermiso[]
 
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
-  @@index([estado])
+  @@index([estado], map: "idx_roles_estado")
   @@map("roles")
 }
 
-// ======================================================
-// TIPOS DE DOCUMENTO
-// ======================================================
-
 model TipoDocumento {
-  idTipoDoc Int            @id @default(autoincrement()) @map("id_tipo_doc")
-  nombreDoc String         @unique @map("nombre_doc") @db.VarChar(50)
+  idTipoDoc Int            @id @default(autoincrement()) @map("id_tipo_doc") @db.UnsignedInt
+  nombreDoc String         @unique(map: "uq_tipos_documento_nombre") @map("nombre_doc") @db.VarChar(50)
   estado    EstadoRegistro @default(ACTIVO)
 
   usuarios Usuario[]
 
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
-  @@index([estado])
+  @@index([estado], map: "idx_tipos_documento_estado")
   @@map("tipos_documento")
 }
 
-// ======================================================
-// GÉNEROS
-// ======================================================
-
 model Genero {
-  idGenero     Int            @id @default(autoincrement()) @map("id_genero")
-  nombreGenero String         @unique @map("nombre_genero") @db.VarChar(50)
+  idGenero     Int            @id @default(autoincrement()) @map("id_genero") @db.UnsignedInt
+  nombreGenero String         @unique(map: "uq_generos_nombre") @map("nombre_genero") @db.VarChar(50)
   estado       EstadoRegistro @default(ACTIVO)
 
   usuarios Usuario[]
 
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
-  @@index([estado])
+  @@index([estado], map: "idx_generos_estado")
   @@map("generos")
+}
+
+// ======================================================
+// MÓDULOS, ACCIONES Y PERMISOS
+// ======================================================
+
+model Modulo {
+  idModulo      Int            @id @default(autoincrement()) @map("id_modulo") @db.UnsignedInt
+  codigo        String         @unique(map: "uq_modulos_codigo") @db.VarChar(50)
+  nombre        String         @db.VarChar(100)
+  descripcion   String?        @db.VarChar(255)
+  ruta          String?        @db.VarChar(200)
+  icono         String?        @db.VarChar(100)
+  orden         Int            @default(0) @db.UnsignedInt
+  visibleMenu   Boolean        @default(true) @map("visible_menu")
+  idModuloPadre Int?           @map("id_modulo_padre") @db.UnsignedInt
+  estado        EstadoRegistro @default(ACTIVO)
+
+  moduloPadre Modulo?   @relation("JerarquiaModulos", fields: [idModuloPadre], references: [idModulo], onDelete: Restrict, onUpdate: Cascade, map: "fk_modulos_modulo_padre")
+  submodulos  Modulo[]  @relation("JerarquiaModulos")
+  permisos    Permiso[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_modulos_estado")
+  @@index([orden], map: "idx_modulos_orden")
+  @@index([idModuloPadre], map: "idx_modulos_padre")
+  @@index([visibleMenu], map: "idx_modulos_visible_menu")
+  @@index([nombre], map: "idx_modulos_nombre")
+  @@map("modulos")
+}
+
+model Accion {
+  idAccion    Int            @id @default(autoincrement()) @map("id_accion") @db.UnsignedInt
+  codigo      String         @unique(map: "uq_acciones_codigo") @db.VarChar(30)
+  nombre      String         @db.VarChar(80)
+  descripcion String?        @db.VarChar(255)
+  estado      EstadoRegistro @default(ACTIVO)
+
+  permisos Permiso[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_acciones_estado")
+  @@index([nombre], map: "idx_acciones_nombre")
+  @@map("acciones")
+}
+
+model Permiso {
+  idPermiso Int            @id @default(autoincrement()) @map("id_permiso") @db.UnsignedInt
+  idModulo  Int            @map("id_modulo") @db.UnsignedInt
+  idAccion  Int            @map("id_accion") @db.UnsignedInt
+  estado    EstadoRegistro @default(ACTIVO)
+
+  modulo Modulo       @relation(fields: [idModulo], references: [idModulo], onDelete: Restrict, onUpdate: Cascade, map: "fk_permisos_modulos")
+  accion Accion       @relation(fields: [idAccion], references: [idAccion], onDelete: Restrict, onUpdate: Cascade, map: "fk_permisos_acciones")
+  roles  RolPermiso[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@unique([idModulo, idAccion], map: "uq_permisos_modulo_accion")
+  @@index([idModulo], map: "idx_permisos_modulo")
+  @@index([idAccion], map: "idx_permisos_accion")
+  @@index([estado], map: "idx_permisos_estado")
+  @@map("permisos")
+}
+
+model RolPermiso {
+  idRol     Int     @map("id_rol") @db.UnsignedInt
+  idPermiso Int     @map("id_permiso") @db.UnsignedInt
+  permitido Boolean @default(true)
+
+  rol     Rol     @relation(fields: [idRol], references: [idRol], onDelete: Cascade, onUpdate: Cascade, map: "fk_roles_permisos_roles")
+  permiso Permiso @relation(fields: [idPermiso], references: [idPermiso], onDelete: Cascade, onUpdate: Cascade, map: "fk_roles_permisos_permisos")
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@id([idRol, idPermiso])
+  @@index([idPermiso], map: "idx_roles_permisos_permiso")
+  @@index([permitido], map: "idx_roles_permisos_permitido")
+  @@map("roles_permisos")
 }
 
 // ======================================================
@@ -167,19 +202,71 @@ model Genero {
 // ======================================================
 
 model CentroCosto {
-  idCentroCosto     Int            @id @default(autoincrement()) @map("id_centro_costo")
-  codigoCentroCosto String         @unique @map("codigo_centro_costo") @db.VarChar(50)
+  idCentroCosto     Int            @id @default(autoincrement()) @map("id_centro_costo") @db.UnsignedInt
+  codigoCentroCosto String         @unique(map: "uq_centros_costos_codigo") @map("codigo_centro_costo") @db.VarChar(50)
   nombreCentroCosto String         @map("nombre_centro_costo") @db.VarChar(150)
   estado            EstadoRegistro @default(ACTIVO)
 
   casinos Casino[]
 
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
-  @@index([estado])
-  @@index([nombreCentroCosto])
+  @@index([estado], map: "idx_centros_costos_estado")
+  @@index([nombreCentroCosto], map: "idx_centros_costos_nombre")
   @@map("centros_costos")
+}
+
+// ======================================================
+// CATÁLOGOS TRIBUTARIOS / DIAN
+// ======================================================
+
+model TipoPersona {
+  idTipoPersona Int            @id @default(autoincrement()) @map("id_tipo_persona") @db.UnsignedInt
+  codigo        String         @unique(map: "uq_tipos_persona_codigo") @db.VarChar(30)
+  nombre        String         @unique(map: "uq_tipos_persona_nombre") @db.VarChar(100)
+  estado        EstadoRegistro @default(ACTIVO)
+
+  razonesSociales RazonSocial[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_tipos_persona_estado")
+  @@index([nombre], map: "idx_tipos_persona_nombre")
+  @@map("tipos_persona")
+}
+
+model AmbienteDian {
+  idAmbienteDian Int            @id @default(autoincrement()) @map("id_ambiente_dian") @db.UnsignedInt
+  codigo         String         @unique(map: "uq_ambientes_dian_codigo") @db.VarChar(30)
+  nombre         String         @unique(map: "uq_ambientes_dian_nombre") @db.VarChar(100)
+  estado         EstadoRegistro @default(ACTIVO)
+
+  razonesSociales RazonSocial[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_ambientes_dian_estado")
+  @@index([nombre], map: "idx_ambientes_dian_nombre")
+  @@map("ambientes_dian")
+}
+
+model Regimen {
+  idRegimen Int            @id @default(autoincrement()) @map("id_regimen") @db.UnsignedInt
+  codigo    String         @unique(map: "uq_regimenes_codigo") @db.VarChar(30)
+  nombre    String         @unique(map: "uq_regimenes_nombre") @db.VarChar(120)
+  estado    EstadoRegistro @default(ACTIVO)
+
+  razonesSociales RazonSocial[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_regimenes_estado")
+  @@index([nombre], map: "idx_regimenes_nombre")
+  @@map("regimenes")
 }
 
 // ======================================================
@@ -187,18 +274,66 @@ model CentroCosto {
 // ======================================================
 
 model RazonSocial {
-  idRazonSocial     Int            @id @default(autoincrement()) @map("id_razon_social")
-  nit               String         @unique @db.VarChar(30)
-  nombreRazonSocial String         @map("nombre_razon_social") @db.VarChar(180)
-  estado            EstadoRegistro @default(ACTIVO)
+  idRazonSocial     Int    @id @default(autoincrement()) @map("id_razon_social") @db.UnsignedInt
+  nit               String @unique(map: "uq_razones_sociales_nit") @db.VarChar(30)
+  nombreRazonSocial String @map("nombre_razon_social") @db.VarChar(180)
+
+  telefono     String  @db.VarChar(30)
+  direccion    String  @db.VarChar(200)
+  codigoPostal String? @map("codigo_postal") @db.VarChar(20)
+  correo       String  @unique(map: "uq_razones_sociales_correo") @db.VarChar(191)
+
+  idPais         Int @map("id_pais") @db.UnsignedInt
+  idDepartamento Int @map("id_departamentos") @db.UnsignedInt
+  idCiudad       Int @map("id_ciudad") @db.UnsignedInt
+
+  pais         Pais         @relation(fields: [idPais], references: [idPais], onDelete: Restrict, onUpdate: Cascade, map: "fk_razones_sociales_paises")
+  departamento Departamento @relation(fields: [idDepartamento], references: [idDepartamento], onDelete: Restrict, onUpdate: Cascade, map: "fk_razones_sociales_departamentos")
+  ciudad       Ciudad       @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade, map: "fk_razones_sociales_ciudades")
+
+  idTipoPersona  Int @map("id_tipo_persona") @db.UnsignedInt
+  idAmbienteDian Int @map("id_ambiente_dian") @db.UnsignedInt
+  idRegimen      Int @map("id_regimen") @db.UnsignedInt
+
+  tipoPersona  TipoPersona  @relation(fields: [idTipoPersona], references: [idTipoPersona], onDelete: Restrict, onUpdate: Cascade, map: "fk_razones_sociales_tipos_persona")
+  ambienteDian AmbienteDian @relation(fields: [idAmbienteDian], references: [idAmbienteDian], onDelete: Restrict, onUpdate: Cascade, map: "fk_razones_sociales_ambientes_dian")
+  regimen      Regimen      @relation(fields: [idRegimen], references: [idRegimen], onDelete: Restrict, onUpdate: Cascade, map: "fk_razones_sociales_regimenes")
+
+  responsabilidadFiscal String @map("responsabilidad_fiscal") @db.VarChar(120)
+
+  contratoColjuegos   String?   @map("contrato_coljuegos") @db.VarChar(100)
+  fechaInicioContrato DateTime? @map("fecha_inicio_contrato") @db.Date
+  fechaFinContrato    DateTime? @map("fecha_fin_contrato") @db.Date
+
+  softwareId   String? @map("software_id") @db.VarChar(100)
+  softwarePin  String? @map("software_pin") @db.VarChar(255)
+  testSetId    String? @map("test_set_id") @db.VarChar(150)
+  claveTecnica String? @map("clave_tecnica") @db.VarChar(255)
+
+  numeroResolucion      String?   @map("numero_resolucion") @db.VarChar(100)
+  prefijoResolucion     String?   @map("prefijo_resolucion") @db.VarChar(30)
+  rangoInicio           String?   @map("rango_inicio") @db.VarChar(30)
+  rangoFin              String?   @map("rango_fin") @db.VarChar(30)
+  fechaInicioResolucion DateTime? @map("fecha_inicio_resolucion") @db.Date
+  fechaFinResolucion    DateTime? @map("fecha_fin_resolucion") @db.Date
+
+  codigoHelisa String?        @map("codigo_helisa") @db.VarChar(50)
+  estado       EstadoRegistro @default(ACTIVO)
 
   casinos Casino[]
 
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
-  @@index([estado])
-  @@index([nombreRazonSocial])
+  @@index([estado], map: "idx_razones_sociales_estado")
+  @@index([nombreRazonSocial], map: "idx_razones_sociales_nombre")
+  @@index([idPais], map: "idx_razones_sociales_pais")
+  @@index([idDepartamento], map: "idx_razones_sociales_departamento")
+  @@index([idCiudad], map: "idx_razones_sociales_ciudad")
+  @@index([idTipoPersona], map: "idx_razones_sociales_tipo_persona")
+  @@index([idAmbienteDian], map: "idx_razones_sociales_ambiente_dian")
+  @@index([idRegimen], map: "idx_razones_sociales_regimen")
+  @@index([codigoHelisa], map: "idx_razones_sociales_codigo_helisa")
   @@map("razones_sociales")
 }
 
@@ -207,34 +342,80 @@ model RazonSocial {
 // ======================================================
 
 model Casino {
-  idCasino Int @id @default(autoincrement()) @map("id_casino")
+  idCasino Int @id @default(autoincrement()) @map("id_casino") @db.UnsignedInt
 
-  nombreCasino          String @unique @map("nombre_casino") @db.VarChar(150)
-  codigoDane            String @unique @map("codigo_dane") @db.VarChar(30)
-  codigoEstablecimiento String @unique @map("codigo_establecimiento") @db.VarChar(50)
+  nombreCasino          String @unique(map: "uq_casinos_nombre") @map("nombre_casino") @db.VarChar(150)
+  codigoDane            String @unique(map: "uq_casinos_codigo_dane") @map("codigo_dane") @db.VarChar(30)
+  codigoEstablecimiento String @unique(map: "uq_casinos_codigo_establecimiento") @map("codigo_establecimiento") @db.VarChar(50)
 
-  telefono  String @db.VarChar(30)
-  direccion String @db.VarChar(200)
+  telefono  String         @db.VarChar(30)
+  direccion String         @db.VarChar(200)
+  estado    EstadoRegistro @default(ACTIVO)
 
-  estado EstadoRegistro @default(ACTIVO)
+  idCiudad      Int @map("id_ciudad") @db.UnsignedInt
+  idCentroCosto Int @map("id_centro_costo") @db.UnsignedInt
+  idRazonSocial Int @map("id_razon_social") @db.UnsignedInt
 
-  idCiudad      Int @map("id_ciudad")
-  idCentroCosto Int @map("id_centro_costo")
-  idRazonSocial Int @map("id_razon_social")
-
-  ciudad      Ciudad      @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade)
-  centroCosto CentroCosto @relation(fields: [idCentroCosto], references: [idCentroCosto], onDelete: Restrict, onUpdate: Cascade)
-  razonSocial RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade)
+  ciudad      Ciudad      @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade, map: "fk_casinos_ciudades")
+  centroCosto CentroCosto @relation(fields: [idCentroCosto], references: [idCentroCosto], onDelete: Restrict, onUpdate: Cascade, map: "fk_casinos_centros_costos")
+  razonSocial RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_casinos_razones_sociales")
 
   usuarios Usuario[]
 
-  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
-  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
-  @@index([estado])
-  @@index([idCiudad])
-  @@index([idCentroCosto])
-  @@index([idRazonSocial])
-  @@index([nombreCasino])
+  @@index([estado], map: "idx_casinos_estado")
+  @@index([idCiudad], map: "idx_casinos_ciudad")
+  @@index([idCentroCosto], map: "idx_casinos_centro_costo")
+  @@index([idRazonSocial], map: "idx_casinos_razon_social")
+  @@index([nombreCasino], map: "idx_casinos_nombre")
   @@map("casinos")
+}
+
+// ======================================================
+// USUARIOS
+// ======================================================
+
+model Usuario {
+  id           Int    @id @default(autoincrement()) @db.UnsignedInt
+  nombre       String @db.VarChar(100)
+  apellido     String @db.VarChar(100)
+  cedula       String @unique(map: "uq_usuarios_cedula") @db.VarChar(30)
+  correo       String @unique(map: "uq_usuarios_correo") @db.VarChar(191)
+  passwordHash String @map("password_hash") @db.VarChar(255)
+
+  cargo           String   @db.VarChar(120)
+  fechaNacimiento DateTime @map("fecha_nacimiento") @db.Date
+  telefono        String   @db.VarChar(30)
+
+  codigoHelisa String?        @map("codigo_helisa") @db.VarChar(50)
+  cuentaPuc    String?        @map("cuenta_puc") @db.VarChar(50)
+  imgUrl       String?        @map("img_url") @db.VarChar(500)
+  estado       EstadoRegistro @default(ACTIVO)
+
+  idTipoDoc Int @map("id_tipo_doc") @db.UnsignedInt
+  idGenero  Int @map("id_genero") @db.UnsignedInt
+  idRol     Int @map("id_rol") @db.UnsignedInt
+  idCiudad  Int @map("id_ciudad") @db.UnsignedInt
+  idCasino  Int @map("id_casino") @db.UnsignedInt
+
+  tipoDocumento TipoDocumento @relation(fields: [idTipoDoc], references: [idTipoDoc], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_tipos_documento")
+  genero        Genero        @relation(fields: [idGenero], references: [idGenero], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_generos")
+  rol           Rol           @relation(fields: [idRol], references: [idRol], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_roles")
+  ciudad        Ciudad        @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_ciudades")
+  casino        Casino        @relation(fields: [idCasino], references: [idCasino], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_casinos")
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_usuarios_estado")
+  @@index([idTipoDoc], map: "idx_usuarios_tipo_documento")
+  @@index([idGenero], map: "idx_usuarios_genero")
+  @@index([idRol], map: "idx_usuarios_rol")
+  @@index([idCiudad], map: "idx_usuarios_ciudad")
+  @@index([idCasino], map: "idx_usuarios_casino")
+  @@index([apellido, nombre], map: "idx_usuarios_apellido_nombre")
+  @@index([codigoHelisa], map: "idx_usuarios_codigo_helisa")
+  @@map("usuarios")
 }

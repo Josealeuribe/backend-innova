@@ -483,11 +483,6 @@ export type CasinoOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type CasinoScalarRelationFilter = {
-  is?: Prisma.CasinoWhereInput
-  isNot?: Prisma.CasinoWhereInput
-}
-
 export type CasinoOrderByRelevanceInput = {
   fields: Prisma.CasinoOrderByRelevanceFieldEnum | Prisma.CasinoOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
@@ -553,6 +548,11 @@ export type CasinoSumOrderByAggregateInput = {
   idRazonSocial?: Prisma.SortOrder
 }
 
+export type CasinoScalarRelationFilter = {
+  is?: Prisma.CasinoWhereInput
+  isNot?: Prisma.CasinoWhereInput
+}
+
 export type CasinoCreateNestedManyWithoutCiudadInput = {
   create?: Prisma.XOR<Prisma.CasinoCreateWithoutCiudadInput, Prisma.CasinoUncheckedCreateWithoutCiudadInput> | Prisma.CasinoCreateWithoutCiudadInput[] | Prisma.CasinoUncheckedCreateWithoutCiudadInput[]
   connectOrCreate?: Prisma.CasinoCreateOrConnectWithoutCiudadInput | Prisma.CasinoCreateOrConnectWithoutCiudadInput[]
@@ -593,20 +593,6 @@ export type CasinoUncheckedUpdateManyWithoutCiudadNestedInput = {
   update?: Prisma.CasinoUpdateWithWhereUniqueWithoutCiudadInput | Prisma.CasinoUpdateWithWhereUniqueWithoutCiudadInput[]
   updateMany?: Prisma.CasinoUpdateManyWithWhereWithoutCiudadInput | Prisma.CasinoUpdateManyWithWhereWithoutCiudadInput[]
   deleteMany?: Prisma.CasinoScalarWhereInput | Prisma.CasinoScalarWhereInput[]
-}
-
-export type CasinoCreateNestedOneWithoutUsuariosInput = {
-  create?: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
-  connectOrCreate?: Prisma.CasinoCreateOrConnectWithoutUsuariosInput
-  connect?: Prisma.CasinoWhereUniqueInput
-}
-
-export type CasinoUpdateOneRequiredWithoutUsuariosNestedInput = {
-  create?: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
-  connectOrCreate?: Prisma.CasinoCreateOrConnectWithoutUsuariosInput
-  upsert?: Prisma.CasinoUpsertWithoutUsuariosInput
-  connect?: Prisma.CasinoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CasinoUpdateToOneWithWhereWithoutUsuariosInput, Prisma.CasinoUpdateWithoutUsuariosInput>, Prisma.CasinoUncheckedUpdateWithoutUsuariosInput>
 }
 
 export type CasinoCreateNestedManyWithoutCentroCostoInput = {
@@ -693,6 +679,20 @@ export type CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput = {
   deleteMany?: Prisma.CasinoScalarWhereInput | Prisma.CasinoScalarWhereInput[]
 }
 
+export type CasinoCreateNestedOneWithoutUsuariosInput = {
+  create?: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
+  connectOrCreate?: Prisma.CasinoCreateOrConnectWithoutUsuariosInput
+  connect?: Prisma.CasinoWhereUniqueInput
+}
+
+export type CasinoUpdateOneRequiredWithoutUsuariosNestedInput = {
+  create?: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
+  connectOrCreate?: Prisma.CasinoCreateOrConnectWithoutUsuariosInput
+  upsert?: Prisma.CasinoUpsertWithoutUsuariosInput
+  connect?: Prisma.CasinoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CasinoUpdateToOneWithWhereWithoutUsuariosInput, Prisma.CasinoUpdateWithoutUsuariosInput>, Prisma.CasinoUncheckedUpdateWithoutUsuariosInput>
+}
+
 export type CasinoCreateWithoutCiudadInput = {
   nombreCasino: string
   codigoDane: string
@@ -764,80 +764,6 @@ export type CasinoScalarWhereInput = {
   idRazonSocial?: Prisma.IntFilter<"Casino"> | number
   fechaCreacion?: Prisma.DateTimeFilter<"Casino"> | Date | string
   fechaActualizacion?: Prisma.DateTimeFilter<"Casino"> | Date | string
-}
-
-export type CasinoCreateWithoutUsuariosInput = {
-  nombreCasino: string
-  codigoDane: string
-  codigoEstablecimiento: string
-  telefono: string
-  direccion: string
-  estado?: $Enums.EstadoRegistro
-  fechaCreacion?: Date | string
-  fechaActualizacion?: Date | string
-  ciudad: Prisma.CiudadCreateNestedOneWithoutCasinosInput
-  centroCosto: Prisma.CentroCostoCreateNestedOneWithoutCasinosInput
-  razonSocial: Prisma.RazonSocialCreateNestedOneWithoutCasinosInput
-}
-
-export type CasinoUncheckedCreateWithoutUsuariosInput = {
-  idCasino?: number
-  nombreCasino: string
-  codigoDane: string
-  codigoEstablecimiento: string
-  telefono: string
-  direccion: string
-  estado?: $Enums.EstadoRegistro
-  idCiudad: number
-  idCentroCosto: number
-  idRazonSocial: number
-  fechaCreacion?: Date | string
-  fechaActualizacion?: Date | string
-}
-
-export type CasinoCreateOrConnectWithoutUsuariosInput = {
-  where: Prisma.CasinoWhereUniqueInput
-  create: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
-}
-
-export type CasinoUpsertWithoutUsuariosInput = {
-  update: Prisma.XOR<Prisma.CasinoUpdateWithoutUsuariosInput, Prisma.CasinoUncheckedUpdateWithoutUsuariosInput>
-  create: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
-  where?: Prisma.CasinoWhereInput
-}
-
-export type CasinoUpdateToOneWithWhereWithoutUsuariosInput = {
-  where?: Prisma.CasinoWhereInput
-  data: Prisma.XOR<Prisma.CasinoUpdateWithoutUsuariosInput, Prisma.CasinoUncheckedUpdateWithoutUsuariosInput>
-}
-
-export type CasinoUpdateWithoutUsuariosInput = {
-  nombreCasino?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoDane?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoEstablecimiento?: Prisma.StringFieldUpdateOperationsInput | string
-  telefono?: Prisma.StringFieldUpdateOperationsInput | string
-  direccion?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
-  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutCasinosNestedInput
-  centroCosto?: Prisma.CentroCostoUpdateOneRequiredWithoutCasinosNestedInput
-  razonSocial?: Prisma.RazonSocialUpdateOneRequiredWithoutCasinosNestedInput
-}
-
-export type CasinoUncheckedUpdateWithoutUsuariosInput = {
-  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
-  nombreCasino?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoDane?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoEstablecimiento?: Prisma.StringFieldUpdateOperationsInput | string
-  telefono?: Prisma.StringFieldUpdateOperationsInput | string
-  direccion?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
-  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
-  idCentroCosto?: Prisma.IntFieldUpdateOperationsInput | number
-  idRazonSocial?: Prisma.IntFieldUpdateOperationsInput | number
-  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CasinoCreateWithoutCentroCostoInput = {
@@ -948,6 +874,80 @@ export type CasinoUpdateWithWhereUniqueWithoutRazonSocialInput = {
 export type CasinoUpdateManyWithWhereWithoutRazonSocialInput = {
   where: Prisma.CasinoScalarWhereInput
   data: Prisma.XOR<Prisma.CasinoUpdateManyMutationInput, Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialInput>
+}
+
+export type CasinoCreateWithoutUsuariosInput = {
+  nombreCasino: string
+  codigoDane: string
+  codigoEstablecimiento: string
+  telefono: string
+  direccion: string
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  ciudad: Prisma.CiudadCreateNestedOneWithoutCasinosInput
+  centroCosto: Prisma.CentroCostoCreateNestedOneWithoutCasinosInput
+  razonSocial: Prisma.RazonSocialCreateNestedOneWithoutCasinosInput
+}
+
+export type CasinoUncheckedCreateWithoutUsuariosInput = {
+  idCasino?: number
+  nombreCasino: string
+  codigoDane: string
+  codigoEstablecimiento: string
+  telefono: string
+  direccion: string
+  estado?: $Enums.EstadoRegistro
+  idCiudad: number
+  idCentroCosto: number
+  idRazonSocial: number
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+}
+
+export type CasinoCreateOrConnectWithoutUsuariosInput = {
+  where: Prisma.CasinoWhereUniqueInput
+  create: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
+}
+
+export type CasinoUpsertWithoutUsuariosInput = {
+  update: Prisma.XOR<Prisma.CasinoUpdateWithoutUsuariosInput, Prisma.CasinoUncheckedUpdateWithoutUsuariosInput>
+  create: Prisma.XOR<Prisma.CasinoCreateWithoutUsuariosInput, Prisma.CasinoUncheckedCreateWithoutUsuariosInput>
+  where?: Prisma.CasinoWhereInput
+}
+
+export type CasinoUpdateToOneWithWhereWithoutUsuariosInput = {
+  where?: Prisma.CasinoWhereInput
+  data: Prisma.XOR<Prisma.CasinoUpdateWithoutUsuariosInput, Prisma.CasinoUncheckedUpdateWithoutUsuariosInput>
+}
+
+export type CasinoUpdateWithoutUsuariosInput = {
+  nombreCasino?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoDane?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoEstablecimiento?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutCasinosNestedInput
+  centroCosto?: Prisma.CentroCostoUpdateOneRequiredWithoutCasinosNestedInput
+  razonSocial?: Prisma.RazonSocialUpdateOneRequiredWithoutCasinosNestedInput
+}
+
+export type CasinoUncheckedUpdateWithoutUsuariosInput = {
+  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
+  nombreCasino?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoDane?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoEstablecimiento?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idCentroCosto?: Prisma.IntFieldUpdateOperationsInput | number
+  idRazonSocial?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CasinoCreateManyCiudadInput = {

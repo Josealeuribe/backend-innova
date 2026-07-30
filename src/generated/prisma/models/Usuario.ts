@@ -775,10 +775,6 @@ export type UsuarioUncheckedUpdateManyWithoutCiudadNestedInput = {
   deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type UsuarioCreateNestedManyWithoutRolInput = {
   create?: Prisma.XOR<Prisma.UsuarioCreateWithoutRolInput, Prisma.UsuarioUncheckedCreateWithoutRolInput> | Prisma.UsuarioCreateWithoutRolInput[] | Prisma.UsuarioUncheckedCreateWithoutRolInput[]
   connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutRolInput | Prisma.UsuarioCreateOrConnectWithoutRolInput[]

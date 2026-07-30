@@ -1,0 +1,4 @@
+export const CENTRO_COSTO_REPOSITORY =
+  Symbol(
+    'CENTRO_COSTO_REPOSITORY',
+  );
