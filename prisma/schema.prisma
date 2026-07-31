@@ -14,6 +14,14 @@ enum EstadoRegistro {
   INACTIVO
 }
 
+enum EstadoInventario {
+  DISPONIBLE
+  EN_USO
+  EN_MANTENIMIENTO
+  DANADO
+  DADO_DE_BAJA
+}
+
 // ======================================================
 // UBICACIONES
 // ======================================================
@@ -24,6 +32,7 @@ model Pais {
 
   departamentos   Departamento[]
   razonesSociales RazonSocial[]
+  maquinas        Maquina[]
 
   @@map("paises")
 }
@@ -360,7 +369,9 @@ model Casino {
   centroCosto CentroCosto @relation(fields: [idCentroCosto], references: [idCentroCosto], onDelete: Restrict, onUpdate: Cascade, map: "fk_casinos_centros_costos")
   razonSocial RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_casinos_razones_sociales")
 
-  usuarios Usuario[]
+  usuarios    Usuario[]
+  inventarios Inventario[]
+  maquinas    Maquina[]
 
   fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
   fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
@@ -371,6 +382,118 @@ model Casino {
   @@index([idRazonSocial], map: "idx_casinos_razon_social")
   @@index([nombreCasino], map: "idx_casinos_nombre")
   @@map("casinos")
+}
+
+// ======================================================
+// INVENTARIO
+// ======================================================
+
+model Inventario {
+  idInventario Int @id @default(autoincrement()) @map("id_inventario") @db.UnsignedInt
+
+  fotoSerial String? @map("foto_serial") @db.VarChar(500)
+  fotoEstado String? @map("foto_estado") @db.VarChar(500)
+
+  codigo        String  @unique(map: "uq_inventarios_codigo") @db.VarChar(50)
+  nombre        String  @db.VarChar(150)
+  serial        String? @unique(map: "uq_inventarios_serial") @db.VarChar(100)
+  clasificacion String  @db.VarChar(100)
+
+  estado         EstadoInventario @default(DISPONIBLE)
+  estadoRegistro EstadoRegistro   @default(ACTIVO) @map("estado_registro")
+
+  cantidad Int     @default(1) @db.UnsignedInt
+  valor    Decimal @default(0.00) @db.Decimal(15, 2)
+
+  idCasino      Int  @map("id_casino") @db.UnsignedInt
+  idResponsable Int? @map("id_responsable") @db.UnsignedInt
+
+  ubicacionLocal   String?   @map("ubicacion_local") @db.VarChar(200)
+  fechaAdquisicion DateTime? @map("fecha_adquisicion") @db.Date
+  observaciones    String?   @db.Text
+
+  casino      Casino   @relation(fields: [idCasino], references: [idCasino], onDelete: Restrict, onUpdate: Cascade, map: "fk_inventarios_casinos")
+  responsable Usuario? @relation("InventarioResponsable", fields: [idResponsable], references: [id], onDelete: SetNull, onUpdate: Cascade, map: "fk_inventarios_responsables")
+  maquina     Maquina?
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([nombre], map: "idx_inventarios_nombre")
+  @@index([serial], map: "idx_inventarios_serial")
+  @@index([clasificacion], map: "idx_inventarios_clasificacion")
+  @@index([estado], map: "idx_inventarios_estado")
+  @@index([estadoRegistro], map: "idx_inventarios_estado_registro")
+  @@index([idCasino], map: "idx_inventarios_casino")
+  @@index([idResponsable], map: "idx_inventarios_responsable")
+  @@index([fechaAdquisicion], map: "idx_inventarios_fecha_adquisicion")
+  @@map("inventarios")
+}
+
+// ======================================================
+// TIPOS DE MÁQUINA
+// ======================================================
+
+model TipoMaquina {
+  idTipoMaquina Int            @id @default(autoincrement()) @map("id_tipo_maquina") @db.UnsignedInt
+  codigo        String         @unique(map: "uq_tipos_maquina_codigo") @db.VarChar(50)
+  nombre        String         @unique(map: "uq_tipos_maquina_nombre") @db.VarChar(120)
+  descripcion   String?        @db.VarChar(255)
+  estado        EstadoRegistro @default(ACTIVO)
+
+  maquinas Maquina[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_tipos_maquina_estado")
+  @@index([nombre], map: "idx_tipos_maquina_nombre")
+  @@map("tipos_maquina")
+}
+
+// ======================================================
+// MÁQUINAS
+// ======================================================
+
+model Maquina {
+  idMaquina Int @id @default(autoincrement()) @map("id_maquina") @db.UnsignedInt
+
+  idInventario  Int @unique(map: "uq_maquinas_inventario") @map("id_inventario") @db.UnsignedInt
+  idCasino      Int @map("id_casino") @db.UnsignedInt
+  idPais        Int @map("id_pais") @db.UnsignedInt
+  idTipoMaquina Int @map("id_tipo_maquina") @db.UnsignedInt
+
+  serial        String @unique(map: "uq_maquinas_serial") @db.VarChar(100)
+  numeroInterno String @unique(map: "uq_maquinas_numero_interno") @map("numero_interno") @db.VarChar(50)
+  nuc           String @unique(map: "uq_maquinas_nuc") @db.VarChar(100)
+  nuid          String @unique(map: "uq_maquinas_nuid") @db.VarChar(100)
+  marca         String @db.VarChar(100)
+  modelo        String @db.VarChar(100)
+
+  fechaFabricacion        DateTime  @map("fecha_fabricacion") @db.Date
+  frecuenciaMantenimiento Int       @map("frecuencia_mantenimiento") @db.UnsignedInt
+  ultimoMantenimiento     DateTime? @map("ultimo_mantenimiento") @db.Date
+  imgDocumentoLegal       String?   @map("img_documento_legal") @db.VarChar(500)
+
+  estado EstadoRegistro @default(ACTIVO)
+
+  inventario  Inventario  @relation(fields: [idInventario], references: [idInventario], onDelete: Restrict, onUpdate: Cascade, map: "fk_maquinas_inventarios")
+  casino      Casino      @relation(fields: [idCasino], references: [idCasino], onDelete: Restrict, onUpdate: Cascade, map: "fk_maquinas_casinos")
+  pais        Pais        @relation(fields: [idPais], references: [idPais], onDelete: Restrict, onUpdate: Cascade, map: "fk_maquinas_paises")
+  tipoMaquina TipoMaquina @relation(fields: [idTipoMaquina], references: [idTipoMaquina], onDelete: Restrict, onUpdate: Cascade, map: "fk_maquinas_tipos_maquina")
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([estado], map: "idx_maquinas_estado")
+  @@index([idCasino], map: "idx_maquinas_casino")
+  @@index([idPais], map: "idx_maquinas_pais")
+  @@index([idTipoMaquina], map: "idx_maquinas_tipo")
+  @@index([marca], map: "idx_maquinas_marca")
+  @@index([modelo], map: "idx_maquinas_modelo")
+  @@index([fechaFabricacion], map: "idx_maquinas_fecha_fabricacion")
+  @@index([ultimoMantenimiento], map: "idx_maquinas_ultimo_mantenimiento")
+  @@map("maquinas")
 }
 
 // ======================================================
@@ -405,6 +528,8 @@ model Usuario {
   rol           Rol           @relation(fields: [idRol], references: [idRol], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_roles")
   ciudad        Ciudad        @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_ciudades")
   casino        Casino        @relation(fields: [idCasino], references: [idCasino], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_casinos")
+
+  inventariosResponsable Inventario[] @relation("InventarioResponsable")
 
   fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
   fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)

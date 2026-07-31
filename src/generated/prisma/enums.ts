@@ -15,3 +15,14 @@ export const EstadoRegistro = {
 } as const
 
 export type EstadoRegistro = (typeof EstadoRegistro)[keyof typeof EstadoRegistro]
+
+
+export const EstadoInventario = {
+  DISPONIBLE: 'DISPONIBLE',
+  EN_USO: 'EN_USO',
+  EN_MANTENIMIENTO: 'EN_MANTENIMIENTO',
+  DANADO: 'DANADO',
+  DADO_DE_BAJA: 'DADO_DE_BAJA'
+} as const
+
+export type EstadoInventario = (typeof EstadoInventario)[keyof typeof EstadoInventario]

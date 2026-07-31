@@ -1,0 +1,7 @@
+export const MAQUINA_REPOSITORY = Symbol(
+    'MAQUINA_REPOSITORY',
+);
+
+export const TIPO_MAQUINA_REPOSITORY = Symbol(
+    'TIPO_MAQUINA_REPOSITORY',
+);

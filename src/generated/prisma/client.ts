@@ -120,6 +120,21 @@ export type RazonSocial = Prisma.RazonSocialModel
  */
 export type Casino = Prisma.CasinoModel
 /**
+ * Model Inventario
+ * 
+ */
+export type Inventario = Prisma.InventarioModel
+/**
+ * Model TipoMaquina
+ * 
+ */
+export type TipoMaquina = Prisma.TipoMaquinaModel
+/**
+ * Model Maquina
+ * 
+ */
+export type Maquina = Prisma.MaquinaModel
+/**
  * Model Usuario
  * 
  */

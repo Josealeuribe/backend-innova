@@ -67,6 +67,9 @@ export const ModelName = {
   Regimen: 'Regimen',
   RazonSocial: 'RazonSocial',
   Casino: 'Casino',
+  Inventario: 'Inventario',
+  TipoMaquina: 'TipoMaquina',
+  Maquina: 'Maquina',
   Usuario: 'Usuario'
 } as const
 
@@ -306,6 +309,67 @@ export const CasinoScalarFieldEnum = {
 export type CasinoScalarFieldEnum = (typeof CasinoScalarFieldEnum)[keyof typeof CasinoScalarFieldEnum]
 
 
+export const InventarioScalarFieldEnum = {
+  idInventario: 'idInventario',
+  fotoSerial: 'fotoSerial',
+  fotoEstado: 'fotoEstado',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  serial: 'serial',
+  clasificacion: 'clasificacion',
+  estado: 'estado',
+  estadoRegistro: 'estadoRegistro',
+  cantidad: 'cantidad',
+  valor: 'valor',
+  idCasino: 'idCasino',
+  idResponsable: 'idResponsable',
+  ubicacionLocal: 'ubicacionLocal',
+  fechaAdquisicion: 'fechaAdquisicion',
+  observaciones: 'observaciones',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type InventarioScalarFieldEnum = (typeof InventarioScalarFieldEnum)[keyof typeof InventarioScalarFieldEnum]
+
+
+export const TipoMaquinaScalarFieldEnum = {
+  idTipoMaquina: 'idTipoMaquina',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type TipoMaquinaScalarFieldEnum = (typeof TipoMaquinaScalarFieldEnum)[keyof typeof TipoMaquinaScalarFieldEnum]
+
+
+export const MaquinaScalarFieldEnum = {
+  idMaquina: 'idMaquina',
+  idInventario: 'idInventario',
+  idCasino: 'idCasino',
+  idPais: 'idPais',
+  idTipoMaquina: 'idTipoMaquina',
+  serial: 'serial',
+  numeroInterno: 'numeroInterno',
+  nuc: 'nuc',
+  nuid: 'nuid',
+  marca: 'marca',
+  modelo: 'modelo',
+  fechaFabricacion: 'fechaFabricacion',
+  frecuenciaMantenimiento: 'frecuenciaMantenimiento',
+  ultimoMantenimiento: 'ultimoMantenimiento',
+  imgDocumentoLegal: 'imgDocumentoLegal',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type MaquinaScalarFieldEnum = (typeof MaquinaScalarFieldEnum)[keyof typeof MaquinaScalarFieldEnum]
+
+
 export const UsuarioScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
@@ -475,6 +539,42 @@ export const CasinoOrderByRelevanceFieldEnum = {
 } as const
 
 export type CasinoOrderByRelevanceFieldEnum = (typeof CasinoOrderByRelevanceFieldEnum)[keyof typeof CasinoOrderByRelevanceFieldEnum]
+
+
+export const InventarioOrderByRelevanceFieldEnum = {
+  fotoSerial: 'fotoSerial',
+  fotoEstado: 'fotoEstado',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  serial: 'serial',
+  clasificacion: 'clasificacion',
+  ubicacionLocal: 'ubicacionLocal',
+  observaciones: 'observaciones'
+} as const
+
+export type InventarioOrderByRelevanceFieldEnum = (typeof InventarioOrderByRelevanceFieldEnum)[keyof typeof InventarioOrderByRelevanceFieldEnum]
+
+
+export const TipoMaquinaOrderByRelevanceFieldEnum = {
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion'
+} as const
+
+export type TipoMaquinaOrderByRelevanceFieldEnum = (typeof TipoMaquinaOrderByRelevanceFieldEnum)[keyof typeof TipoMaquinaOrderByRelevanceFieldEnum]
+
+
+export const MaquinaOrderByRelevanceFieldEnum = {
+  serial: 'serial',
+  numeroInterno: 'numeroInterno',
+  nuc: 'nuc',
+  nuid: 'nuid',
+  marca: 'marca',
+  modelo: 'modelo',
+  imgDocumentoLegal: 'imgDocumentoLegal'
+} as const
+
+export type MaquinaOrderByRelevanceFieldEnum = (typeof MaquinaOrderByRelevanceFieldEnum)[keyof typeof MaquinaOrderByRelevanceFieldEnum]
 
 
 export const UsuarioOrderByRelevanceFieldEnum = {

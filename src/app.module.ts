@@ -10,6 +10,8 @@ import { UbicacionesModule } from './modules/ubicaciones/ubicaciones.module';
 import { CentrosCostosModule } from './modules/centros-costos/centros-costos.module';
 import { RazonesSocialesModule } from './modules/configuracion/razones-sociales/razones-sociales.module';
 import { RolesModule } from './modules/configuracion/roles/roles.module';
+import { ControlAccesoModule } from './modules/control-acceso/control-acceso.module';
+import { InventarioModule } from './modules/activos/inventario/inventario.module';
 
 @Module({
   imports: [
@@ -27,6 +29,9 @@ import { RolesModule } from './modules/configuracion/roles/roles.module';
     CentrosCostosModule,
     RazonesSocialesModule,
     RolesModule,
+    ControlAccesoModule,
+    InventarioModule
+
   ],
   controllers: [AppController],
   providers: [AppService],

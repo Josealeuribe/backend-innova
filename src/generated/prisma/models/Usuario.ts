@@ -361,6 +361,7 @@ export type UsuarioWhereInput = {
   rol?: Prisma.XOR<Prisma.RolScalarRelationFilter, Prisma.RolWhereInput>
   ciudad?: Prisma.XOR<Prisma.CiudadScalarRelationFilter, Prisma.CiudadWhereInput>
   casino?: Prisma.XOR<Prisma.CasinoScalarRelationFilter, Prisma.CasinoWhereInput>
+  inventariosResponsable?: Prisma.InventarioListRelationFilter
 }
 
 export type UsuarioOrderByWithRelationInput = {
@@ -389,6 +390,7 @@ export type UsuarioOrderByWithRelationInput = {
   rol?: Prisma.RolOrderByWithRelationInput
   ciudad?: Prisma.CiudadOrderByWithRelationInput
   casino?: Prisma.CasinoOrderByWithRelationInput
+  inventariosResponsable?: Prisma.InventarioOrderByRelationAggregateInput
   _relevance?: Prisma.UsuarioOrderByRelevanceInput
 }
 
@@ -421,6 +423,7 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
   rol?: Prisma.XOR<Prisma.RolScalarRelationFilter, Prisma.RolWhereInput>
   ciudad?: Prisma.XOR<Prisma.CiudadScalarRelationFilter, Prisma.CiudadWhereInput>
   casino?: Prisma.XOR<Prisma.CasinoScalarRelationFilter, Prisma.CasinoWhereInput>
+  inventariosResponsable?: Prisma.InventarioListRelationFilter
 }, "id" | "cedula" | "correo">
 
 export type UsuarioOrderByWithAggregationInput = {
@@ -497,6 +500,7 @@ export type UsuarioCreateInput = {
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+  inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioUncheckedCreateInput = {
@@ -520,6 +524,7 @@ export type UsuarioUncheckedCreateInput = {
   idCasino: number
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioUpdateInput = {
@@ -542,6 +547,7 @@ export type UsuarioUpdateInput = {
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+  inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateInput = {
@@ -565,6 +571,7 @@ export type UsuarioUncheckedUpdateInput = {
   idCasino?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioCreateManyInput = {
@@ -638,6 +645,11 @@ export type UsuarioListRelationFilter = {
 
 export type UsuarioOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type UsuarioNullableScalarRelationFilter = {
+  is?: Prisma.UsuarioWhereInput | null
+  isNot?: Prisma.UsuarioWhereInput | null
 }
 
 export type UsuarioOrderByRelevanceInput = {
@@ -943,6 +955,22 @@ export type UsuarioUncheckedUpdateManyWithoutCasinoNestedInput = {
   deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
 }
 
+export type UsuarioCreateNestedOneWithoutInventariosResponsableInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutInventariosResponsableInput, Prisma.UsuarioUncheckedCreateWithoutInventariosResponsableInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutInventariosResponsableInput
+  connect?: Prisma.UsuarioWhereUniqueInput
+}
+
+export type UsuarioUpdateOneWithoutInventariosResponsableNestedInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutInventariosResponsableInput, Prisma.UsuarioUncheckedCreateWithoutInventariosResponsableInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutInventariosResponsableInput
+  upsert?: Prisma.UsuarioUpsertWithoutInventariosResponsableInput
+  disconnect?: Prisma.UsuarioWhereInput | boolean
+  delete?: Prisma.UsuarioWhereInput | boolean
+  connect?: Prisma.UsuarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UsuarioUpdateToOneWithWhereWithoutInventariosResponsableInput, Prisma.UsuarioUpdateWithoutInventariosResponsableInput>, Prisma.UsuarioUncheckedUpdateWithoutInventariosResponsableInput>
+}
+
 export type UsuarioCreateWithoutCiudadInput = {
   nombre: string
   apellido: string
@@ -962,6 +990,7 @@ export type UsuarioCreateWithoutCiudadInput = {
   genero: Prisma.GeneroCreateNestedOneWithoutUsuariosInput
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+  inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioUncheckedCreateWithoutCiudadInput = {
@@ -984,6 +1013,7 @@ export type UsuarioUncheckedCreateWithoutCiudadInput = {
   idCasino: number
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioCreateOrConnectWithoutCiudadInput = {
@@ -1057,6 +1087,7 @@ export type UsuarioCreateWithoutRolInput = {
   genero: Prisma.GeneroCreateNestedOneWithoutUsuariosInput
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+  inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioUncheckedCreateWithoutRolInput = {
@@ -1079,6 +1110,7 @@ export type UsuarioUncheckedCreateWithoutRolInput = {
   idCasino: number
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioCreateOrConnectWithoutRolInput = {
@@ -1126,6 +1158,7 @@ export type UsuarioCreateWithoutTipoDocumentoInput = {
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+  inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioUncheckedCreateWithoutTipoDocumentoInput = {
@@ -1148,6 +1181,7 @@ export type UsuarioUncheckedCreateWithoutTipoDocumentoInput = {
   idCasino: number
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioCreateOrConnectWithoutTipoDocumentoInput = {
@@ -1195,6 +1229,7 @@ export type UsuarioCreateWithoutGeneroInput = {
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+  inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioUncheckedCreateWithoutGeneroInput = {
@@ -1217,6 +1252,7 @@ export type UsuarioUncheckedCreateWithoutGeneroInput = {
   idCasino: number
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioCreateOrConnectWithoutGeneroInput = {
@@ -1264,6 +1300,7 @@ export type UsuarioCreateWithoutCasinoInput = {
   genero: Prisma.GeneroCreateNestedOneWithoutUsuariosInput
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
+  inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioUncheckedCreateWithoutCasinoInput = {
@@ -1286,6 +1323,7 @@ export type UsuarioUncheckedCreateWithoutCasinoInput = {
   idCiudad: number
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
 }
 
 export type UsuarioCreateOrConnectWithoutCasinoInput = {
@@ -1312,6 +1350,112 @@ export type UsuarioUpdateWithWhereUniqueWithoutCasinoInput = {
 export type UsuarioUpdateManyWithWhereWithoutCasinoInput = {
   where: Prisma.UsuarioScalarWhereInput
   data: Prisma.XOR<Prisma.UsuarioUpdateManyMutationInput, Prisma.UsuarioUncheckedUpdateManyWithoutCasinoInput>
+}
+
+export type UsuarioCreateWithoutInventariosResponsableInput = {
+  nombre: string
+  apellido: string
+  cedula: string
+  correo: string
+  passwordHash: string
+  cargo: string
+  fechaNacimiento: Date | string
+  telefono: string
+  codigoHelisa?: string | null
+  cuentaPuc?: string | null
+  imgUrl?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  tipoDocumento: Prisma.TipoDocumentoCreateNestedOneWithoutUsuariosInput
+  genero: Prisma.GeneroCreateNestedOneWithoutUsuariosInput
+  rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
+  ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
+  casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+}
+
+export type UsuarioUncheckedCreateWithoutInventariosResponsableInput = {
+  id?: number
+  nombre: string
+  apellido: string
+  cedula: string
+  correo: string
+  passwordHash: string
+  cargo: string
+  fechaNacimiento: Date | string
+  telefono: string
+  codigoHelisa?: string | null
+  cuentaPuc?: string | null
+  imgUrl?: string | null
+  estado?: $Enums.EstadoRegistro
+  idTipoDoc: number
+  idGenero: number
+  idRol: number
+  idCiudad: number
+  idCasino: number
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+}
+
+export type UsuarioCreateOrConnectWithoutInventariosResponsableInput = {
+  where: Prisma.UsuarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutInventariosResponsableInput, Prisma.UsuarioUncheckedCreateWithoutInventariosResponsableInput>
+}
+
+export type UsuarioUpsertWithoutInventariosResponsableInput = {
+  update: Prisma.XOR<Prisma.UsuarioUpdateWithoutInventariosResponsableInput, Prisma.UsuarioUncheckedUpdateWithoutInventariosResponsableInput>
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutInventariosResponsableInput, Prisma.UsuarioUncheckedCreateWithoutInventariosResponsableInput>
+  where?: Prisma.UsuarioWhereInput
+}
+
+export type UsuarioUpdateToOneWithWhereWithoutInventariosResponsableInput = {
+  where?: Prisma.UsuarioWhereInput
+  data: Prisma.XOR<Prisma.UsuarioUpdateWithoutInventariosResponsableInput, Prisma.UsuarioUncheckedUpdateWithoutInventariosResponsableInput>
+}
+
+export type UsuarioUpdateWithoutInventariosResponsableInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  cedula?: Prisma.StringFieldUpdateOperationsInput | string
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tipoDocumento?: Prisma.TipoDocumentoUpdateOneRequiredWithoutUsuariosNestedInput
+  genero?: Prisma.GeneroUpdateOneRequiredWithoutUsuariosNestedInput
+  rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
+  casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+}
+
+export type UsuarioUncheckedUpdateWithoutInventariosResponsableInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  cedula?: Prisma.StringFieldUpdateOperationsInput | string
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
+  idGenero?: Prisma.IntFieldUpdateOperationsInput | number
+  idRol?: Prisma.IntFieldUpdateOperationsInput | number
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UsuarioCreateManyCiudadInput = {
@@ -1355,6 +1499,7 @@ export type UsuarioUpdateWithoutCiudadInput = {
   genero?: Prisma.GeneroUpdateOneRequiredWithoutUsuariosNestedInput
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+  inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutCiudadInput = {
@@ -1377,6 +1522,7 @@ export type UsuarioUncheckedUpdateWithoutCiudadInput = {
   idCasino?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutCiudadInput = {
@@ -1442,6 +1588,7 @@ export type UsuarioUpdateWithoutRolInput = {
   genero?: Prisma.GeneroUpdateOneRequiredWithoutUsuariosNestedInput
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+  inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutRolInput = {
@@ -1464,6 +1611,7 @@ export type UsuarioUncheckedUpdateWithoutRolInput = {
   idCasino?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutRolInput = {
@@ -1529,6 +1677,7 @@ export type UsuarioUpdateWithoutTipoDocumentoInput = {
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+  inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutTipoDocumentoInput = {
@@ -1551,6 +1700,7 @@ export type UsuarioUncheckedUpdateWithoutTipoDocumentoInput = {
   idCasino?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutTipoDocumentoInput = {
@@ -1616,6 +1766,7 @@ export type UsuarioUpdateWithoutGeneroInput = {
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+  inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutGeneroInput = {
@@ -1638,6 +1789,7 @@ export type UsuarioUncheckedUpdateWithoutGeneroInput = {
   idCasino?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutGeneroInput = {
@@ -1703,6 +1855,7 @@ export type UsuarioUpdateWithoutCasinoInput = {
   genero?: Prisma.GeneroUpdateOneRequiredWithoutUsuariosNestedInput
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
+  inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutCasinoInput = {
@@ -1725,6 +1878,7 @@ export type UsuarioUncheckedUpdateWithoutCasinoInput = {
   idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutCasinoInput = {
@@ -1749,6 +1903,35 @@ export type UsuarioUncheckedUpdateManyWithoutCasinoInput = {
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type UsuarioCountOutputType
+ */
+
+export type UsuarioCountOutputType = {
+  inventariosResponsable: number
+}
+
+export type UsuarioCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  inventariosResponsable?: boolean | UsuarioCountOutputTypeCountInventariosResponsableArgs
+}
+
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UsuarioCountOutputType
+   */
+  select?: Prisma.UsuarioCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeCountInventariosResponsableArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InventarioWhereInput
+}
 
 
 export type UsuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1777,6 +1960,8 @@ export type UsuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   rol?: boolean | Prisma.RolDefaultArgs<ExtArgs>
   ciudad?: boolean | Prisma.CiudadDefaultArgs<ExtArgs>
   casino?: boolean | Prisma.CasinoDefaultArgs<ExtArgs>
+  inventariosResponsable?: boolean | Prisma.Usuario$inventariosResponsableArgs<ExtArgs>
+  _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["usuario"]>
 
 
@@ -1811,6 +1996,8 @@ export type UsuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   rol?: boolean | Prisma.RolDefaultArgs<ExtArgs>
   ciudad?: boolean | Prisma.CiudadDefaultArgs<ExtArgs>
   casino?: boolean | Prisma.CasinoDefaultArgs<ExtArgs>
+  inventariosResponsable?: boolean | Prisma.Usuario$inventariosResponsableArgs<ExtArgs>
+  _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1821,6 +2008,7 @@ export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     rol: Prisma.$RolPayload<ExtArgs>
     ciudad: Prisma.$CiudadPayload<ExtArgs>
     casino: Prisma.$CasinoPayload<ExtArgs>
+    inventariosResponsable: Prisma.$InventarioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -2188,6 +2376,7 @@ export interface Prisma__UsuarioClient<T, Null = never, ExtArgs extends runtime.
   rol<T extends Prisma.RolDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RolDefaultArgs<ExtArgs>>): Prisma.Prisma__RolClient<runtime.Types.Result.GetResult<Prisma.$RolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ciudad<T extends Prisma.CiudadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CiudadDefaultArgs<ExtArgs>>): Prisma.Prisma__CiudadClient<runtime.Types.Result.GetResult<Prisma.$CiudadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   casino<T extends Prisma.CasinoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CasinoDefaultArgs<ExtArgs>>): Prisma.Prisma__CasinoClient<runtime.Types.Result.GetResult<Prisma.$CasinoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  inventariosResponsable<T extends Prisma.Usuario$inventariosResponsableArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$inventariosResponsableArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2582,6 +2771,30 @@ export type UsuarioDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Usuarios to delete.
    */
   limit?: number
+}
+
+/**
+ * Usuario.inventariosResponsable
+ */
+export type Usuario$inventariosResponsableArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Inventario
+   */
+  select?: Prisma.InventarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Inventario
+   */
+  omit?: Prisma.InventarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventarioInclude<ExtArgs> | null
+  where?: Prisma.InventarioWhereInput
+  orderBy?: Prisma.InventarioOrderByWithRelationInput | Prisma.InventarioOrderByWithRelationInput[]
+  cursor?: Prisma.InventarioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InventarioScalarFieldEnum | Prisma.InventarioScalarFieldEnum[]
 }
 
 /**

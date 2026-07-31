@@ -1,0 +1,3 @@
+export const CONTROL_ACCESO_REPOSITORY = Symbol(
+  'CONTROL_ACCESO_REPOSITORY',
+);

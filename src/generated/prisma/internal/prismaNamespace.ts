@@ -413,6 +413,9 @@ export const ModelName = {
   Regimen: 'Regimen',
   RazonSocial: 'RazonSocial',
   Casino: 'Casino',
+  Inventario: 'Inventario',
+  TipoMaquina: 'TipoMaquina',
+  Maquina: 'Maquina',
   Usuario: 'Usuario'
 } as const
 
@@ -429,7 +432,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "pais" | "departamento" | "ciudad" | "rol" | "tipoDocumento" | "genero" | "modulo" | "accion" | "permiso" | "rolPermiso" | "centroCosto" | "tipoPersona" | "ambienteDian" | "regimen" | "razonSocial" | "casino" | "usuario"
+    modelProps: "pais" | "departamento" | "ciudad" | "rol" | "tipoDocumento" | "genero" | "modulo" | "accion" | "permiso" | "rolPermiso" | "centroCosto" | "tipoPersona" | "ambienteDian" | "regimen" | "razonSocial" | "casino" | "inventario" | "tipoMaquina" | "maquina" | "usuario"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1489,6 +1492,204 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Inventario: {
+      payload: Prisma.$InventarioPayload<ExtArgs>
+      fields: Prisma.InventarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InventarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InventarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload>
+        }
+        findFirst: {
+          args: Prisma.InventarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InventarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload>
+        }
+        findMany: {
+          args: Prisma.InventarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload>[]
+        }
+        create: {
+          args: Prisma.InventarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload>
+        }
+        createMany: {
+          args: Prisma.InventarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.InventarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload>
+        }
+        update: {
+          args: Prisma.InventarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.InventarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InventarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.InventarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventarioPayload>
+        }
+        aggregate: {
+          args: Prisma.InventarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInventario>
+        }
+        groupBy: {
+          args: Prisma.InventarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InventarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InventarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InventarioCountAggregateOutputType> | number
+        }
+      }
+    }
+    TipoMaquina: {
+      payload: Prisma.$TipoMaquinaPayload<ExtArgs>
+      fields: Prisma.TipoMaquinaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TipoMaquinaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TipoMaquinaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload>
+        }
+        findFirst: {
+          args: Prisma.TipoMaquinaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TipoMaquinaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload>
+        }
+        findMany: {
+          args: Prisma.TipoMaquinaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload>[]
+        }
+        create: {
+          args: Prisma.TipoMaquinaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload>
+        }
+        createMany: {
+          args: Prisma.TipoMaquinaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TipoMaquinaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload>
+        }
+        update: {
+          args: Prisma.TipoMaquinaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload>
+        }
+        deleteMany: {
+          args: Prisma.TipoMaquinaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TipoMaquinaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TipoMaquinaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TipoMaquinaPayload>
+        }
+        aggregate: {
+          args: Prisma.TipoMaquinaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTipoMaquina>
+        }
+        groupBy: {
+          args: Prisma.TipoMaquinaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TipoMaquinaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TipoMaquinaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TipoMaquinaCountAggregateOutputType> | number
+        }
+      }
+    }
+    Maquina: {
+      payload: Prisma.$MaquinaPayload<ExtArgs>
+      fields: Prisma.MaquinaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MaquinaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MaquinaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload>
+        }
+        findFirst: {
+          args: Prisma.MaquinaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MaquinaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload>
+        }
+        findMany: {
+          args: Prisma.MaquinaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload>[]
+        }
+        create: {
+          args: Prisma.MaquinaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload>
+        }
+        createMany: {
+          args: Prisma.MaquinaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.MaquinaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload>
+        }
+        update: {
+          args: Prisma.MaquinaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload>
+        }
+        deleteMany: {
+          args: Prisma.MaquinaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MaquinaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.MaquinaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaquinaPayload>
+        }
+        aggregate: {
+          args: Prisma.MaquinaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMaquina>
+        }
+        groupBy: {
+          args: Prisma.MaquinaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MaquinaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MaquinaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MaquinaCountAggregateOutputType> | number
+        }
+      }
+    }
     Usuario: {
       payload: Prisma.$UsuarioPayload<ExtArgs>
       fields: Prisma.UsuarioFieldRefs
@@ -1814,6 +2015,67 @@ export const CasinoScalarFieldEnum = {
 export type CasinoScalarFieldEnum = (typeof CasinoScalarFieldEnum)[keyof typeof CasinoScalarFieldEnum]
 
 
+export const InventarioScalarFieldEnum = {
+  idInventario: 'idInventario',
+  fotoSerial: 'fotoSerial',
+  fotoEstado: 'fotoEstado',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  serial: 'serial',
+  clasificacion: 'clasificacion',
+  estado: 'estado',
+  estadoRegistro: 'estadoRegistro',
+  cantidad: 'cantidad',
+  valor: 'valor',
+  idCasino: 'idCasino',
+  idResponsable: 'idResponsable',
+  ubicacionLocal: 'ubicacionLocal',
+  fechaAdquisicion: 'fechaAdquisicion',
+  observaciones: 'observaciones',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type InventarioScalarFieldEnum = (typeof InventarioScalarFieldEnum)[keyof typeof InventarioScalarFieldEnum]
+
+
+export const TipoMaquinaScalarFieldEnum = {
+  idTipoMaquina: 'idTipoMaquina',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type TipoMaquinaScalarFieldEnum = (typeof TipoMaquinaScalarFieldEnum)[keyof typeof TipoMaquinaScalarFieldEnum]
+
+
+export const MaquinaScalarFieldEnum = {
+  idMaquina: 'idMaquina',
+  idInventario: 'idInventario',
+  idCasino: 'idCasino',
+  idPais: 'idPais',
+  idTipoMaquina: 'idTipoMaquina',
+  serial: 'serial',
+  numeroInterno: 'numeroInterno',
+  nuc: 'nuc',
+  nuid: 'nuid',
+  marca: 'marca',
+  modelo: 'modelo',
+  fechaFabricacion: 'fechaFabricacion',
+  frecuenciaMantenimiento: 'frecuenciaMantenimiento',
+  ultimoMantenimiento: 'ultimoMantenimiento',
+  imgDocumentoLegal: 'imgDocumentoLegal',
+  estado: 'estado',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type MaquinaScalarFieldEnum = (typeof MaquinaScalarFieldEnum)[keyof typeof MaquinaScalarFieldEnum]
+
+
 export const UsuarioScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
@@ -1985,6 +2247,42 @@ export const CasinoOrderByRelevanceFieldEnum = {
 export type CasinoOrderByRelevanceFieldEnum = (typeof CasinoOrderByRelevanceFieldEnum)[keyof typeof CasinoOrderByRelevanceFieldEnum]
 
 
+export const InventarioOrderByRelevanceFieldEnum = {
+  fotoSerial: 'fotoSerial',
+  fotoEstado: 'fotoEstado',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  serial: 'serial',
+  clasificacion: 'clasificacion',
+  ubicacionLocal: 'ubicacionLocal',
+  observaciones: 'observaciones'
+} as const
+
+export type InventarioOrderByRelevanceFieldEnum = (typeof InventarioOrderByRelevanceFieldEnum)[keyof typeof InventarioOrderByRelevanceFieldEnum]
+
+
+export const TipoMaquinaOrderByRelevanceFieldEnum = {
+  codigo: 'codigo',
+  nombre: 'nombre',
+  descripcion: 'descripcion'
+} as const
+
+export type TipoMaquinaOrderByRelevanceFieldEnum = (typeof TipoMaquinaOrderByRelevanceFieldEnum)[keyof typeof TipoMaquinaOrderByRelevanceFieldEnum]
+
+
+export const MaquinaOrderByRelevanceFieldEnum = {
+  serial: 'serial',
+  numeroInterno: 'numeroInterno',
+  nuc: 'nuc',
+  nuid: 'nuid',
+  marca: 'marca',
+  modelo: 'modelo',
+  imgDocumentoLegal: 'imgDocumentoLegal'
+} as const
+
+export type MaquinaOrderByRelevanceFieldEnum = (typeof MaquinaOrderByRelevanceFieldEnum)[keyof typeof MaquinaOrderByRelevanceFieldEnum]
+
+
 export const UsuarioOrderByRelevanceFieldEnum = {
   nombre: 'nombre',
   apellido: 'apellido',
@@ -2039,6 +2337,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoInventario'
+ */
+export type EnumEstadoInventarioFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoInventario'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
@@ -2215,6 +2527,9 @@ export type GlobalOmitConfig = {
   regimen?: Prisma.RegimenOmit
   razonSocial?: Prisma.RazonSocialOmit
   casino?: Prisma.CasinoOmit
+  inventario?: Prisma.InventarioOmit
+  tipoMaquina?: Prisma.TipoMaquinaOmit
+  maquina?: Prisma.MaquinaOmit
   usuario?: Prisma.UsuarioOmit
 }
 

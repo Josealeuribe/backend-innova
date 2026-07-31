@@ -1,0 +1,2 @@
+export const INVENTARIO_REPOSITORY =
+  Symbol('INVENTARIO_REPOSITORY');
