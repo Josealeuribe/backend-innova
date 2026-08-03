@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { TipoMaquinaEntity } from '../../domain/entities/tipo-maquina.entity';
-import {
+import type { TipoMaquinaEntity } from '../../domain/entities/tipo-maquina.entity';
+import type {
     CreateTipoMaquinaData,
     TipoMaquinaRepository,
     UpdateTipoMaquinaData,
@@ -15,7 +15,7 @@ import {
     ActualizarTipoMaquinaDto,
     CrearTipoMaquinaDto,
 } from '../../presentation/dto/tipo-maquina.dto';
-import { ListarTipoMaquinaQueryDto } from '../../presentation/dto/listar-tipo-maquina-query.dto';
+import { ListarTipoMaquinaQueryDto } from '../../presentation/dto/listar-tipo-maquina.query';
 import { TIPO_MAQUINA_REPOSITORY } from '../../maquinas.tokens';
 
 @Injectable()

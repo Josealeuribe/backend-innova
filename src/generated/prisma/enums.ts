@@ -26,3 +26,84 @@ export const EstadoInventario = {
 } as const
 
 export type EstadoInventario = (typeof EstadoInventario)[keyof typeof EstadoInventario]
+
+
+export const TipoDocumentoDian = {
+  FACTURA: 'FACTURA',
+  DOC_SOPORTE: 'DOC_SOPORTE'
+} as const
+
+export type TipoDocumentoDian = (typeof TipoDocumentoDian)[keyof typeof TipoDocumentoDian]
+
+
+export const EstadoDocumentoDian = {
+  PENDIENTE: 'PENDIENTE',
+  ENVIANDO: 'ENVIANDO',
+  EN_PROCESO: 'EN_PROCESO',
+  ACEPTADO: 'ACEPTADO',
+  RECHAZADO: 'RECHAZADO',
+  ERROR_TECNICO: 'ERROR_TECNICO'
+} as const
+
+export type EstadoDocumentoDian = (typeof EstadoDocumentoDian)[keyof typeof EstadoDocumentoDian]
+
+
+export const TipoEventoDian = {
+  CREADO: 'CREADO',
+  XML_GENERADO: 'XML_GENERADO',
+  FIRMADO: 'FIRMADO',
+  ENVIADO: 'ENVIADO',
+  TRACK_ID_RECIBIDO: 'TRACK_ID_RECIBIDO',
+  EN_PROCESO: 'EN_PROCESO',
+  ACEPTADO: 'ACEPTADO',
+  RECHAZADO: 'RECHAZADO',
+  ERROR_TECNICO: 'ERROR_TECNICO',
+  RETRY_SCHEDULED: 'RETRY_SCHEDULED'
+} as const
+
+export type TipoEventoDian = (typeof TipoEventoDian)[keyof typeof TipoEventoDian]
+
+
+export const TipoDocumentoRecibido = {
+  FACTURA: 'FACTURA',
+  NOTA_CREDITO: 'NOTA_CREDITO',
+  NOTA_DEBITO: 'NOTA_DEBITO'
+} as const
+
+export type TipoDocumentoRecibido = (typeof TipoDocumentoRecibido)[keyof typeof TipoDocumentoRecibido]
+
+
+export const OrigenDocumentoRecibido = {
+  MANUAL: 'MANUAL',
+  EXCEL_PORTAL: 'EXCEL_PORTAL'
+} as const
+
+export type OrigenDocumentoRecibido = (typeof OrigenDocumentoRecibido)[keyof typeof OrigenDocumentoRecibido]
+
+
+export const EstadoCausacionRecibido = {
+  PENDIENTE: 'PENDIENTE',
+  CONCILIADO: 'CONCILIADO',
+  CAUSADO: 'CAUSADO',
+  EXPORTADO: 'EXPORTADO',
+  RECHAZADO: 'RECHAZADO',
+  ERROR_XML: 'ERROR_XML'
+} as const
+
+export type EstadoCausacionRecibido = (typeof EstadoCausacionRecibido)[keyof typeof EstadoCausacionRecibido]
+
+
+export const NaturalezaContable = {
+  D: 'D',
+  C: 'C'
+} as const
+
+export type NaturalezaContable = (typeof NaturalezaContable)[keyof typeof NaturalezaContable]
+
+
+export const EstadoMapeoPuc = {
+  SIN_MAPEAR: 'SIN_MAPEAR',
+  MAPEADO: 'MAPEADO'
+} as const
+
+export type EstadoMapeoPuc = (typeof EstadoMapeoPuc)[keyof typeof EstadoMapeoPuc]

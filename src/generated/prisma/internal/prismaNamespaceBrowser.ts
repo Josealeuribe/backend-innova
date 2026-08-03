@@ -70,7 +70,18 @@ export const ModelName = {
   Inventario: 'Inventario',
   TipoMaquina: 'TipoMaquina',
   Maquina: 'Maquina',
-  Usuario: 'Usuario'
+  Usuario: 'Usuario',
+  ResolucionDian: 'ResolucionDian',
+  ClienteDian: 'ClienteDian',
+  FacturaElectronica: 'FacturaElectronica',
+  FacturaElectronicaItem: 'FacturaElectronicaItem',
+  DocumentoSoporte: 'DocumentoSoporte',
+  NotaCredito: 'NotaCredito',
+  NotaDebito: 'NotaDebito',
+  EventoDian: 'EventoDian',
+  DocumentoRecibido: 'DocumentoRecibido',
+  ItemCompraRecibido: 'ItemCompraRecibido',
+  ReglaMapeoPUC: 'ReglaMapeoPUC'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -396,6 +407,247 @@ export const UsuarioScalarFieldEnum = {
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
 
 
+export const ResolucionDianScalarFieldEnum = {
+  idResolucionDian: 'idResolucionDian',
+  idRazonSocial: 'idRazonSocial',
+  tipoDocumento: 'tipoDocumento',
+  entorno: 'entorno',
+  prefijo: 'prefijo',
+  numeroResolucion: 'numeroResolucion',
+  rangoDesde: 'rangoDesde',
+  rangoHasta: 'rangoHasta',
+  consecutivoActual: 'consecutivoActual',
+  fechaVigenciaDesde: 'fechaVigenciaDesde',
+  fechaVigenciaHasta: 'fechaVigenciaHasta',
+  claveTecnica: 'claveTecnica',
+  activa: 'activa',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type ResolucionDianScalarFieldEnum = (typeof ResolucionDianScalarFieldEnum)[keyof typeof ResolucionDianScalarFieldEnum]
+
+
+export const ClienteDianScalarFieldEnum = {
+  idClienteDian: 'idClienteDian',
+  nombre: 'nombre',
+  tipoDocumento: 'tipoDocumento',
+  numeroDocumento: 'numeroDocumento',
+  direccion: 'direccion',
+  ciudad: 'ciudad',
+  departamento: 'departamento',
+  telefono: 'telefono',
+  email: 'email',
+  tipoPersona: 'tipoPersona',
+  responsabilidadFiscal: 'responsabilidadFiscal',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type ClienteDianScalarFieldEnum = (typeof ClienteDianScalarFieldEnum)[keyof typeof ClienteDianScalarFieldEnum]
+
+
+export const FacturaElectronicaScalarFieldEnum = {
+  idFacturaElectronica: 'idFacturaElectronica',
+  idRazonSocial: 'idRazonSocial',
+  idClienteDian: 'idClienteDian',
+  idUsuario: 'idUsuario',
+  idResolucionDian: 'idResolucionDian',
+  prefijo: 'prefijo',
+  consecutivo: 'consecutivo',
+  fechaEmision: 'fechaEmision',
+  cufe: 'cufe',
+  qrcodeData: 'qrcodeData',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  estadoDian: 'estadoDian',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError',
+  subtotal: 'subtotal',
+  iva: 'iva',
+  incConsumo: 'incConsumo',
+  ica: 'ica',
+  total: 'total',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type FacturaElectronicaScalarFieldEnum = (typeof FacturaElectronicaScalarFieldEnum)[keyof typeof FacturaElectronicaScalarFieldEnum]
+
+
+export const FacturaElectronicaItemScalarFieldEnum = {
+  idFacturaElectronicaItem: 'idFacturaElectronicaItem',
+  idFacturaElectronica: 'idFacturaElectronica',
+  descripcion: 'descripcion',
+  cantidad: 'cantidad',
+  precioUnitario: 'precioUnitario',
+  descuento: 'descuento',
+  subtotal: 'subtotal',
+  codigoImpuesto1: 'codigoImpuesto1',
+  valorImpuesto1: 'valorImpuesto1',
+  codigoImpuesto2: 'codigoImpuesto2',
+  valorImpuesto2: 'valorImpuesto2',
+  codigoImpuesto3: 'codigoImpuesto3',
+  valorImpuesto3: 'valorImpuesto3',
+  total: 'total'
+} as const
+
+export type FacturaElectronicaItemScalarFieldEnum = (typeof FacturaElectronicaItemScalarFieldEnum)[keyof typeof FacturaElectronicaItemScalarFieldEnum]
+
+
+export const DocumentoSoporteScalarFieldEnum = {
+  idDocumentoSoporte: 'idDocumentoSoporte',
+  idRazonSocial: 'idRazonSocial',
+  prefijo: 'prefijo',
+  consecutivo: 'consecutivo',
+  fechaEmision: 'fechaEmision',
+  cuds: 'cuds',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  estadoDian: 'estadoDian',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type DocumentoSoporteScalarFieldEnum = (typeof DocumentoSoporteScalarFieldEnum)[keyof typeof DocumentoSoporteScalarFieldEnum]
+
+
+export const NotaCreditoScalarFieldEnum = {
+  idNotaCredito: 'idNotaCredito',
+  idFacturaElectronica: 'idFacturaElectronica',
+  prefijo: 'prefijo',
+  consecutivo: 'consecutivo',
+  fechaEmision: 'fechaEmision',
+  cude: 'cude',
+  conceptoCorreccion: 'conceptoCorreccion',
+  descripcionMotivo: 'descripcionMotivo',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  estadoDian: 'estadoDian',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type NotaCreditoScalarFieldEnum = (typeof NotaCreditoScalarFieldEnum)[keyof typeof NotaCreditoScalarFieldEnum]
+
+
+export const NotaDebitoScalarFieldEnum = {
+  idNotaDebito: 'idNotaDebito',
+  idFacturaElectronica: 'idFacturaElectronica',
+  prefijo: 'prefijo',
+  consecutivo: 'consecutivo',
+  fechaEmision: 'fechaEmision',
+  cude: 'cude',
+  conceptoCorreccion: 'conceptoCorreccion',
+  descripcionMotivo: 'descripcionMotivo',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  estadoDian: 'estadoDian',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type NotaDebitoScalarFieldEnum = (typeof NotaDebitoScalarFieldEnum)[keyof typeof NotaDebitoScalarFieldEnum]
+
+
+export const EventoDianScalarFieldEnum = {
+  idEventoDian: 'idEventoDian',
+  documentId: 'documentId',
+  documentType: 'documentType',
+  eventType: 'eventType',
+  timestamp: 'timestamp',
+  actor: 'actor',
+  metadataJson: 'metadataJson'
+} as const
+
+export type EventoDianScalarFieldEnum = (typeof EventoDianScalarFieldEnum)[keyof typeof EventoDianScalarFieldEnum]
+
+
+export const DocumentoRecibidoScalarFieldEnum = {
+  idDocumentoRecibido: 'idDocumentoRecibido',
+  idRazonSocial: 'idRazonSocial',
+  idCasino: 'idCasino',
+  cufe: 'cufe',
+  tipoDocumento: 'tipoDocumento',
+  prefijo: 'prefijo',
+  consecutivo: 'consecutivo',
+  numeroDocumentoCompleto: 'numeroDocumentoCompleto',
+  nitEmisor: 'nitEmisor',
+  nombreEmisor: 'nombreEmisor',
+  fechaEmision: 'fechaEmision',
+  subtotal: 'subtotal',
+  iva: 'iva',
+  ica: 'ica',
+  retencionFuente: 'retencionFuente',
+  reteIva: 'reteIva',
+  reteIca: 'reteIca',
+  totalPagar: 'totalPagar',
+  xmlOriginal: 'xmlOriginal',
+  qrUrl: 'qrUrl',
+  origen: 'origen',
+  estadoCausacion: 'estadoCausacion',
+  pucPreliminar: 'pucPreliminar',
+  requiereRevisionConciliacion: 'requiereRevisionConciliacion',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type DocumentoRecibidoScalarFieldEnum = (typeof DocumentoRecibidoScalarFieldEnum)[keyof typeof DocumentoRecibidoScalarFieldEnum]
+
+
+export const ItemCompraRecibidoScalarFieldEnum = {
+  idItemCompraRecibido: 'idItemCompraRecibido',
+  idDocumentoRecibido: 'idDocumentoRecibido',
+  idReglaAplicada: 'idReglaAplicada',
+  descripcion: 'descripcion',
+  cantidad: 'cantidad',
+  precioUnitario: 'precioUnitario',
+  subtotal: 'subtotal',
+  codigoImpuesto1: 'codigoImpuesto1',
+  valorImpuesto1: 'valorImpuesto1',
+  codigoImpuesto2: 'codigoImpuesto2',
+  valorImpuesto2: 'valorImpuesto2',
+  codigoImpuesto3: 'codigoImpuesto3',
+  valorImpuesto3: 'valorImpuesto3',
+  total: 'total',
+  cuentaPuc: 'cuentaPuc',
+  nombreCuentaPuc: 'nombreCuentaPuc',
+  centroCostos: 'centroCostos',
+  nombreCentroCostos: 'nombreCentroCostos',
+  naturaleza: 'naturaleza',
+  estadoMapeo: 'estadoMapeo'
+} as const
+
+export type ItemCompraRecibidoScalarFieldEnum = (typeof ItemCompraRecibidoScalarFieldEnum)[keyof typeof ItemCompraRecibidoScalarFieldEnum]
+
+
+export const ReglaMapeoPUCScalarFieldEnum = {
+  idReglaMapeoPuc: 'idReglaMapeoPuc',
+  idRazonSocial: 'idRazonSocial',
+  nombre: 'nombre',
+  concepto: 'concepto',
+  nitEmisor: 'nitEmisor',
+  nombreEmisor: 'nombreEmisor',
+  tipoDocumento: 'tipoDocumento',
+  cuentaPuc: 'cuentaPuc',
+  nombreCuentaPuc: 'nombreCuentaPuc',
+  centroCostos: 'centroCostos',
+  naturaleza: 'naturaleza',
+  prioridad: 'prioridad',
+  activa: 'activa',
+  fechaCreacion: 'fechaCreacion',
+  fechaActualizacion: 'fechaActualizacion'
+} as const
+
+export type ReglaMapeoPUCScalarFieldEnum = (typeof ReglaMapeoPUCScalarFieldEnum)[keyof typeof ReglaMapeoPUCScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -591,4 +843,144 @@ export const UsuarioOrderByRelevanceFieldEnum = {
 } as const
 
 export type UsuarioOrderByRelevanceFieldEnum = (typeof UsuarioOrderByRelevanceFieldEnum)[keyof typeof UsuarioOrderByRelevanceFieldEnum]
+
+
+export const ResolucionDianOrderByRelevanceFieldEnum = {
+  entorno: 'entorno',
+  prefijo: 'prefijo',
+  numeroResolucion: 'numeroResolucion',
+  claveTecnica: 'claveTecnica'
+} as const
+
+export type ResolucionDianOrderByRelevanceFieldEnum = (typeof ResolucionDianOrderByRelevanceFieldEnum)[keyof typeof ResolucionDianOrderByRelevanceFieldEnum]
+
+
+export const ClienteDianOrderByRelevanceFieldEnum = {
+  nombre: 'nombre',
+  tipoDocumento: 'tipoDocumento',
+  numeroDocumento: 'numeroDocumento',
+  direccion: 'direccion',
+  ciudad: 'ciudad',
+  departamento: 'departamento',
+  telefono: 'telefono',
+  email: 'email',
+  tipoPersona: 'tipoPersona',
+  responsabilidadFiscal: 'responsabilidadFiscal'
+} as const
+
+export type ClienteDianOrderByRelevanceFieldEnum = (typeof ClienteDianOrderByRelevanceFieldEnum)[keyof typeof ClienteDianOrderByRelevanceFieldEnum]
+
+
+export const FacturaElectronicaOrderByRelevanceFieldEnum = {
+  prefijo: 'prefijo',
+  cufe: 'cufe',
+  qrcodeData: 'qrcodeData',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError'
+} as const
+
+export type FacturaElectronicaOrderByRelevanceFieldEnum = (typeof FacturaElectronicaOrderByRelevanceFieldEnum)[keyof typeof FacturaElectronicaOrderByRelevanceFieldEnum]
+
+
+export const FacturaElectronicaItemOrderByRelevanceFieldEnum = {
+  descripcion: 'descripcion',
+  codigoImpuesto1: 'codigoImpuesto1',
+  codigoImpuesto2: 'codigoImpuesto2',
+  codigoImpuesto3: 'codigoImpuesto3'
+} as const
+
+export type FacturaElectronicaItemOrderByRelevanceFieldEnum = (typeof FacturaElectronicaItemOrderByRelevanceFieldEnum)[keyof typeof FacturaElectronicaItemOrderByRelevanceFieldEnum]
+
+
+export const DocumentoSoporteOrderByRelevanceFieldEnum = {
+  prefijo: 'prefijo',
+  cuds: 'cuds',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError'
+} as const
+
+export type DocumentoSoporteOrderByRelevanceFieldEnum = (typeof DocumentoSoporteOrderByRelevanceFieldEnum)[keyof typeof DocumentoSoporteOrderByRelevanceFieldEnum]
+
+
+export const NotaCreditoOrderByRelevanceFieldEnum = {
+  prefijo: 'prefijo',
+  cude: 'cude',
+  conceptoCorreccion: 'conceptoCorreccion',
+  descripcionMotivo: 'descripcionMotivo',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError'
+} as const
+
+export type NotaCreditoOrderByRelevanceFieldEnum = (typeof NotaCreditoOrderByRelevanceFieldEnum)[keyof typeof NotaCreditoOrderByRelevanceFieldEnum]
+
+
+export const NotaDebitoOrderByRelevanceFieldEnum = {
+  prefijo: 'prefijo',
+  cude: 'cude',
+  conceptoCorreccion: 'conceptoCorreccion',
+  descripcionMotivo: 'descripcionMotivo',
+  xmlContent: 'xmlContent',
+  nombreArchivoXml: 'nombreArchivoXml',
+  trackId: 'trackId',
+  mensajeError: 'mensajeError'
+} as const
+
+export type NotaDebitoOrderByRelevanceFieldEnum = (typeof NotaDebitoOrderByRelevanceFieldEnum)[keyof typeof NotaDebitoOrderByRelevanceFieldEnum]
+
+
+export const EventoDianOrderByRelevanceFieldEnum = {
+  documentType: 'documentType',
+  actor: 'actor',
+  metadataJson: 'metadataJson'
+} as const
+
+export type EventoDianOrderByRelevanceFieldEnum = (typeof EventoDianOrderByRelevanceFieldEnum)[keyof typeof EventoDianOrderByRelevanceFieldEnum]
+
+
+export const DocumentoRecibidoOrderByRelevanceFieldEnum = {
+  cufe: 'cufe',
+  prefijo: 'prefijo',
+  consecutivo: 'consecutivo',
+  numeroDocumentoCompleto: 'numeroDocumentoCompleto',
+  nitEmisor: 'nitEmisor',
+  nombreEmisor: 'nombreEmisor',
+  xmlOriginal: 'xmlOriginal',
+  qrUrl: 'qrUrl',
+  pucPreliminar: 'pucPreliminar'
+} as const
+
+export type DocumentoRecibidoOrderByRelevanceFieldEnum = (typeof DocumentoRecibidoOrderByRelevanceFieldEnum)[keyof typeof DocumentoRecibidoOrderByRelevanceFieldEnum]
+
+
+export const ItemCompraRecibidoOrderByRelevanceFieldEnum = {
+  descripcion: 'descripcion',
+  codigoImpuesto1: 'codigoImpuesto1',
+  codigoImpuesto2: 'codigoImpuesto2',
+  codigoImpuesto3: 'codigoImpuesto3',
+  cuentaPuc: 'cuentaPuc',
+  nombreCuentaPuc: 'nombreCuentaPuc',
+  centroCostos: 'centroCostos',
+  nombreCentroCostos: 'nombreCentroCostos'
+} as const
+
+export type ItemCompraRecibidoOrderByRelevanceFieldEnum = (typeof ItemCompraRecibidoOrderByRelevanceFieldEnum)[keyof typeof ItemCompraRecibidoOrderByRelevanceFieldEnum]
+
+
+export const ReglaMapeoPUCOrderByRelevanceFieldEnum = {
+  nombre: 'nombre',
+  concepto: 'concepto',
+  nitEmisor: 'nitEmisor',
+  nombreEmisor: 'nombreEmisor',
+  cuentaPuc: 'cuentaPuc',
+  nombreCuentaPuc: 'nombreCuentaPuc',
+  centroCostos: 'centroCostos'
+} as const
+
+export type ReglaMapeoPUCOrderByRelevanceFieldEnum = (typeof ReglaMapeoPUCOrderByRelevanceFieldEnum)[keyof typeof ReglaMapeoPUCOrderByRelevanceFieldEnum]
 

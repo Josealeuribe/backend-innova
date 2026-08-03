@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { MaquinaRepository } from '../../domain/repositories/maquina.repository';
+import type { MaquinaRepository } from '../../domain/repositories/maquina.repository';
 
 import { MAQUINA_REPOSITORY } from '../../maquinas.tokens';
 import { ListarMaquinasQueryDto } from '../../presentation/dto/listar-maquina-query.dto';

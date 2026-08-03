@@ -263,6 +263,176 @@ export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
 }
 
+export type EnumTipoDocumentoDianFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoDian | Prisma.EnumTipoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoDian[]
+  notIn?: $Enums.TipoDocumentoDian[]
+  not?: Prisma.NestedEnumTipoDocumentoDianFilter<$PrismaModel> | $Enums.TipoDocumentoDian
+}
+
+export type EnumTipoDocumentoDianWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoDian | Prisma.EnumTipoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoDian[]
+  notIn?: $Enums.TipoDocumentoDian[]
+  not?: Prisma.NestedEnumTipoDocumentoDianWithAggregatesFilter<$PrismaModel> | $Enums.TipoDocumentoDian
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoDocumentoDianFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoDocumentoDianFilter<$PrismaModel>
+}
+
+export type EnumEstadoDocumentoDianFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoDocumentoDian | Prisma.EnumEstadoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoDocumentoDian[]
+  notIn?: $Enums.EstadoDocumentoDian[]
+  not?: Prisma.NestedEnumEstadoDocumentoDianFilter<$PrismaModel> | $Enums.EstadoDocumentoDian
+}
+
+export type EnumEstadoDocumentoDianWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoDocumentoDian | Prisma.EnumEstadoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoDocumentoDian[]
+  notIn?: $Enums.EstadoDocumentoDian[]
+  not?: Prisma.NestedEnumEstadoDocumentoDianWithAggregatesFilter<$PrismaModel> | $Enums.EstadoDocumentoDian
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoDocumentoDianFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoDocumentoDianFilter<$PrismaModel>
+}
+
+export type EnumTipoEventoDianFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoEventoDian | Prisma.EnumTipoEventoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoEventoDian[]
+  notIn?: $Enums.TipoEventoDian[]
+  not?: Prisma.NestedEnumTipoEventoDianFilter<$PrismaModel> | $Enums.TipoEventoDian
+}
+
+export type EnumTipoEventoDianWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoEventoDian | Prisma.EnumTipoEventoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoEventoDian[]
+  notIn?: $Enums.TipoEventoDian[]
+  not?: Prisma.NestedEnumTipoEventoDianWithAggregatesFilter<$PrismaModel> | $Enums.TipoEventoDian
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoEventoDianFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoEventoDianFilter<$PrismaModel>
+}
+
+export type EnumTipoDocumentoRecibidoFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoRecibido[]
+  notIn?: $Enums.TipoDocumentoRecibido[]
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido
+}
+
+export type EnumOrigenDocumentoRecibidoFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenDocumentoRecibido | Prisma.EnumOrigenDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenDocumentoRecibido[]
+  notIn?: $Enums.OrigenDocumentoRecibido[]
+  not?: Prisma.NestedEnumOrigenDocumentoRecibidoFilter<$PrismaModel> | $Enums.OrigenDocumentoRecibido
+}
+
+export type EnumEstadoCausacionRecibidoFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoCausacionRecibido | Prisma.EnumEstadoCausacionRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoCausacionRecibido[]
+  notIn?: $Enums.EstadoCausacionRecibido[]
+  not?: Prisma.NestedEnumEstadoCausacionRecibidoFilter<$PrismaModel> | $Enums.EstadoCausacionRecibido
+}
+
+export type EnumTipoDocumentoRecibidoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoRecibido[]
+  notIn?: $Enums.TipoDocumentoRecibido[]
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoWithAggregatesFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoDocumentoRecibidoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoDocumentoRecibidoFilter<$PrismaModel>
+}
+
+export type EnumOrigenDocumentoRecibidoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenDocumentoRecibido | Prisma.EnumOrigenDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenDocumentoRecibido[]
+  notIn?: $Enums.OrigenDocumentoRecibido[]
+  not?: Prisma.NestedEnumOrigenDocumentoRecibidoWithAggregatesFilter<$PrismaModel> | $Enums.OrigenDocumentoRecibido
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOrigenDocumentoRecibidoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOrigenDocumentoRecibidoFilter<$PrismaModel>
+}
+
+export type EnumEstadoCausacionRecibidoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoCausacionRecibido | Prisma.EnumEstadoCausacionRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoCausacionRecibido[]
+  notIn?: $Enums.EstadoCausacionRecibido[]
+  not?: Prisma.NestedEnumEstadoCausacionRecibidoWithAggregatesFilter<$PrismaModel> | $Enums.EstadoCausacionRecibido
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoCausacionRecibidoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoCausacionRecibidoFilter<$PrismaModel>
+}
+
+export type EnumNaturalezaContableNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NaturalezaContable[] | null
+  notIn?: $Enums.NaturalezaContable[] | null
+  not?: Prisma.NestedEnumNaturalezaContableNullableFilter<$PrismaModel> | $Enums.NaturalezaContable | null
+}
+
+export type EnumEstadoMapeoPucFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoMapeoPuc | Prisma.EnumEstadoMapeoPucFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoMapeoPuc[]
+  notIn?: $Enums.EstadoMapeoPuc[]
+  not?: Prisma.NestedEnumEstadoMapeoPucFilter<$PrismaModel> | $Enums.EstadoMapeoPuc
+}
+
+export type EnumNaturalezaContableNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NaturalezaContable[] | null
+  notIn?: $Enums.NaturalezaContable[] | null
+  not?: Prisma.NestedEnumNaturalezaContableNullableWithAggregatesFilter<$PrismaModel> | $Enums.NaturalezaContable | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNaturalezaContableNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNaturalezaContableNullableFilter<$PrismaModel>
+}
+
+export type EnumEstadoMapeoPucWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoMapeoPuc | Prisma.EnumEstadoMapeoPucFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoMapeoPuc[]
+  notIn?: $Enums.EstadoMapeoPuc[]
+  not?: Prisma.NestedEnumEstadoMapeoPucWithAggregatesFilter<$PrismaModel> | $Enums.EstadoMapeoPuc
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoMapeoPucFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoMapeoPucFilter<$PrismaModel>
+}
+
+export type EnumTipoDocumentoRecibidoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.TipoDocumentoRecibido[] | null
+  notIn?: $Enums.TipoDocumentoRecibido[] | null
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoNullableFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido | null
+}
+
+export type EnumNaturalezaContableFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel>
+  in?: $Enums.NaturalezaContable[]
+  notIn?: $Enums.NaturalezaContable[]
+  not?: Prisma.NestedEnumNaturalezaContableFilter<$PrismaModel> | $Enums.NaturalezaContable
+}
+
+export type EnumTipoDocumentoRecibidoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.TipoDocumentoRecibido[] | null
+  notIn?: $Enums.TipoDocumentoRecibido[] | null
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoNullableWithAggregatesFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoDocumentoRecibidoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoDocumentoRecibidoNullableFilter<$PrismaModel>
+}
+
+export type EnumNaturalezaContableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel>
+  in?: $Enums.NaturalezaContable[]
+  notIn?: $Enums.NaturalezaContable[]
+  not?: Prisma.NestedEnumNaturalezaContableWithAggregatesFilter<$PrismaModel> | $Enums.NaturalezaContable
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNaturalezaContableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNaturalezaContableFilter<$PrismaModel>
+}
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[]
@@ -527,6 +697,176 @@ export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
+export type NestedEnumTipoDocumentoDianFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoDian | Prisma.EnumTipoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoDian[]
+  notIn?: $Enums.TipoDocumentoDian[]
+  not?: Prisma.NestedEnumTipoDocumentoDianFilter<$PrismaModel> | $Enums.TipoDocumentoDian
+}
+
+export type NestedEnumTipoDocumentoDianWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoDian | Prisma.EnumTipoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoDian[]
+  notIn?: $Enums.TipoDocumentoDian[]
+  not?: Prisma.NestedEnumTipoDocumentoDianWithAggregatesFilter<$PrismaModel> | $Enums.TipoDocumentoDian
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoDocumentoDianFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoDocumentoDianFilter<$PrismaModel>
+}
+
+export type NestedEnumEstadoDocumentoDianFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoDocumentoDian | Prisma.EnumEstadoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoDocumentoDian[]
+  notIn?: $Enums.EstadoDocumentoDian[]
+  not?: Prisma.NestedEnumEstadoDocumentoDianFilter<$PrismaModel> | $Enums.EstadoDocumentoDian
+}
+
+export type NestedEnumEstadoDocumentoDianWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoDocumentoDian | Prisma.EnumEstadoDocumentoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoDocumentoDian[]
+  notIn?: $Enums.EstadoDocumentoDian[]
+  not?: Prisma.NestedEnumEstadoDocumentoDianWithAggregatesFilter<$PrismaModel> | $Enums.EstadoDocumentoDian
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoDocumentoDianFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoDocumentoDianFilter<$PrismaModel>
+}
+
+export type NestedEnumTipoEventoDianFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoEventoDian | Prisma.EnumTipoEventoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoEventoDian[]
+  notIn?: $Enums.TipoEventoDian[]
+  not?: Prisma.NestedEnumTipoEventoDianFilter<$PrismaModel> | $Enums.TipoEventoDian
+}
+
+export type NestedEnumTipoEventoDianWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoEventoDian | Prisma.EnumTipoEventoDianFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoEventoDian[]
+  notIn?: $Enums.TipoEventoDian[]
+  not?: Prisma.NestedEnumTipoEventoDianWithAggregatesFilter<$PrismaModel> | $Enums.TipoEventoDian
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoEventoDianFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoEventoDianFilter<$PrismaModel>
+}
+
+export type NestedEnumTipoDocumentoRecibidoFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoRecibido[]
+  notIn?: $Enums.TipoDocumentoRecibido[]
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido
+}
+
+export type NestedEnumOrigenDocumentoRecibidoFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenDocumentoRecibido | Prisma.EnumOrigenDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenDocumentoRecibido[]
+  notIn?: $Enums.OrigenDocumentoRecibido[]
+  not?: Prisma.NestedEnumOrigenDocumentoRecibidoFilter<$PrismaModel> | $Enums.OrigenDocumentoRecibido
+}
+
+export type NestedEnumEstadoCausacionRecibidoFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoCausacionRecibido | Prisma.EnumEstadoCausacionRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoCausacionRecibido[]
+  notIn?: $Enums.EstadoCausacionRecibido[]
+  not?: Prisma.NestedEnumEstadoCausacionRecibidoFilter<$PrismaModel> | $Enums.EstadoCausacionRecibido
+}
+
+export type NestedEnumTipoDocumentoRecibidoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoDocumentoRecibido[]
+  notIn?: $Enums.TipoDocumentoRecibido[]
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoWithAggregatesFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoDocumentoRecibidoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoDocumentoRecibidoFilter<$PrismaModel>
+}
+
+export type NestedEnumOrigenDocumentoRecibidoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenDocumentoRecibido | Prisma.EnumOrigenDocumentoRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenDocumentoRecibido[]
+  notIn?: $Enums.OrigenDocumentoRecibido[]
+  not?: Prisma.NestedEnumOrigenDocumentoRecibidoWithAggregatesFilter<$PrismaModel> | $Enums.OrigenDocumentoRecibido
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOrigenDocumentoRecibidoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOrigenDocumentoRecibidoFilter<$PrismaModel>
+}
+
+export type NestedEnumEstadoCausacionRecibidoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoCausacionRecibido | Prisma.EnumEstadoCausacionRecibidoFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoCausacionRecibido[]
+  notIn?: $Enums.EstadoCausacionRecibido[]
+  not?: Prisma.NestedEnumEstadoCausacionRecibidoWithAggregatesFilter<$PrismaModel> | $Enums.EstadoCausacionRecibido
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoCausacionRecibidoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoCausacionRecibidoFilter<$PrismaModel>
+}
+
+export type NestedEnumNaturalezaContableNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NaturalezaContable[] | null
+  notIn?: $Enums.NaturalezaContable[] | null
+  not?: Prisma.NestedEnumNaturalezaContableNullableFilter<$PrismaModel> | $Enums.NaturalezaContable | null
+}
+
+export type NestedEnumEstadoMapeoPucFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoMapeoPuc | Prisma.EnumEstadoMapeoPucFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoMapeoPuc[]
+  notIn?: $Enums.EstadoMapeoPuc[]
+  not?: Prisma.NestedEnumEstadoMapeoPucFilter<$PrismaModel> | $Enums.EstadoMapeoPuc
+}
+
+export type NestedEnumNaturalezaContableNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NaturalezaContable[] | null
+  notIn?: $Enums.NaturalezaContable[] | null
+  not?: Prisma.NestedEnumNaturalezaContableNullableWithAggregatesFilter<$PrismaModel> | $Enums.NaturalezaContable | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNaturalezaContableNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNaturalezaContableNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumEstadoMapeoPucWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoMapeoPuc | Prisma.EnumEstadoMapeoPucFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoMapeoPuc[]
+  notIn?: $Enums.EstadoMapeoPuc[]
+  not?: Prisma.NestedEnumEstadoMapeoPucWithAggregatesFilter<$PrismaModel> | $Enums.EstadoMapeoPuc
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoMapeoPucFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoMapeoPucFilter<$PrismaModel>
+}
+
+export type NestedEnumTipoDocumentoRecibidoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.TipoDocumentoRecibido[] | null
+  notIn?: $Enums.TipoDocumentoRecibido[] | null
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoNullableFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido | null
+}
+
+export type NestedEnumNaturalezaContableFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel>
+  in?: $Enums.NaturalezaContable[]
+  notIn?: $Enums.NaturalezaContable[]
+  not?: Prisma.NestedEnumNaturalezaContableFilter<$PrismaModel> | $Enums.NaturalezaContable
+}
+
+export type NestedEnumTipoDocumentoRecibidoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoDocumentoRecibido | Prisma.EnumTipoDocumentoRecibidoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.TipoDocumentoRecibido[] | null
+  notIn?: $Enums.TipoDocumentoRecibido[] | null
+  not?: Prisma.NestedEnumTipoDocumentoRecibidoNullableWithAggregatesFilter<$PrismaModel> | $Enums.TipoDocumentoRecibido | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoDocumentoRecibidoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoDocumentoRecibidoNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumNaturalezaContableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NaturalezaContable | Prisma.EnumNaturalezaContableFieldRefInput<$PrismaModel>
+  in?: $Enums.NaturalezaContable[]
+  notIn?: $Enums.NaturalezaContable[]
+  not?: Prisma.NestedEnumNaturalezaContableWithAggregatesFilter<$PrismaModel> | $Enums.NaturalezaContable
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNaturalezaContableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNaturalezaContableFilter<$PrismaModel>
 }
 
 

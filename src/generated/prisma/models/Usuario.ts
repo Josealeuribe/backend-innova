@@ -362,6 +362,7 @@ export type UsuarioWhereInput = {
   ciudad?: Prisma.XOR<Prisma.CiudadScalarRelationFilter, Prisma.CiudadWhereInput>
   casino?: Prisma.XOR<Prisma.CasinoScalarRelationFilter, Prisma.CasinoWhereInput>
   inventariosResponsable?: Prisma.InventarioListRelationFilter
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaListRelationFilter
 }
 
 export type UsuarioOrderByWithRelationInput = {
@@ -391,6 +392,7 @@ export type UsuarioOrderByWithRelationInput = {
   ciudad?: Prisma.CiudadOrderByWithRelationInput
   casino?: Prisma.CasinoOrderByWithRelationInput
   inventariosResponsable?: Prisma.InventarioOrderByRelationAggregateInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaOrderByRelationAggregateInput
   _relevance?: Prisma.UsuarioOrderByRelevanceInput
 }
 
@@ -424,6 +426,7 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
   ciudad?: Prisma.XOR<Prisma.CiudadScalarRelationFilter, Prisma.CiudadWhereInput>
   casino?: Prisma.XOR<Prisma.CasinoScalarRelationFilter, Prisma.CasinoWhereInput>
   inventariosResponsable?: Prisma.InventarioListRelationFilter
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaListRelationFilter
 }, "id" | "cedula" | "correo">
 
 export type UsuarioOrderByWithAggregationInput = {
@@ -501,6 +504,7 @@ export type UsuarioCreateInput = {
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
   inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateInput = {
@@ -525,6 +529,7 @@ export type UsuarioUncheckedCreateInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUpdateInput = {
@@ -548,6 +553,7 @@ export type UsuarioUpdateInput = {
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
   inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateInput = {
@@ -572,6 +578,7 @@ export type UsuarioUncheckedUpdateInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioCreateManyInput = {
@@ -743,6 +750,11 @@ export type UsuarioSumOrderByAggregateInput = {
   idRol?: Prisma.SortOrder
   idCiudad?: Prisma.SortOrder
   idCasino?: Prisma.SortOrder
+}
+
+export type UsuarioScalarRelationFilter = {
+  is?: Prisma.UsuarioWhereInput
+  isNot?: Prisma.UsuarioWhereInput
 }
 
 export type UsuarioCreateNestedManyWithoutCiudadInput = {
@@ -971,6 +983,20 @@ export type UsuarioUpdateOneWithoutInventariosResponsableNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UsuarioUpdateToOneWithWhereWithoutInventariosResponsableInput, Prisma.UsuarioUpdateWithoutInventariosResponsableInput>, Prisma.UsuarioUncheckedUpdateWithoutInventariosResponsableInput>
 }
 
+export type UsuarioCreateNestedOneWithoutFacturasElectronicasCreadasInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutFacturasElectronicasCreadasInput, Prisma.UsuarioUncheckedCreateWithoutFacturasElectronicasCreadasInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutFacturasElectronicasCreadasInput
+  connect?: Prisma.UsuarioWhereUniqueInput
+}
+
+export type UsuarioUpdateOneRequiredWithoutFacturasElectronicasCreadasNestedInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutFacturasElectronicasCreadasInput, Prisma.UsuarioUncheckedCreateWithoutFacturasElectronicasCreadasInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutFacturasElectronicasCreadasInput
+  upsert?: Prisma.UsuarioUpsertWithoutFacturasElectronicasCreadasInput
+  connect?: Prisma.UsuarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UsuarioUpdateToOneWithWhereWithoutFacturasElectronicasCreadasInput, Prisma.UsuarioUpdateWithoutFacturasElectronicasCreadasInput>, Prisma.UsuarioUncheckedUpdateWithoutFacturasElectronicasCreadasInput>
+}
+
 export type UsuarioCreateWithoutCiudadInput = {
   nombre: string
   apellido: string
@@ -991,6 +1017,7 @@ export type UsuarioCreateWithoutCiudadInput = {
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
   inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateWithoutCiudadInput = {
@@ -1014,6 +1041,7 @@ export type UsuarioUncheckedCreateWithoutCiudadInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutCiudadInput = {
@@ -1088,6 +1116,7 @@ export type UsuarioCreateWithoutRolInput = {
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
   inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateWithoutRolInput = {
@@ -1111,6 +1140,7 @@ export type UsuarioUncheckedCreateWithoutRolInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutRolInput = {
@@ -1159,6 +1189,7 @@ export type UsuarioCreateWithoutTipoDocumentoInput = {
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
   inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateWithoutTipoDocumentoInput = {
@@ -1182,6 +1213,7 @@ export type UsuarioUncheckedCreateWithoutTipoDocumentoInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutTipoDocumentoInput = {
@@ -1230,6 +1262,7 @@ export type UsuarioCreateWithoutGeneroInput = {
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
   inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateWithoutGeneroInput = {
@@ -1253,6 +1286,7 @@ export type UsuarioUncheckedCreateWithoutGeneroInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutGeneroInput = {
@@ -1301,6 +1335,7 @@ export type UsuarioCreateWithoutCasinoInput = {
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateWithoutCasinoInput = {
@@ -1324,6 +1359,7 @@ export type UsuarioUncheckedCreateWithoutCasinoInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutCasinoInput = {
@@ -1372,6 +1408,7 @@ export type UsuarioCreateWithoutInventariosResponsableInput = {
   rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
   ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
   casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateWithoutInventariosResponsableInput = {
@@ -1395,6 +1432,7 @@ export type UsuarioUncheckedCreateWithoutInventariosResponsableInput = {
   idCasino: number
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutInventariosResponsableInput = {
@@ -1433,6 +1471,7 @@ export type UsuarioUpdateWithoutInventariosResponsableInput = {
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutInventariosResponsableInput = {
@@ -1456,6 +1495,117 @@ export type UsuarioUncheckedUpdateWithoutInventariosResponsableInput = {
   idCasino?: Prisma.IntFieldUpdateOperationsInput | number
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutUsuarioNestedInput
+}
+
+export type UsuarioCreateWithoutFacturasElectronicasCreadasInput = {
+  nombre: string
+  apellido: string
+  cedula: string
+  correo: string
+  passwordHash: string
+  cargo: string
+  fechaNacimiento: Date | string
+  telefono: string
+  codigoHelisa?: string | null
+  cuentaPuc?: string | null
+  imgUrl?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  tipoDocumento: Prisma.TipoDocumentoCreateNestedOneWithoutUsuariosInput
+  genero: Prisma.GeneroCreateNestedOneWithoutUsuariosInput
+  rol: Prisma.RolCreateNestedOneWithoutUsuariosInput
+  ciudad: Prisma.CiudadCreateNestedOneWithoutUsuariosInput
+  casino: Prisma.CasinoCreateNestedOneWithoutUsuariosInput
+  inventariosResponsable?: Prisma.InventarioCreateNestedManyWithoutResponsableInput
+}
+
+export type UsuarioUncheckedCreateWithoutFacturasElectronicasCreadasInput = {
+  id?: number
+  nombre: string
+  apellido: string
+  cedula: string
+  correo: string
+  passwordHash: string
+  cargo: string
+  fechaNacimiento: Date | string
+  telefono: string
+  codigoHelisa?: string | null
+  cuentaPuc?: string | null
+  imgUrl?: string | null
+  estado?: $Enums.EstadoRegistro
+  idTipoDoc: number
+  idGenero: number
+  idRol: number
+  idCiudad: number
+  idCasino: number
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedCreateNestedManyWithoutResponsableInput
+}
+
+export type UsuarioCreateOrConnectWithoutFacturasElectronicasCreadasInput = {
+  where: Prisma.UsuarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutFacturasElectronicasCreadasInput, Prisma.UsuarioUncheckedCreateWithoutFacturasElectronicasCreadasInput>
+}
+
+export type UsuarioUpsertWithoutFacturasElectronicasCreadasInput = {
+  update: Prisma.XOR<Prisma.UsuarioUpdateWithoutFacturasElectronicasCreadasInput, Prisma.UsuarioUncheckedUpdateWithoutFacturasElectronicasCreadasInput>
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutFacturasElectronicasCreadasInput, Prisma.UsuarioUncheckedCreateWithoutFacturasElectronicasCreadasInput>
+  where?: Prisma.UsuarioWhereInput
+}
+
+export type UsuarioUpdateToOneWithWhereWithoutFacturasElectronicasCreadasInput = {
+  where?: Prisma.UsuarioWhereInput
+  data: Prisma.XOR<Prisma.UsuarioUpdateWithoutFacturasElectronicasCreadasInput, Prisma.UsuarioUncheckedUpdateWithoutFacturasElectronicasCreadasInput>
+}
+
+export type UsuarioUpdateWithoutFacturasElectronicasCreadasInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  cedula?: Prisma.StringFieldUpdateOperationsInput | string
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tipoDocumento?: Prisma.TipoDocumentoUpdateOneRequiredWithoutUsuariosNestedInput
+  genero?: Prisma.GeneroUpdateOneRequiredWithoutUsuariosNestedInput
+  rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
+  casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
+  inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
+}
+
+export type UsuarioUncheckedUpdateWithoutFacturasElectronicasCreadasInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  cedula?: Prisma.StringFieldUpdateOperationsInput | string
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaPuc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  idTipoDoc?: Prisma.IntFieldUpdateOperationsInput | number
+  idGenero?: Prisma.IntFieldUpdateOperationsInput | number
+  idRol?: Prisma.IntFieldUpdateOperationsInput | number
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idCasino?: Prisma.IntFieldUpdateOperationsInput | number
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
 }
 
 export type UsuarioCreateManyCiudadInput = {
@@ -1500,6 +1650,7 @@ export type UsuarioUpdateWithoutCiudadInput = {
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
   inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutCiudadInput = {
@@ -1523,6 +1674,7 @@ export type UsuarioUncheckedUpdateWithoutCiudadInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutCiudadInput = {
@@ -1589,6 +1741,7 @@ export type UsuarioUpdateWithoutRolInput = {
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
   inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutRolInput = {
@@ -1612,6 +1765,7 @@ export type UsuarioUncheckedUpdateWithoutRolInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutRolInput = {
@@ -1678,6 +1832,7 @@ export type UsuarioUpdateWithoutTipoDocumentoInput = {
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
   inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutTipoDocumentoInput = {
@@ -1701,6 +1856,7 @@ export type UsuarioUncheckedUpdateWithoutTipoDocumentoInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutTipoDocumentoInput = {
@@ -1767,6 +1923,7 @@ export type UsuarioUpdateWithoutGeneroInput = {
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   casino?: Prisma.CasinoUpdateOneRequiredWithoutUsuariosNestedInput
   inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutGeneroInput = {
@@ -1790,6 +1947,7 @@ export type UsuarioUncheckedUpdateWithoutGeneroInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutGeneroInput = {
@@ -1856,6 +2014,7 @@ export type UsuarioUpdateWithoutCasinoInput = {
   rol?: Prisma.RolUpdateOneRequiredWithoutUsuariosNestedInput
   ciudad?: Prisma.CiudadUpdateOneRequiredWithoutUsuariosNestedInput
   inventariosResponsable?: Prisma.InventarioUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutCasinoInput = {
@@ -1879,6 +2038,7 @@ export type UsuarioUncheckedUpdateWithoutCasinoInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventariosResponsable?: Prisma.InventarioUncheckedUpdateManyWithoutResponsableNestedInput
+  facturasElectronicasCreadas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutCasinoInput = {
@@ -1910,10 +2070,12 @@ export type UsuarioUncheckedUpdateManyWithoutCasinoInput = {
 
 export type UsuarioCountOutputType = {
   inventariosResponsable: number
+  facturasElectronicasCreadas: number
 }
 
 export type UsuarioCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   inventariosResponsable?: boolean | UsuarioCountOutputTypeCountInventariosResponsableArgs
+  facturasElectronicasCreadas?: boolean | UsuarioCountOutputTypeCountFacturasElectronicasCreadasArgs
 }
 
 /**
@@ -1931,6 +2093,13 @@ export type UsuarioCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
  */
 export type UsuarioCountOutputTypeCountInventariosResponsableArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.InventarioWhereInput
+}
+
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeCountFacturasElectronicasCreadasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturaElectronicaWhereInput
 }
 
 
@@ -1961,6 +2130,7 @@ export type UsuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   ciudad?: boolean | Prisma.CiudadDefaultArgs<ExtArgs>
   casino?: boolean | Prisma.CasinoDefaultArgs<ExtArgs>
   inventariosResponsable?: boolean | Prisma.Usuario$inventariosResponsableArgs<ExtArgs>
+  facturasElectronicasCreadas?: boolean | Prisma.Usuario$facturasElectronicasCreadasArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["usuario"]>
 
@@ -1997,6 +2167,7 @@ export type UsuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   ciudad?: boolean | Prisma.CiudadDefaultArgs<ExtArgs>
   casino?: boolean | Prisma.CasinoDefaultArgs<ExtArgs>
   inventariosResponsable?: boolean | Prisma.Usuario$inventariosResponsableArgs<ExtArgs>
+  facturasElectronicasCreadas?: boolean | Prisma.Usuario$facturasElectronicasCreadasArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2009,6 +2180,7 @@ export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     ciudad: Prisma.$CiudadPayload<ExtArgs>
     casino: Prisma.$CasinoPayload<ExtArgs>
     inventariosResponsable: Prisma.$InventarioPayload<ExtArgs>[]
+    facturasElectronicasCreadas: Prisma.$FacturaElectronicaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -2377,6 +2549,7 @@ export interface Prisma__UsuarioClient<T, Null = never, ExtArgs extends runtime.
   ciudad<T extends Prisma.CiudadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CiudadDefaultArgs<ExtArgs>>): Prisma.Prisma__CiudadClient<runtime.Types.Result.GetResult<Prisma.$CiudadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   casino<T extends Prisma.CasinoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CasinoDefaultArgs<ExtArgs>>): Prisma.Prisma__CasinoClient<runtime.Types.Result.GetResult<Prisma.$CasinoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   inventariosResponsable<T extends Prisma.Usuario$inventariosResponsableArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$inventariosResponsableArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  facturasElectronicasCreadas<T extends Prisma.Usuario$facturasElectronicasCreadasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$facturasElectronicasCreadasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturaElectronicaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2795,6 +2968,30 @@ export type Usuario$inventariosResponsableArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.InventarioScalarFieldEnum | Prisma.InventarioScalarFieldEnum[]
+}
+
+/**
+ * Usuario.facturasElectronicasCreadas
+ */
+export type Usuario$facturasElectronicasCreadasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturaElectronica
+   */
+  select?: Prisma.FacturaElectronicaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturaElectronica
+   */
+  omit?: Prisma.FacturaElectronicaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturaElectronicaInclude<ExtArgs> | null
+  where?: Prisma.FacturaElectronicaWhereInput
+  orderBy?: Prisma.FacturaElectronicaOrderByWithRelationInput | Prisma.FacturaElectronicaOrderByWithRelationInput[]
+  cursor?: Prisma.FacturaElectronicaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturaElectronicaScalarFieldEnum | Prisma.FacturaElectronicaScalarFieldEnum[]
 }
 
 /**

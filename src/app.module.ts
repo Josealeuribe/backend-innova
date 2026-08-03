@@ -12,6 +12,8 @@ import { RazonesSocialesModule } from './modules/configuracion/razones-sociales/
 import { RolesModule } from './modules/configuracion/roles/roles.module';
 import { ControlAccesoModule } from './modules/control-acceso/control-acceso.module';
 import { InventarioModule } from './modules/activos/inventario/inventario.module';
+import { DianEmisionModule } from './modules/dian-emision/dian-emision.module';
+import { RecepcionDianModule } from './modules/recepcion-dian/recepcion-dian.module';
 
 @Module({
   imports: [
@@ -30,7 +32,9 @@ import { InventarioModule } from './modules/activos/inventario/inventario.module
     RazonesSocialesModule,
     RolesModule,
     ControlAccesoModule,
-    InventarioModule
+    InventarioModule,
+    DianEmisionModule,
+    RecepcionDianModule,
 
   ],
   controllers: [AppController],

@@ -455,6 +455,11 @@ export type RazonSocialWhereInput = {
   ambienteDian?: Prisma.XOR<Prisma.AmbienteDianScalarRelationFilter, Prisma.AmbienteDianWhereInput>
   regimen?: Prisma.XOR<Prisma.RegimenScalarRelationFilter, Prisma.RegimenWhereInput>
   casinos?: Prisma.CasinoListRelationFilter
+  resolucionesDian?: Prisma.ResolucionDianListRelationFilter
+  facturasElectronicas?: Prisma.FacturaElectronicaListRelationFilter
+  documentosSoporte?: Prisma.DocumentoSoporteListRelationFilter
+  documentosRecibidos?: Prisma.DocumentoRecibidoListRelationFilter
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCListRelationFilter
 }
 
 export type RazonSocialOrderByWithRelationInput = {
@@ -496,6 +501,11 @@ export type RazonSocialOrderByWithRelationInput = {
   ambienteDian?: Prisma.AmbienteDianOrderByWithRelationInput
   regimen?: Prisma.RegimenOrderByWithRelationInput
   casinos?: Prisma.CasinoOrderByRelationAggregateInput
+  resolucionesDian?: Prisma.ResolucionDianOrderByRelationAggregateInput
+  facturasElectronicas?: Prisma.FacturaElectronicaOrderByRelationAggregateInput
+  documentosSoporte?: Prisma.DocumentoSoporteOrderByRelationAggregateInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoOrderByRelationAggregateInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCOrderByRelationAggregateInput
   _relevance?: Prisma.RazonSocialOrderByRelevanceInput
 }
 
@@ -541,6 +551,11 @@ export type RazonSocialWhereUniqueInput = Prisma.AtLeast<{
   ambienteDian?: Prisma.XOR<Prisma.AmbienteDianScalarRelationFilter, Prisma.AmbienteDianWhereInput>
   regimen?: Prisma.XOR<Prisma.RegimenScalarRelationFilter, Prisma.RegimenWhereInput>
   casinos?: Prisma.CasinoListRelationFilter
+  resolucionesDian?: Prisma.ResolucionDianListRelationFilter
+  facturasElectronicas?: Prisma.FacturaElectronicaListRelationFilter
+  documentosSoporte?: Prisma.DocumentoSoporteListRelationFilter
+  documentosRecibidos?: Prisma.DocumentoRecibidoListRelationFilter
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCListRelationFilter
 }, "idRazonSocial" | "nit" | "correo">
 
 export type RazonSocialOrderByWithAggregationInput = {
@@ -651,6 +666,11 @@ export type RazonSocialCreateInput = {
   ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
   regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateInput = {
@@ -686,6 +706,11 @@ export type RazonSocialUncheckedCreateInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUpdateInput = {
@@ -720,6 +745,11 @@ export type RazonSocialUpdateInput = {
   ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
   regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateInput = {
@@ -755,6 +785,11 @@ export type RazonSocialUncheckedUpdateInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialCreateManyInput = {
@@ -1265,6 +1300,76 @@ export type RazonSocialUpdateOneRequiredWithoutCasinosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RazonSocialUpdateToOneWithWhereWithoutCasinosInput, Prisma.RazonSocialUpdateWithoutCasinosInput>, Prisma.RazonSocialUncheckedUpdateWithoutCasinosInput>
 }
 
+export type RazonSocialCreateNestedOneWithoutResolucionesDianInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutResolucionesDianInput, Prisma.RazonSocialUncheckedCreateWithoutResolucionesDianInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutResolucionesDianInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+}
+
+export type RazonSocialUpdateOneRequiredWithoutResolucionesDianNestedInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutResolucionesDianInput, Prisma.RazonSocialUncheckedCreateWithoutResolucionesDianInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutResolucionesDianInput
+  upsert?: Prisma.RazonSocialUpsertWithoutResolucionesDianInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RazonSocialUpdateToOneWithWhereWithoutResolucionesDianInput, Prisma.RazonSocialUpdateWithoutResolucionesDianInput>, Prisma.RazonSocialUncheckedUpdateWithoutResolucionesDianInput>
+}
+
+export type RazonSocialCreateNestedOneWithoutFacturasElectronicasInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutFacturasElectronicasInput, Prisma.RazonSocialUncheckedCreateWithoutFacturasElectronicasInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutFacturasElectronicasInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+}
+
+export type RazonSocialUpdateOneRequiredWithoutFacturasElectronicasNestedInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutFacturasElectronicasInput, Prisma.RazonSocialUncheckedCreateWithoutFacturasElectronicasInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutFacturasElectronicasInput
+  upsert?: Prisma.RazonSocialUpsertWithoutFacturasElectronicasInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RazonSocialUpdateToOneWithWhereWithoutFacturasElectronicasInput, Prisma.RazonSocialUpdateWithoutFacturasElectronicasInput>, Prisma.RazonSocialUncheckedUpdateWithoutFacturasElectronicasInput>
+}
+
+export type RazonSocialCreateNestedOneWithoutDocumentosSoporteInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosSoporteInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosSoporteInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutDocumentosSoporteInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+}
+
+export type RazonSocialUpdateOneRequiredWithoutDocumentosSoporteNestedInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosSoporteInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosSoporteInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutDocumentosSoporteInput
+  upsert?: Prisma.RazonSocialUpsertWithoutDocumentosSoporteInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RazonSocialUpdateToOneWithWhereWithoutDocumentosSoporteInput, Prisma.RazonSocialUpdateWithoutDocumentosSoporteInput>, Prisma.RazonSocialUncheckedUpdateWithoutDocumentosSoporteInput>
+}
+
+export type RazonSocialCreateNestedOneWithoutDocumentosRecibidosInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosRecibidosInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosRecibidosInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutDocumentosRecibidosInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+}
+
+export type RazonSocialUpdateOneRequiredWithoutDocumentosRecibidosNestedInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosRecibidosInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosRecibidosInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutDocumentosRecibidosInput
+  upsert?: Prisma.RazonSocialUpsertWithoutDocumentosRecibidosInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RazonSocialUpdateToOneWithWhereWithoutDocumentosRecibidosInput, Prisma.RazonSocialUpdateWithoutDocumentosRecibidosInput>, Prisma.RazonSocialUncheckedUpdateWithoutDocumentosRecibidosInput>
+}
+
+export type RazonSocialCreateNestedOneWithoutReglasMapeoPucInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutReglasMapeoPucInput, Prisma.RazonSocialUncheckedCreateWithoutReglasMapeoPucInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutReglasMapeoPucInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+}
+
+export type RazonSocialUpdateOneRequiredWithoutReglasMapeoPucNestedInput = {
+  create?: Prisma.XOR<Prisma.RazonSocialCreateWithoutReglasMapeoPucInput, Prisma.RazonSocialUncheckedCreateWithoutReglasMapeoPucInput>
+  connectOrCreate?: Prisma.RazonSocialCreateOrConnectWithoutReglasMapeoPucInput
+  upsert?: Prisma.RazonSocialUpsertWithoutReglasMapeoPucInput
+  connect?: Prisma.RazonSocialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RazonSocialUpdateToOneWithWhereWithoutReglasMapeoPucInput, Prisma.RazonSocialUpdateWithoutReglasMapeoPucInput>, Prisma.RazonSocialUncheckedUpdateWithoutReglasMapeoPucInput>
+}
+
 export type RazonSocialCreateWithoutPaisInput = {
   nit: string
   nombreRazonSocial: string
@@ -1296,6 +1401,11 @@ export type RazonSocialCreateWithoutPaisInput = {
   ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
   regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateWithoutPaisInput = {
@@ -1330,6 +1440,11 @@ export type RazonSocialUncheckedCreateWithoutPaisInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialCreateOrConnectWithoutPaisInput = {
@@ -1426,6 +1541,11 @@ export type RazonSocialCreateWithoutDepartamentoInput = {
   ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
   regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateWithoutDepartamentoInput = {
@@ -1460,6 +1580,11 @@ export type RazonSocialUncheckedCreateWithoutDepartamentoInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialCreateOrConnectWithoutDepartamentoInput = {
@@ -1519,6 +1644,11 @@ export type RazonSocialCreateWithoutCiudadInput = {
   ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
   regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateWithoutCiudadInput = {
@@ -1553,6 +1683,11 @@ export type RazonSocialUncheckedCreateWithoutCiudadInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialCreateOrConnectWithoutCiudadInput = {
@@ -1612,6 +1747,11 @@ export type RazonSocialCreateWithoutTipoPersonaInput = {
   ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
   regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateWithoutTipoPersonaInput = {
@@ -1646,6 +1786,11 @@ export type RazonSocialUncheckedCreateWithoutTipoPersonaInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialCreateOrConnectWithoutTipoPersonaInput = {
@@ -1705,6 +1850,11 @@ export type RazonSocialCreateWithoutAmbienteDianInput = {
   tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
   regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateWithoutAmbienteDianInput = {
@@ -1739,6 +1889,11 @@ export type RazonSocialUncheckedCreateWithoutAmbienteDianInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialCreateOrConnectWithoutAmbienteDianInput = {
@@ -1798,6 +1953,11 @@ export type RazonSocialCreateWithoutRegimenInput = {
   tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
   ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
   casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateWithoutRegimenInput = {
@@ -1832,6 +1992,11 @@ export type RazonSocialUncheckedCreateWithoutRegimenInput = {
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
   casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialCreateOrConnectWithoutRegimenInput = {
@@ -1891,6 +2056,11 @@ export type RazonSocialCreateWithoutCasinosInput = {
   tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
   ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
   regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialUncheckedCreateWithoutCasinosInput = {
@@ -1925,6 +2095,11 @@ export type RazonSocialUncheckedCreateWithoutCasinosInput = {
   estado?: $Enums.EstadoRegistro
   fechaCreacion?: Date | string
   fechaActualizacion?: Date | string
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
 }
 
 export type RazonSocialCreateOrConnectWithoutCasinosInput = {
@@ -1974,6 +2149,11 @@ export type RazonSocialUpdateWithoutCasinosInput = {
   tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
   ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
   regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateWithoutCasinosInput = {
@@ -2008,6 +2188,861 @@ export type RazonSocialUncheckedUpdateWithoutCasinosInput = {
   estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialCreateWithoutResolucionesDianInput = {
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  pais: Prisma.PaisCreateNestedOneWithoutRazonesSocialesInput
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutRazonesSocialesInput
+  ciudad: Prisma.CiudadCreateNestedOneWithoutRazonesSocialesInput
+  tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
+  ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
+  regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
+  casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialUncheckedCreateWithoutResolucionesDianInput = {
+  idRazonSocial?: number
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  idPais: number
+  idDepartamento: number
+  idCiudad: number
+  idTipoPersona: number
+  idAmbienteDian: number
+  idRegimen: number
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialCreateOrConnectWithoutResolucionesDianInput = {
+  where: Prisma.RazonSocialWhereUniqueInput
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutResolucionesDianInput, Prisma.RazonSocialUncheckedCreateWithoutResolucionesDianInput>
+}
+
+export type RazonSocialUpsertWithoutResolucionesDianInput = {
+  update: Prisma.XOR<Prisma.RazonSocialUpdateWithoutResolucionesDianInput, Prisma.RazonSocialUncheckedUpdateWithoutResolucionesDianInput>
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutResolucionesDianInput, Prisma.RazonSocialUncheckedCreateWithoutResolucionesDianInput>
+  where?: Prisma.RazonSocialWhereInput
+}
+
+export type RazonSocialUpdateToOneWithWhereWithoutResolucionesDianInput = {
+  where?: Prisma.RazonSocialWhereInput
+  data: Prisma.XOR<Prisma.RazonSocialUpdateWithoutResolucionesDianInput, Prisma.RazonSocialUncheckedUpdateWithoutResolucionesDianInput>
+}
+
+export type RazonSocialUpdateWithoutResolucionesDianInput = {
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pais?: Prisma.PaisUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialUncheckedUpdateWithoutResolucionesDianInput = {
+  idRazonSocial?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idTipoPersona?: Prisma.IntFieldUpdateOperationsInput | number
+  idAmbienteDian?: Prisma.IntFieldUpdateOperationsInput | number
+  idRegimen?: Prisma.IntFieldUpdateOperationsInput | number
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialCreateWithoutFacturasElectronicasInput = {
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  pais: Prisma.PaisCreateNestedOneWithoutRazonesSocialesInput
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutRazonesSocialesInput
+  ciudad: Prisma.CiudadCreateNestedOneWithoutRazonesSocialesInput
+  tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
+  ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
+  regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
+  casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialUncheckedCreateWithoutFacturasElectronicasInput = {
+  idRazonSocial?: number
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  idPais: number
+  idDepartamento: number
+  idCiudad: number
+  idTipoPersona: number
+  idAmbienteDian: number
+  idRegimen: number
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialCreateOrConnectWithoutFacturasElectronicasInput = {
+  where: Prisma.RazonSocialWhereUniqueInput
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutFacturasElectronicasInput, Prisma.RazonSocialUncheckedCreateWithoutFacturasElectronicasInput>
+}
+
+export type RazonSocialUpsertWithoutFacturasElectronicasInput = {
+  update: Prisma.XOR<Prisma.RazonSocialUpdateWithoutFacturasElectronicasInput, Prisma.RazonSocialUncheckedUpdateWithoutFacturasElectronicasInput>
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutFacturasElectronicasInput, Prisma.RazonSocialUncheckedCreateWithoutFacturasElectronicasInput>
+  where?: Prisma.RazonSocialWhereInput
+}
+
+export type RazonSocialUpdateToOneWithWhereWithoutFacturasElectronicasInput = {
+  where?: Prisma.RazonSocialWhereInput
+  data: Prisma.XOR<Prisma.RazonSocialUpdateWithoutFacturasElectronicasInput, Prisma.RazonSocialUncheckedUpdateWithoutFacturasElectronicasInput>
+}
+
+export type RazonSocialUpdateWithoutFacturasElectronicasInput = {
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pais?: Prisma.PaisUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialUncheckedUpdateWithoutFacturasElectronicasInput = {
+  idRazonSocial?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idTipoPersona?: Prisma.IntFieldUpdateOperationsInput | number
+  idAmbienteDian?: Prisma.IntFieldUpdateOperationsInput | number
+  idRegimen?: Prisma.IntFieldUpdateOperationsInput | number
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialCreateWithoutDocumentosSoporteInput = {
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  pais: Prisma.PaisCreateNestedOneWithoutRazonesSocialesInput
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutRazonesSocialesInput
+  ciudad: Prisma.CiudadCreateNestedOneWithoutRazonesSocialesInput
+  tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
+  ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
+  regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
+  casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialUncheckedCreateWithoutDocumentosSoporteInput = {
+  idRazonSocial?: number
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  idPais: number
+  idDepartamento: number
+  idCiudad: number
+  idTipoPersona: number
+  idAmbienteDian: number
+  idRegimen: number
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialCreateOrConnectWithoutDocumentosSoporteInput = {
+  where: Prisma.RazonSocialWhereUniqueInput
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosSoporteInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosSoporteInput>
+}
+
+export type RazonSocialUpsertWithoutDocumentosSoporteInput = {
+  update: Prisma.XOR<Prisma.RazonSocialUpdateWithoutDocumentosSoporteInput, Prisma.RazonSocialUncheckedUpdateWithoutDocumentosSoporteInput>
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosSoporteInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosSoporteInput>
+  where?: Prisma.RazonSocialWhereInput
+}
+
+export type RazonSocialUpdateToOneWithWhereWithoutDocumentosSoporteInput = {
+  where?: Prisma.RazonSocialWhereInput
+  data: Prisma.XOR<Prisma.RazonSocialUpdateWithoutDocumentosSoporteInput, Prisma.RazonSocialUncheckedUpdateWithoutDocumentosSoporteInput>
+}
+
+export type RazonSocialUpdateWithoutDocumentosSoporteInput = {
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pais?: Prisma.PaisUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialUncheckedUpdateWithoutDocumentosSoporteInput = {
+  idRazonSocial?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idTipoPersona?: Prisma.IntFieldUpdateOperationsInput | number
+  idAmbienteDian?: Prisma.IntFieldUpdateOperationsInput | number
+  idRegimen?: Prisma.IntFieldUpdateOperationsInput | number
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialCreateWithoutDocumentosRecibidosInput = {
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  pais: Prisma.PaisCreateNestedOneWithoutRazonesSocialesInput
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutRazonesSocialesInput
+  ciudad: Prisma.CiudadCreateNestedOneWithoutRazonesSocialesInput
+  tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
+  ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
+  regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
+  casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialUncheckedCreateWithoutDocumentosRecibidosInput = {
+  idRazonSocial?: number
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  idPais: number
+  idDepartamento: number
+  idCiudad: number
+  idTipoPersona: number
+  idAmbienteDian: number
+  idRegimen: number
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialCreateOrConnectWithoutDocumentosRecibidosInput = {
+  where: Prisma.RazonSocialWhereUniqueInput
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosRecibidosInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosRecibidosInput>
+}
+
+export type RazonSocialUpsertWithoutDocumentosRecibidosInput = {
+  update: Prisma.XOR<Prisma.RazonSocialUpdateWithoutDocumentosRecibidosInput, Prisma.RazonSocialUncheckedUpdateWithoutDocumentosRecibidosInput>
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutDocumentosRecibidosInput, Prisma.RazonSocialUncheckedCreateWithoutDocumentosRecibidosInput>
+  where?: Prisma.RazonSocialWhereInput
+}
+
+export type RazonSocialUpdateToOneWithWhereWithoutDocumentosRecibidosInput = {
+  where?: Prisma.RazonSocialWhereInput
+  data: Prisma.XOR<Prisma.RazonSocialUpdateWithoutDocumentosRecibidosInput, Prisma.RazonSocialUncheckedUpdateWithoutDocumentosRecibidosInput>
+}
+
+export type RazonSocialUpdateWithoutDocumentosRecibidosInput = {
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pais?: Prisma.PaisUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialUncheckedUpdateWithoutDocumentosRecibidosInput = {
+  idRazonSocial?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idTipoPersona?: Prisma.IntFieldUpdateOperationsInput | number
+  idAmbienteDian?: Prisma.IntFieldUpdateOperationsInput | number
+  idRegimen?: Prisma.IntFieldUpdateOperationsInput | number
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialCreateWithoutReglasMapeoPucInput = {
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  pais: Prisma.PaisCreateNestedOneWithoutRazonesSocialesInput
+  departamento: Prisma.DepartamentoCreateNestedOneWithoutRazonesSocialesInput
+  ciudad: Prisma.CiudadCreateNestedOneWithoutRazonesSocialesInput
+  tipoPersona: Prisma.TipoPersonaCreateNestedOneWithoutRazonesSocialesInput
+  ambienteDian: Prisma.AmbienteDianCreateNestedOneWithoutRazonesSocialesInput
+  regimen: Prisma.RegimenCreateNestedOneWithoutRazonesSocialesInput
+  casinos?: Prisma.CasinoCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialUncheckedCreateWithoutReglasMapeoPucInput = {
+  idRazonSocial?: number
+  nit: string
+  nombreRazonSocial: string
+  telefono: string
+  direccion: string
+  codigoPostal?: string | null
+  correo: string
+  idPais: number
+  idDepartamento: number
+  idCiudad: number
+  idTipoPersona: number
+  idAmbienteDian: number
+  idRegimen: number
+  responsabilidadFiscal: string
+  contratoColjuegos?: string | null
+  fechaInicioContrato?: Date | string | null
+  fechaFinContrato?: Date | string | null
+  softwareId?: string | null
+  softwarePin?: string | null
+  testSetId?: string | null
+  claveTecnica?: string | null
+  numeroResolucion?: string | null
+  prefijoResolucion?: string | null
+  rangoInicio?: string | null
+  rangoFin?: string | null
+  fechaInicioResolucion?: Date | string | null
+  fechaFinResolucion?: Date | string | null
+  codigoHelisa?: string | null
+  estado?: $Enums.EstadoRegistro
+  fechaCreacion?: Date | string
+  fechaActualizacion?: Date | string
+  casinos?: Prisma.CasinoUncheckedCreateNestedManyWithoutRazonSocialInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedCreateNestedManyWithoutRazonSocialInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedCreateNestedManyWithoutRazonSocialInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedCreateNestedManyWithoutRazonSocialInput
+}
+
+export type RazonSocialCreateOrConnectWithoutReglasMapeoPucInput = {
+  where: Prisma.RazonSocialWhereUniqueInput
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutReglasMapeoPucInput, Prisma.RazonSocialUncheckedCreateWithoutReglasMapeoPucInput>
+}
+
+export type RazonSocialUpsertWithoutReglasMapeoPucInput = {
+  update: Prisma.XOR<Prisma.RazonSocialUpdateWithoutReglasMapeoPucInput, Prisma.RazonSocialUncheckedUpdateWithoutReglasMapeoPucInput>
+  create: Prisma.XOR<Prisma.RazonSocialCreateWithoutReglasMapeoPucInput, Prisma.RazonSocialUncheckedCreateWithoutReglasMapeoPucInput>
+  where?: Prisma.RazonSocialWhereInput
+}
+
+export type RazonSocialUpdateToOneWithWhereWithoutReglasMapeoPucInput = {
+  where?: Prisma.RazonSocialWhereInput
+  data: Prisma.XOR<Prisma.RazonSocialUpdateWithoutReglasMapeoPucInput, Prisma.RazonSocialUncheckedUpdateWithoutReglasMapeoPucInput>
+}
+
+export type RazonSocialUpdateWithoutReglasMapeoPucInput = {
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pais?: Prisma.PaisUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  departamento?: Prisma.DepartamentoUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ciudad?: Prisma.CiudadUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
+  casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+}
+
+export type RazonSocialUncheckedUpdateWithoutReglasMapeoPucInput = {
+  idRazonSocial?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.StringFieldUpdateOperationsInput | string
+  nombreRazonSocial?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.StringFieldUpdateOperationsInput | string
+  direccion?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoPostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correo?: Prisma.StringFieldUpdateOperationsInput | string
+  idPais?: Prisma.IntFieldUpdateOperationsInput | number
+  idDepartamento?: Prisma.IntFieldUpdateOperationsInput | number
+  idCiudad?: Prisma.IntFieldUpdateOperationsInput | number
+  idTipoPersona?: Prisma.IntFieldUpdateOperationsInput | number
+  idAmbienteDian?: Prisma.IntFieldUpdateOperationsInput | number
+  idRegimen?: Prisma.IntFieldUpdateOperationsInput | number
+  responsabilidadFiscal?: Prisma.StringFieldUpdateOperationsInput | string
+  contratoColjuegos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinContrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  softwareId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  softwarePin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claveTecnica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prefijoResolucion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rangoFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaInicioResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinResolucion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  codigoHelisa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoRegistroFieldUpdateOperationsInput | $Enums.EstadoRegistro
+  fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialCreateManyPaisInput = {
@@ -2074,6 +3109,11 @@ export type RazonSocialUpdateWithoutPaisInput = {
   ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
   regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateWithoutPaisInput = {
@@ -2108,6 +3148,11 @@ export type RazonSocialUncheckedUpdateWithoutPaisInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateManyWithoutPaisInput = {
@@ -2207,6 +3252,11 @@ export type RazonSocialUpdateWithoutDepartamentoInput = {
   ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
   regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateWithoutDepartamentoInput = {
@@ -2241,6 +3291,11 @@ export type RazonSocialUncheckedUpdateWithoutDepartamentoInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateManyWithoutDepartamentoInput = {
@@ -2340,6 +3395,11 @@ export type RazonSocialUpdateWithoutCiudadInput = {
   ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
   regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateWithoutCiudadInput = {
@@ -2374,6 +3434,11 @@ export type RazonSocialUncheckedUpdateWithoutCiudadInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateManyWithoutCiudadInput = {
@@ -2473,6 +3538,11 @@ export type RazonSocialUpdateWithoutTipoPersonaInput = {
   ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
   regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateWithoutTipoPersonaInput = {
@@ -2507,6 +3577,11 @@ export type RazonSocialUncheckedUpdateWithoutTipoPersonaInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateManyWithoutTipoPersonaInput = {
@@ -2606,6 +3681,11 @@ export type RazonSocialUpdateWithoutAmbienteDianInput = {
   tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
   regimen?: Prisma.RegimenUpdateOneRequiredWithoutRazonesSocialesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateWithoutAmbienteDianInput = {
@@ -2640,6 +3720,11 @@ export type RazonSocialUncheckedUpdateWithoutAmbienteDianInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateManyWithoutAmbienteDianInput = {
@@ -2739,6 +3824,11 @@ export type RazonSocialUpdateWithoutRegimenInput = {
   tipoPersona?: Prisma.TipoPersonaUpdateOneRequiredWithoutRazonesSocialesNestedInput
   ambienteDian?: Prisma.AmbienteDianUpdateOneRequiredWithoutRazonesSocialesNestedInput
   casinos?: Prisma.CasinoUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateWithoutRegimenInput = {
@@ -2773,6 +3863,11 @@ export type RazonSocialUncheckedUpdateWithoutRegimenInput = {
   fechaCreacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaActualizacion?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   casinos?: Prisma.CasinoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  resolucionesDian?: Prisma.ResolucionDianUncheckedUpdateManyWithoutRazonSocialNestedInput
+  facturasElectronicas?: Prisma.FacturaElectronicaUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosSoporte?: Prisma.DocumentoSoporteUncheckedUpdateManyWithoutRazonSocialNestedInput
+  documentosRecibidos?: Prisma.DocumentoRecibidoUncheckedUpdateManyWithoutRazonSocialNestedInput
+  reglasMapeoPuc?: Prisma.ReglaMapeoPUCUncheckedUpdateManyWithoutRazonSocialNestedInput
 }
 
 export type RazonSocialUncheckedUpdateManyWithoutRegimenInput = {
@@ -2815,10 +3910,20 @@ export type RazonSocialUncheckedUpdateManyWithoutRegimenInput = {
 
 export type RazonSocialCountOutputType = {
   casinos: number
+  resolucionesDian: number
+  facturasElectronicas: number
+  documentosSoporte: number
+  documentosRecibidos: number
+  reglasMapeoPuc: number
 }
 
 export type RazonSocialCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   casinos?: boolean | RazonSocialCountOutputTypeCountCasinosArgs
+  resolucionesDian?: boolean | RazonSocialCountOutputTypeCountResolucionesDianArgs
+  facturasElectronicas?: boolean | RazonSocialCountOutputTypeCountFacturasElectronicasArgs
+  documentosSoporte?: boolean | RazonSocialCountOutputTypeCountDocumentosSoporteArgs
+  documentosRecibidos?: boolean | RazonSocialCountOutputTypeCountDocumentosRecibidosArgs
+  reglasMapeoPuc?: boolean | RazonSocialCountOutputTypeCountReglasMapeoPucArgs
 }
 
 /**
@@ -2836,6 +3941,41 @@ export type RazonSocialCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
  */
 export type RazonSocialCountOutputTypeCountCasinosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CasinoWhereInput
+}
+
+/**
+ * RazonSocialCountOutputType without action
+ */
+export type RazonSocialCountOutputTypeCountResolucionesDianArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ResolucionDianWhereInput
+}
+
+/**
+ * RazonSocialCountOutputType without action
+ */
+export type RazonSocialCountOutputTypeCountFacturasElectronicasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturaElectronicaWhereInput
+}
+
+/**
+ * RazonSocialCountOutputType without action
+ */
+export type RazonSocialCountOutputTypeCountDocumentosSoporteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentoSoporteWhereInput
+}
+
+/**
+ * RazonSocialCountOutputType without action
+ */
+export type RazonSocialCountOutputTypeCountDocumentosRecibidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentoRecibidoWhereInput
+}
+
+/**
+ * RazonSocialCountOutputType without action
+ */
+export type RazonSocialCountOutputTypeCountReglasMapeoPucArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReglaMapeoPUCWhereInput
 }
 
 
@@ -2878,6 +4018,11 @@ export type RazonSocialSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   ambienteDian?: boolean | Prisma.AmbienteDianDefaultArgs<ExtArgs>
   regimen?: boolean | Prisma.RegimenDefaultArgs<ExtArgs>
   casinos?: boolean | Prisma.RazonSocial$casinosArgs<ExtArgs>
+  resolucionesDian?: boolean | Prisma.RazonSocial$resolucionesDianArgs<ExtArgs>
+  facturasElectronicas?: boolean | Prisma.RazonSocial$facturasElectronicasArgs<ExtArgs>
+  documentosSoporte?: boolean | Prisma.RazonSocial$documentosSoporteArgs<ExtArgs>
+  documentosRecibidos?: boolean | Prisma.RazonSocial$documentosRecibidosArgs<ExtArgs>
+  reglasMapeoPuc?: boolean | Prisma.RazonSocial$reglasMapeoPucArgs<ExtArgs>
   _count?: boolean | Prisma.RazonSocialCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["razonSocial"]>
 
@@ -2926,6 +4071,11 @@ export type RazonSocialInclude<ExtArgs extends runtime.Types.Extensions.Internal
   ambienteDian?: boolean | Prisma.AmbienteDianDefaultArgs<ExtArgs>
   regimen?: boolean | Prisma.RegimenDefaultArgs<ExtArgs>
   casinos?: boolean | Prisma.RazonSocial$casinosArgs<ExtArgs>
+  resolucionesDian?: boolean | Prisma.RazonSocial$resolucionesDianArgs<ExtArgs>
+  facturasElectronicas?: boolean | Prisma.RazonSocial$facturasElectronicasArgs<ExtArgs>
+  documentosSoporte?: boolean | Prisma.RazonSocial$documentosSoporteArgs<ExtArgs>
+  documentosRecibidos?: boolean | Prisma.RazonSocial$documentosRecibidosArgs<ExtArgs>
+  reglasMapeoPuc?: boolean | Prisma.RazonSocial$reglasMapeoPucArgs<ExtArgs>
   _count?: boolean | Prisma.RazonSocialCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2939,6 +4089,11 @@ export type $RazonSocialPayload<ExtArgs extends runtime.Types.Extensions.Interna
     ambienteDian: Prisma.$AmbienteDianPayload<ExtArgs>
     regimen: Prisma.$RegimenPayload<ExtArgs>
     casinos: Prisma.$CasinoPayload<ExtArgs>[]
+    resolucionesDian: Prisma.$ResolucionDianPayload<ExtArgs>[]
+    facturasElectronicas: Prisma.$FacturaElectronicaPayload<ExtArgs>[]
+    documentosSoporte: Prisma.$DocumentoSoportePayload<ExtArgs>[]
+    documentosRecibidos: Prisma.$DocumentoRecibidoPayload<ExtArgs>[]
+    reglasMapeoPuc: Prisma.$ReglaMapeoPUCPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idRazonSocial: number
@@ -3319,6 +4474,11 @@ export interface Prisma__RazonSocialClient<T, Null = never, ExtArgs extends runt
   ambienteDian<T extends Prisma.AmbienteDianDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AmbienteDianDefaultArgs<ExtArgs>>): Prisma.Prisma__AmbienteDianClient<runtime.Types.Result.GetResult<Prisma.$AmbienteDianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   regimen<T extends Prisma.RegimenDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegimenDefaultArgs<ExtArgs>>): Prisma.Prisma__RegimenClient<runtime.Types.Result.GetResult<Prisma.$RegimenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   casinos<T extends Prisma.RazonSocial$casinosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RazonSocial$casinosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasinoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  resolucionesDian<T extends Prisma.RazonSocial$resolucionesDianArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RazonSocial$resolucionesDianArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResolucionDianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  facturasElectronicas<T extends Prisma.RazonSocial$facturasElectronicasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RazonSocial$facturasElectronicasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturaElectronicaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentosSoporte<T extends Prisma.RazonSocial$documentosSoporteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RazonSocial$documentosSoporteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentoSoportePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentosRecibidos<T extends Prisma.RazonSocial$documentosRecibidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RazonSocial$documentosRecibidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentoRecibidoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reglasMapeoPuc<T extends Prisma.RazonSocial$reglasMapeoPucArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RazonSocial$reglasMapeoPucArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReglaMapeoPUCPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3748,6 +4908,126 @@ export type RazonSocial$casinosArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.CasinoScalarFieldEnum | Prisma.CasinoScalarFieldEnum[]
+}
+
+/**
+ * RazonSocial.resolucionesDian
+ */
+export type RazonSocial$resolucionesDianArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ResolucionDian
+   */
+  select?: Prisma.ResolucionDianSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ResolucionDian
+   */
+  omit?: Prisma.ResolucionDianOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResolucionDianInclude<ExtArgs> | null
+  where?: Prisma.ResolucionDianWhereInput
+  orderBy?: Prisma.ResolucionDianOrderByWithRelationInput | Prisma.ResolucionDianOrderByWithRelationInput[]
+  cursor?: Prisma.ResolucionDianWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ResolucionDianScalarFieldEnum | Prisma.ResolucionDianScalarFieldEnum[]
+}
+
+/**
+ * RazonSocial.facturasElectronicas
+ */
+export type RazonSocial$facturasElectronicasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturaElectronica
+   */
+  select?: Prisma.FacturaElectronicaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturaElectronica
+   */
+  omit?: Prisma.FacturaElectronicaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturaElectronicaInclude<ExtArgs> | null
+  where?: Prisma.FacturaElectronicaWhereInput
+  orderBy?: Prisma.FacturaElectronicaOrderByWithRelationInput | Prisma.FacturaElectronicaOrderByWithRelationInput[]
+  cursor?: Prisma.FacturaElectronicaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturaElectronicaScalarFieldEnum | Prisma.FacturaElectronicaScalarFieldEnum[]
+}
+
+/**
+ * RazonSocial.documentosSoporte
+ */
+export type RazonSocial$documentosSoporteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DocumentoSoporte
+   */
+  select?: Prisma.DocumentoSoporteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DocumentoSoporte
+   */
+  omit?: Prisma.DocumentoSoporteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentoSoporteInclude<ExtArgs> | null
+  where?: Prisma.DocumentoSoporteWhereInput
+  orderBy?: Prisma.DocumentoSoporteOrderByWithRelationInput | Prisma.DocumentoSoporteOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentoSoporteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentoSoporteScalarFieldEnum | Prisma.DocumentoSoporteScalarFieldEnum[]
+}
+
+/**
+ * RazonSocial.documentosRecibidos
+ */
+export type RazonSocial$documentosRecibidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DocumentoRecibido
+   */
+  select?: Prisma.DocumentoRecibidoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DocumentoRecibido
+   */
+  omit?: Prisma.DocumentoRecibidoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentoRecibidoInclude<ExtArgs> | null
+  where?: Prisma.DocumentoRecibidoWhereInput
+  orderBy?: Prisma.DocumentoRecibidoOrderByWithRelationInput | Prisma.DocumentoRecibidoOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentoRecibidoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentoRecibidoScalarFieldEnum | Prisma.DocumentoRecibidoScalarFieldEnum[]
+}
+
+/**
+ * RazonSocial.reglasMapeoPuc
+ */
+export type RazonSocial$reglasMapeoPucArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReglaMapeoPUC
+   */
+  select?: Prisma.ReglaMapeoPUCSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReglaMapeoPUC
+   */
+  omit?: Prisma.ReglaMapeoPUCOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReglaMapeoPUCInclude<ExtArgs> | null
+  where?: Prisma.ReglaMapeoPUCWhereInput
+  orderBy?: Prisma.ReglaMapeoPUCOrderByWithRelationInput | Prisma.ReglaMapeoPUCOrderByWithRelationInput[]
+  cursor?: Prisma.ReglaMapeoPUCWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReglaMapeoPUCScalarFieldEnum | Prisma.ReglaMapeoPUCScalarFieldEnum[]
 }
 
 /**

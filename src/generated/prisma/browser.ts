@@ -117,3 +117,58 @@ export type Maquina = Prisma.MaquinaModel
  * 
  */
 export type Usuario = Prisma.UsuarioModel
+/**
+ * Model ResolucionDian
+ * 
+ */
+export type ResolucionDian = Prisma.ResolucionDianModel
+/**
+ * Model ClienteDian
+ * 
+ */
+export type ClienteDian = Prisma.ClienteDianModel
+/**
+ * Model FacturaElectronica
+ * 
+ */
+export type FacturaElectronica = Prisma.FacturaElectronicaModel
+/**
+ * Model FacturaElectronicaItem
+ * 
+ */
+export type FacturaElectronicaItem = Prisma.FacturaElectronicaItemModel
+/**
+ * Model DocumentoSoporte
+ * 
+ */
+export type DocumentoSoporte = Prisma.DocumentoSoporteModel
+/**
+ * Model NotaCredito
+ * 
+ */
+export type NotaCredito = Prisma.NotaCreditoModel
+/**
+ * Model NotaDebito
+ * 
+ */
+export type NotaDebito = Prisma.NotaDebitoModel
+/**
+ * Model EventoDian
+ * 
+ */
+export type EventoDian = Prisma.EventoDianModel
+/**
+ * Model DocumentoRecibido
+ * 
+ */
+export type DocumentoRecibido = Prisma.DocumentoRecibidoModel
+/**
+ * Model ItemCompraRecibido
+ * 
+ */
+export type ItemCompraRecibido = Prisma.ItemCompraRecibidoModel
+/**
+ * Model ReglaMapeoPUC
+ * 
+ */
+export type ReglaMapeoPUC = Prisma.ReglaMapeoPUCModel

@@ -331,6 +331,12 @@ model RazonSocial {
 
   casinos Casino[]
 
+  resolucionesDian     ResolucionDian[]
+  facturasElectronicas FacturaElectronica[]
+  documentosSoporte    DocumentoSoporte[]
+  documentosRecibidos  DocumentoRecibido[]
+  reglasMapeoPuc       ReglaMapeoPUC[]
+
   fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
   fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
 
@@ -369,9 +375,10 @@ model Casino {
   centroCosto CentroCosto @relation(fields: [idCentroCosto], references: [idCentroCosto], onDelete: Restrict, onUpdate: Cascade, map: "fk_casinos_centros_costos")
   razonSocial RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_casinos_razones_sociales")
 
-  usuarios    Usuario[]
-  inventarios Inventario[]
-  maquinas    Maquina[]
+  usuarios            Usuario[]
+  inventarios         Inventario[]
+  maquinas            Maquina[]
+  documentosRecibidos DocumentoRecibido[]
 
   fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
   fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
@@ -529,7 +536,8 @@ model Usuario {
   ciudad        Ciudad        @relation(fields: [idCiudad], references: [idCiudad], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_ciudades")
   casino        Casino        @relation(fields: [idCasino], references: [idCasino], onDelete: Restrict, onUpdate: Cascade, map: "fk_usuarios_casinos")
 
-  inventariosResponsable Inventario[] @relation("InventarioResponsable")
+  inventariosResponsable      Inventario[]         @relation("InventarioResponsable")
+  facturasElectronicasCreadas FacturaElectronica[]
 
   fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
   fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
@@ -543,4 +551,419 @@ model Usuario {
   @@index([apellido, nombre], map: "idx_usuarios_apellido_nombre")
   @@index([codigoHelisa], map: "idx_usuarios_codigo_helisa")
   @@map("usuarios")
+}
+
+// ======================================================
+// FACTURACIÓN ELECTRÓNICA DIAN — EMISIÓN (FASE 1)
+// Fundación: resoluciones, clientes, factura de venta (CUFE + XML,
+// sin firma ni envío SOAP). DocumentoSoporte/NotaCredito/NotaDebito
+// se modelan aquí pero su lógica de negocio queda para fases futuras.
+// ======================================================
+
+enum TipoDocumentoDian {
+  FACTURA
+  DOC_SOPORTE
+}
+
+enum EstadoDocumentoDian {
+  PENDIENTE
+  ENVIANDO
+  EN_PROCESO
+  ACEPTADO
+  RECHAZADO
+  ERROR_TECNICO
+}
+
+enum TipoEventoDian {
+  CREADO
+  XML_GENERADO
+  FIRMADO
+  ENVIADO
+  TRACK_ID_RECIBIDO
+  EN_PROCESO
+  ACEPTADO
+  RECHAZADO
+  ERROR_TECNICO
+  RETRY_SCHEDULED
+}
+
+model ResolucionDian {
+  idResolucionDian Int @id @default(autoincrement()) @map("id_resolucion_dian") @db.UnsignedInt
+
+  idRazonSocial Int         @map("id_razon_social") @db.UnsignedInt
+  razonSocial   RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_resoluciones_dian_razones_sociales")
+
+  tipoDocumento TipoDocumentoDian @map("tipo_documento")
+  entorno       String            @db.VarChar(1) // '1' Producción, '2' Habilitación (valores DIAN)
+
+  prefijo           String @db.VarChar(10)
+  numeroResolucion  String @map("numero_resolucion") @db.VarChar(100)
+  rangoDesde        Int    @map("rango_desde") @db.UnsignedInt
+  rangoHasta        Int    @map("rango_hasta") @db.UnsignedInt
+  consecutivoActual Int    @default(0) @map("consecutivo_actual") @db.UnsignedInt
+
+  fechaVigenciaDesde DateTime @map("fecha_vigencia_desde") @db.Date
+  fechaVigenciaHasta DateTime @map("fecha_vigencia_hasta") @db.Date
+  claveTecnica       String   @map("clave_tecnica") @db.VarChar(255)
+
+  activa Boolean @default(true)
+
+  facturasElectronicas FacturaElectronica[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([idRazonSocial], map: "idx_resoluciones_dian_razon_social")
+  @@index([tipoDocumento, entorno, activa], map: "idx_resoluciones_dian_tipo_entorno_activa")
+  @@map("dian_resoluciones")
+}
+
+model ClienteDian {
+  idClienteDian Int @id @default(autoincrement()) @map("id_cliente_dian") @db.UnsignedInt
+
+  nombre                String  @db.VarChar(180)
+  tipoDocumento         String  @default("13") @map("tipo_documento") @db.VarChar(5)
+  numeroDocumento       String  @unique(map: "uq_clientes_dian_numero_documento") @map("numero_documento") @db.VarChar(30)
+  direccion             String? @db.VarChar(200)
+  ciudad                String? @db.VarChar(150)
+  departamento          String? @db.VarChar(150)
+  telefono              String? @db.VarChar(30)
+  email                 String? @db.VarChar(191)
+  tipoPersona           String  @default("2") @map("tipo_persona") @db.VarChar(5)
+  responsabilidadFiscal String  @default("R-99-PN") @map("responsabilidad_fiscal") @db.VarChar(50)
+
+  facturasElectronicas FacturaElectronica[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([nombre], map: "idx_clientes_dian_nombre")
+  @@map("clientes_dian")
+}
+
+model FacturaElectronica {
+  idFacturaElectronica Int @id @default(autoincrement()) @map("id_factura_electronica") @db.UnsignedInt
+
+  idRazonSocial    Int @map("id_razon_social") @db.UnsignedInt
+  idClienteDian    Int @map("id_cliente_dian") @db.UnsignedInt
+  idUsuario        Int @map("id_usuario") @db.UnsignedInt
+  idResolucionDian Int @map("id_resolucion_dian") @db.UnsignedInt
+
+  razonSocial    RazonSocial    @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_facturas_electronicas_razones_sociales")
+  clienteDian    ClienteDian    @relation(fields: [idClienteDian], references: [idClienteDian], onDelete: Restrict, onUpdate: Cascade, map: "fk_facturas_electronicas_clientes_dian")
+  usuario        Usuario        @relation(fields: [idUsuario], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "fk_facturas_electronicas_usuarios")
+  resolucionDian ResolucionDian @relation(fields: [idResolucionDian], references: [idResolucionDian], onDelete: Restrict, onUpdate: Cascade, map: "fk_facturas_electronicas_resoluciones_dian")
+
+  prefijo     String @db.VarChar(10)
+  consecutivo Int    @db.UnsignedInt
+
+  fechaEmision DateTime @map("fecha_emision") @db.DateTime(0)
+
+  cufe             String  @unique(map: "uq_facturas_electronicas_cufe") @db.VarChar(96)
+  qrcodeData       String? @map("qrcode_data") @db.VarChar(500)
+  xmlContent       String  @map("xml_content") @db.LongText
+  nombreArchivoXml String  @map("nombre_archivo_xml") @db.VarChar(255)
+
+  estadoDian   EstadoDocumentoDian @default(PENDIENTE) @map("estado_dian")
+  trackId      String?             @map("track_id") @db.VarChar(100)
+  mensajeError String?             @map("mensaje_error") @db.Text
+
+  subtotal   Decimal @db.Decimal(20, 2)
+  iva        Decimal @default(0.00) @db.Decimal(20, 2)
+  incConsumo Decimal @default(0.00) @map("inc_consumo") @db.Decimal(20, 2)
+  ica        Decimal @default(0.00) @db.Decimal(20, 2)
+  total      Decimal @db.Decimal(20, 2)
+
+  items FacturaElectronicaItem[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  notasCredito NotaCredito[]
+  notasDebito  NotaDebito[]
+
+  @@unique([prefijo, consecutivo], map: "uq_facturas_electronicas_prefijo_consecutivo")
+  @@index([estadoDian, fechaCreacion], map: "idx_facturas_electronicas_estado_fecha")
+  @@index([idRazonSocial], map: "idx_facturas_electronicas_razon_social")
+  @@index([idClienteDian], map: "idx_facturas_electronicas_cliente")
+  @@map("facturas_electronicas")
+}
+
+model FacturaElectronicaItem {
+  idFacturaElectronicaItem Int @id @default(autoincrement()) @map("id_factura_electronica_item") @db.UnsignedInt
+
+  idFacturaElectronica Int                @map("id_factura_electronica") @db.UnsignedInt
+  facturaElectronica   FacturaElectronica @relation(fields: [idFacturaElectronica], references: [idFacturaElectronica], onDelete: Cascade, onUpdate: Cascade, map: "fk_factura_electronica_items_facturas")
+
+  descripcion    String  @db.VarChar(255)
+  cantidad       Decimal @db.Decimal(15, 3)
+  precioUnitario Decimal @map("precio_unitario") @db.Decimal(20, 2)
+  descuento      Decimal @default(0.00) @db.Decimal(20, 2)
+  subtotal       Decimal @db.Decimal(20, 2)
+
+  codigoImpuesto1 String  @default("01") @map("codigo_impuesto_1") @db.VarChar(5)
+  valorImpuesto1  Decimal @default(0.00) @map("valor_impuesto_1") @db.Decimal(20, 2)
+  codigoImpuesto2 String? @map("codigo_impuesto_2") @db.VarChar(5)
+  valorImpuesto2  Decimal @default(0.00) @map("valor_impuesto_2") @db.Decimal(20, 2)
+  codigoImpuesto3 String? @map("codigo_impuesto_3") @db.VarChar(5)
+  valorImpuesto3  Decimal @default(0.00) @map("valor_impuesto_3") @db.Decimal(20, 2)
+
+  total Decimal @db.Decimal(20, 2)
+
+  @@index([idFacturaElectronica], map: "idx_factura_electronica_items_factura")
+  @@map("factura_electronica_items")
+}
+
+model DocumentoSoporte {
+  idDocumentoSoporte Int @id @default(autoincrement()) @map("id_documento_soporte") @db.UnsignedInt
+
+  idRazonSocial Int         @map("id_razon_social") @db.UnsignedInt
+  razonSocial   RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_documentos_soporte_razones_sociales")
+
+  prefijo     String @db.VarChar(10)
+  consecutivo Int    @db.UnsignedInt
+
+  fechaEmision DateTime @map("fecha_emision") @db.DateTime(0)
+
+  cuds             String  @unique(map: "uq_documentos_soporte_cuds") @db.VarChar(96)
+  xmlContent       String? @map("xml_content") @db.LongText
+  nombreArchivoXml String? @map("nombre_archivo_xml") @db.VarChar(255)
+
+  estadoDian   EstadoDocumentoDian @default(PENDIENTE) @map("estado_dian")
+  trackId      String?             @map("track_id") @db.VarChar(100)
+  mensajeError String?             @map("mensaje_error") @db.Text
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@unique([prefijo, consecutivo], map: "uq_documentos_soporte_prefijo_consecutivo")
+  @@index([idRazonSocial], map: "idx_documentos_soporte_razon_social")
+  @@map("documentos_soporte")
+}
+
+model NotaCredito {
+  idNotaCredito Int @id @default(autoincrement()) @map("id_nota_credito") @db.UnsignedInt
+
+  idFacturaElectronica Int                @map("id_factura_electronica") @db.UnsignedInt
+  facturaElectronica   FacturaElectronica @relation(fields: [idFacturaElectronica], references: [idFacturaElectronica], onDelete: Restrict, onUpdate: Cascade, map: "fk_notas_credito_facturas_electronicas")
+
+  prefijo     String @db.VarChar(10)
+  consecutivo Int    @db.UnsignedInt
+
+  fechaEmision DateTime @map("fecha_emision") @db.DateTime(0)
+
+  cude               String  @unique(map: "uq_notas_credito_cude") @db.VarChar(96)
+  conceptoCorreccion String  @default("2") @map("concepto_correccion") @db.VarChar(5)
+  descripcionMotivo  String? @map("descripcion_motivo") @db.VarChar(255)
+
+  xmlContent       String? @map("xml_content") @db.LongText
+  nombreArchivoXml String? @map("nombre_archivo_xml") @db.VarChar(255)
+
+  estadoDian   EstadoDocumentoDian @default(PENDIENTE) @map("estado_dian")
+  trackId      String?             @map("track_id") @db.VarChar(100)
+  mensajeError String?             @map("mensaje_error") @db.Text
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@unique([prefijo, consecutivo], map: "uq_notas_credito_prefijo_consecutivo")
+  @@index([idFacturaElectronica], map: "idx_notas_credito_factura")
+  @@map("notas_credito")
+}
+
+model NotaDebito {
+  idNotaDebito Int @id @default(autoincrement()) @map("id_nota_debito") @db.UnsignedInt
+
+  idFacturaElectronica Int                @map("id_factura_electronica") @db.UnsignedInt
+  facturaElectronica   FacturaElectronica @relation(fields: [idFacturaElectronica], references: [idFacturaElectronica], onDelete: Restrict, onUpdate: Cascade, map: "fk_notas_debito_facturas_electronicas")
+
+  prefijo     String @db.VarChar(10)
+  consecutivo Int    @db.UnsignedInt
+
+  fechaEmision DateTime @map("fecha_emision") @db.DateTime(0)
+
+  cude               String  @unique(map: "uq_notas_debito_cude") @db.VarChar(96)
+  conceptoCorreccion String  @default("3") @map("concepto_correccion") @db.VarChar(5)
+  descripcionMotivo  String? @map("descripcion_motivo") @db.VarChar(255)
+
+  xmlContent       String? @map("xml_content") @db.LongText
+  nombreArchivoXml String? @map("nombre_archivo_xml") @db.VarChar(255)
+
+  estadoDian   EstadoDocumentoDian @default(PENDIENTE) @map("estado_dian")
+  trackId      String?             @map("track_id") @db.VarChar(100)
+  mensajeError String?             @map("mensaje_error") @db.Text
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@unique([prefijo, consecutivo], map: "uq_notas_debito_prefijo_consecutivo")
+  @@index([idFacturaElectronica], map: "idx_notas_debito_factura")
+  @@map("notas_debito")
+}
+
+model EventoDian {
+  idEventoDian Int @id @default(autoincrement()) @map("id_evento_dian") @db.UnsignedInt
+
+  documentId   Int            @map("document_id") @db.UnsignedInt
+  documentType String         @map("document_type") @db.VarChar(30) // 'FACTURA_ELECTRONICA' | 'DOCUMENTO_SOPORTE' | 'NOTA_CREDITO' | 'NOTA_DEBITO'
+  eventType    TipoEventoDian @map("event_type")
+
+  timestamp    DateTime @default(now()) @db.DateTime(0)
+  actor        String?  @db.VarChar(150)
+  metadataJson String?  @map("metadata_json") @db.Text
+
+  @@index([documentType, documentId], map: "idx_eventos_dian_document")
+  @@map("dian_document_events")
+}
+
+// ======================================================
+// RECEPCIÓN DIAN — INGESTA MANUAL (FASE 1)
+// Documentos (factura/NC/ND) recibidos de proveedores, cargados por XML
+// suelto o por el Excel de "Documentos Recibidos" del portal DIAN.
+// Conector/extensión Chrome, IMAP y motor de aprendizaje PUC quedan
+// fuera de alcance de esta fase (ver plan de migración).
+// ======================================================
+
+enum TipoDocumentoRecibido {
+  FACTURA
+  NOTA_CREDITO
+  NOTA_DEBITO
+}
+
+enum OrigenDocumentoRecibido {
+  MANUAL
+  EXCEL_PORTAL
+}
+
+enum EstadoCausacionRecibido {
+  PENDIENTE
+  CONCILIADO
+  CAUSADO
+  EXPORTADO
+  RECHAZADO
+  ERROR_XML
+}
+
+enum NaturalezaContable {
+  D
+  C
+}
+
+enum EstadoMapeoPuc {
+  SIN_MAPEAR
+  MAPEADO
+}
+
+model DocumentoRecibido {
+  idDocumentoRecibido Int @id @default(autoincrement()) @map("id_documento_recibido") @db.UnsignedInt
+
+  idRazonSocial Int  @map("id_razon_social") @db.UnsignedInt
+  idCasino      Int? @map("id_casino") @db.UnsignedInt
+
+  razonSocial RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_documentos_recibidos_razones_sociales")
+  casino      Casino?     @relation(fields: [idCasino], references: [idCasino], onDelete: SetNull, onUpdate: Cascade, map: "fk_documentos_recibidos_casinos")
+
+  cufe                    String?               @unique(map: "uq_documentos_recibidos_cufe") @db.VarChar(96)
+  tipoDocumento           TipoDocumentoRecibido @map("tipo_documento")
+  prefijo                 String?               @db.VarChar(10)
+  consecutivo             String?               @db.VarChar(30)
+  numeroDocumentoCompleto String                @map("numero_documento_completo") @db.VarChar(60)
+
+  nitEmisor    String @map("nit_emisor") @db.VarChar(30)
+  nombreEmisor String @map("nombre_emisor") @db.VarChar(180)
+
+  fechaEmision DateTime @map("fecha_emision") @db.DateTime(0)
+
+  subtotal        Decimal @default(0.00) @db.Decimal(20, 2)
+  iva             Decimal @default(0.00) @db.Decimal(20, 2)
+  ica             Decimal @default(0.00) @db.Decimal(20, 2)
+  retencionFuente Decimal @default(0.00) @map("retencion_fuente") @db.Decimal(20, 2)
+  reteIva         Decimal @default(0.00) @map("rete_iva") @db.Decimal(20, 2)
+  reteIca         Decimal @default(0.00) @map("rete_ica") @db.Decimal(20, 2)
+  totalPagar      Decimal @default(0.00) @map("total_pagar") @db.Decimal(20, 2)
+
+  xmlOriginal String? @map("xml_original") @db.LongText
+  qrUrl       String? @map("qr_url") @db.VarChar(500)
+
+  origen                       OrigenDocumentoRecibido @default(MANUAL)
+  estadoCausacion              EstadoCausacionRecibido @default(PENDIENTE) @map("estado_causacion")
+  pucPreliminar                String?                 @map("puc_preliminar") @db.VarChar(50)
+  requiereRevisionConciliacion Boolean                 @default(false) @map("requiere_revision_conciliacion")
+
+  items ItemCompraRecibido[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([idRazonSocial], map: "idx_documentos_recibidos_razon_social")
+  @@index([idCasino], map: "idx_documentos_recibidos_casino")
+  @@index([estadoCausacion, fechaCreacion], map: "idx_documentos_recibidos_estado_fecha")
+  @@index([nitEmisor, numeroDocumentoCompleto, fechaEmision], map: "idx_documentos_recibidos_reconciliacion")
+  @@map("documentos_recibidos")
+}
+
+model ItemCompraRecibido {
+  idItemCompraRecibido Int @id @default(autoincrement()) @map("id_item_compra_recibido") @db.UnsignedInt
+
+  idDocumentoRecibido Int               @map("id_documento_recibido") @db.UnsignedInt
+  documentoRecibido   DocumentoRecibido @relation(fields: [idDocumentoRecibido], references: [idDocumentoRecibido], onDelete: Cascade, onUpdate: Cascade, map: "fk_items_compra_recibidos_documentos")
+
+  idReglaAplicada Int?           @map("id_regla_aplicada") @db.UnsignedInt
+  reglaAplicada   ReglaMapeoPUC? @relation(fields: [idReglaAplicada], references: [idReglaMapeoPuc], onDelete: SetNull, onUpdate: Cascade, map: "fk_items_compra_recibidos_reglas_puc")
+
+  descripcion    String  @db.VarChar(255)
+  cantidad       Decimal @db.Decimal(15, 3)
+  precioUnitario Decimal @map("precio_unitario") @db.Decimal(20, 2)
+  subtotal       Decimal @db.Decimal(20, 2)
+
+  codigoImpuesto1 String  @default("01") @map("codigo_impuesto_1") @db.VarChar(5)
+  valorImpuesto1  Decimal @default(0.00) @map("valor_impuesto_1") @db.Decimal(20, 2)
+  codigoImpuesto2 String? @map("codigo_impuesto_2") @db.VarChar(5)
+  valorImpuesto2  Decimal @default(0.00) @map("valor_impuesto_2") @db.Decimal(20, 2)
+  codigoImpuesto3 String? @map("codigo_impuesto_3") @db.VarChar(5)
+  valorImpuesto3  Decimal @default(0.00) @map("valor_impuesto_3") @db.Decimal(20, 2)
+
+  total Decimal @db.Decimal(20, 2)
+
+  cuentaPuc          String?             @map("cuenta_puc") @db.VarChar(50)
+  nombreCuentaPuc    String?             @map("nombre_cuenta_puc") @db.VarChar(150)
+  centroCostos       String?             @map("centro_costos") @db.VarChar(50)
+  nombreCentroCostos String?             @map("nombre_centro_costos") @db.VarChar(150)
+  naturaleza         NaturalezaContable?
+  estadoMapeo        EstadoMapeoPuc      @default(SIN_MAPEAR) @map("estado_mapeo")
+
+  @@index([idDocumentoRecibido], map: "idx_items_compra_recibidos_documento")
+  @@index([idReglaAplicada], map: "idx_items_compra_recibidos_regla")
+  @@map("items_compra_recibidos")
+}
+
+model ReglaMapeoPUC {
+  idReglaMapeoPuc Int @id @default(autoincrement()) @map("id_regla_mapeo_puc") @db.UnsignedInt
+
+  idRazonSocial Int         @map("id_razon_social") @db.UnsignedInt
+  razonSocial   RazonSocial @relation(fields: [idRazonSocial], references: [idRazonSocial], onDelete: Restrict, onUpdate: Cascade, map: "fk_reglas_mapeo_puc_razones_sociales")
+
+  nombre   String @db.VarChar(150)
+  concepto String @db.VarChar(150)
+
+  nitEmisor     String?                @map("nit_emisor") @db.VarChar(30)
+  nombreEmisor  String?                @map("nombre_emisor") @db.VarChar(180)
+  tipoDocumento TipoDocumentoRecibido? @map("tipo_documento")
+
+  cuentaPuc       String             @map("cuenta_puc") @db.VarChar(50)
+  nombreCuentaPuc String?            @map("nombre_cuenta_puc") @db.VarChar(150)
+  centroCostos    String?            @map("centro_costos") @db.VarChar(50)
+  naturaleza      NaturalezaContable
+
+  prioridad Int     @default(0) @db.UnsignedInt
+  activa    Boolean @default(true)
+
+  itemsAplicados ItemCompraRecibido[]
+
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.DateTime(0)
+  fechaActualizacion DateTime @default(now()) @updatedAt @map("fecha_actualizacion") @db.DateTime(0)
+
+  @@index([idRazonSocial, activa], map: "idx_reglas_mapeo_puc_razon_activa")
+  @@index([nitEmisor], map: "idx_reglas_mapeo_puc_nit_emisor")
+  @@map("reglas_mapeo_puc")
 }

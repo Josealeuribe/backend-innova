@@ -104,4 +104,16 @@ export class ListarMaquinasQueryDto {
       'La marca no puede superar 100 caracteres.',
   })
   marca?: string;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt({
+    message:
+      'El ID del inventario debe ser un número entero.',
+  })
+  @Min(1, {
+    message:
+      'El ID del inventario debe ser mayor que cero.',
+  })
+  idInventario?: number;
 }

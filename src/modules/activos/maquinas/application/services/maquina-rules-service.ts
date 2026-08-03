@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import {
+import type {
     CreateMaquinaData,
     MaquinaRepository,
     UpdateMaquinaData,
